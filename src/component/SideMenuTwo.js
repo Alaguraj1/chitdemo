@@ -86,9 +86,11 @@ const SideMenuTwo = () => {
                                         <Link to="/chit-details">Chit Details</Link>
                                     </li>
                                     
+                                {/*
                                     <li className="mb-[7px]" onClick={showConfirm}>
                                         <Link to="">Logout</Link>
                                     </li>
+                                */}
                                 </ul>
                             </div>
                         </div>
@@ -145,9 +147,11 @@ const SideMenuTwo = () => {
                             <li className="mb-[7px] ">
                                 <Link to="/my-profile">My Profile</Link>
                             </li>
+                             {/*
                             <li className="mb-[7px] " onClick={showConfirm}>
                                 <Link to="">Logout</Link>
                             </li>
+                            */}
                         </ul>
                     </div>
                     <div className="copyright absolute bottom-[50px]">
