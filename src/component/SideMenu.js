@@ -99,14 +99,11 @@ const SideMenu = () => {
                                 <ul>
                                     <li className="mr-[8px] inline-block"><a className="text-[#333]" target='_blank' href="https://www.facebook.com/sreethangamjewellry"><img className="svg"
                                         src="assets/img/svg/social/facebook.svg" alt="image" /></a></li>
-                                    <li className="mr-[8px] inline-block"><a className="text-[#333]" href="#"><img className="svg"
+                                    <li className="mr-[8px] inline-block"><a className="text-[#333]" target='_blank' href="https://twitter.com/sree_thangam"><img className="svg"
                                         src="assets/img/svg/social/twitter.svg" alt="image" /></a></li>
-                                    <li className="mr-[8px] inline-block"><a className="text-[#333]" href="#"><img className="svg"
+                                    <li className="mr-[8px] inline-block"><a className="text-[#333]" target='_blank' href="https://www.instagram.com/sree_thangam_jewellery/"><img className="svg"
                                         src="assets/img/svg/social/instagram.svg" alt="image" /></a></li>
-                                    <li className="mr-[8px] inline-block"><a className="text-[#333]" href="#"><img className="svg"
-                                        src="assets/img/svg/social/dribbble.svg" alt="image" /></a></li>
-                                    <li className="inline-block"><a className="text-[#333]" href="#"><img className="svg"
-                                        src="assets/img/svg/social/tik-tok.svg" alt="image" /></a></li>
+                               
                                 </ul>
                             </div>
                             <div className="copyright w-full float-left">
@@ -161,18 +158,18 @@ const SideMenu = () => {
                             <ul>
                                 <li className="mr-[3px] inline-block"><a
                                     className="w-[40px] h-[40px] inline-block relative rounded-full text-dark-color"
-                                    href="#"><i
+                                    target='_blank' href="https://www.facebook.com/sreethangamjewellry"><i
                                         className="icon-facebook-1 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] text-[16px]"></i></a>
                                 </li>
                                 <li className="mr-[3px] inline-block"><a
                                     className="w-[40px] h-[40px] inline-block relative rounded-full text-dark-color"
-                                    href="#"><i
+                                    target='_blank' href="https://twitter.com/sree_thangam"><i
                                         className="icon-twitter-1 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] text-[16px]"></i></a>
                                 </li>
                                 <li className="mr-[3px] inline-block"><a
                                     className="w-[40px] h-[40px] inline-block relative rounded-full text-dark-color"
-                                    href="#"><i
-                                        className="icon-linkedin-1 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] text-[16px]"></i></a>
+                                    href="https://www.instagram.com/sree_thangam_jewellery/" target='_blank'><i
+                                        className="icon-instagram-1 absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] text-[16px]"></i></a>
                                 </li>
                             </ul>
                         </div>
