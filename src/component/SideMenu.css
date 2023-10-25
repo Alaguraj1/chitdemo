@@ -13,6 +13,10 @@ secondary color : #9a2526, red
 }
 
 
+.ant-btn-primary{
+    background:#9a2526 ;
+}
+
 
 
 @media(max-width:1040px){
