@@ -57,7 +57,12 @@ secondary color : #9a2526, red
 
 }
 
+@media(max-width:1990px) {
 
+    .chit-main-container{
+        height: 100vh;
+    }
+}
 
 
 @media(max-width:1040px) {
