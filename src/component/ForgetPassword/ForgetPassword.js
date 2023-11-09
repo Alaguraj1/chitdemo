@@ -75,7 +75,7 @@ const ForgetPassword = () => {
                                     </Form.Item>
 
                                     <Form.Item
-                                        name="password"
+                                        name="otp"
                                         label="OTP"
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
@@ -86,7 +86,7 @@ const ForgetPassword = () => {
                                     >
                                         <div className="forget-input-warrper" >
                                             {/* <UnlockOutlined className="login-input-icon" /> */}
-                                            <Input className="forget-input-style" placeholder='Enter OTP' />
+                                            <Input className="forget-input-style" />
                                         </div>
                                     </Form.Item>
 
