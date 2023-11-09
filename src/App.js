@@ -7,6 +7,7 @@ import PayDue from "./component/PayDue/PayDue";
 import Payment from "./component/Payment/Payment";
 import ClosedDue from "./component/ClosedDue/ClosedDue";
 import Home from "./component/Home/Home";
+import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/my-profile" element={<PayDue />} />
           <Route path="/chit-details" element={<Payment />} />
           <Route path="/closed-due" element={<ClosedDue />} />
-
+          <Route path="/forget-password" element={<ForgetPassword />} />
         </Routes>
       </BrowserRouter>
     </>

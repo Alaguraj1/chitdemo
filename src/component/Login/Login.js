@@ -98,7 +98,7 @@ function Login() {
                                     >
                                         <Checkbox>Remember me</Checkbox>
                                     </Form.Item>
-                                    <p style={{textDecoration:'underline'}}>Forget Password</p>
+                                    <p style={{textDecoration:'underline'}}><Link to="/forget-password">Forget Password</Link></p>
                                 </div>
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" size="large" style={{ background: "#9a2526" }}>
