@@ -1,10 +1,38 @@
 
 import "./Home.css"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideMenuTwo from "../SideMenuTwo";
 import { Table, Button } from 'antd';
+import axios from "axios";
+import { CalendarFilled, CaretDownOutlined, CaretUpOutlined  } from '@ant-design/icons';
+import { Modal } from 'antd';
 
 function Home() {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [productRate, setProductRate] = useState([])
+    const [goldMaxMin, setGoldMaxMin]  = useState([])
+
+    useEffect(() => {
+        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/API/login/GoldRate").then((res) => {
+            setProductRate(res?.data?.results)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [])
+
+    console.log("productRate", productRate)
+
+
+    useEffect(() => {
+        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/MinMaxGoldRate?MonthYear=06-2023").then((res) => {
+            setGoldMaxMin(res?.data?.results)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, []) 
+
+    console.log("goldMaxMin", goldMaxMin)
 
 
     const dataSource = [
@@ -73,6 +101,17 @@ function Home() {
     ];
 
 
+      // modal
+      const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
     const handlePay = (record) => {
         // Handle the payment for the selected record
         console.log('Pay', record);
@@ -91,8 +130,16 @@ function Home() {
                         <div className="home-left">
                             
                             <div className="priceDetails">
-                                <marquee className="product-price">Gold Rate : ₹ 5,565 /Gram  |  Silver Rate : ₹ 78 /Gram  |  Platinum Rate : ₹ 3,308 /Gram  |  Diamont Rate : ₹ 3,25,000 /Gram</marquee>
-                            </div>
+                            <CalendarFilled className="calendor" onClick={showModal} />
+                                {
+                                    productRate.map((value) => {
+                                        console.log("value", value.RATE1)
+                                        return (
+                                            <marquee className="product-price">Gold Rate : ₹ {value.RATE1} per GRAM   |  Silver Rate : ₹ {value.RATE2} per GRAM    |  Platinum Rate : ₹ {value.RATE4} per GRAM  </marquee>
+                                        )
+                                    })
+                                }                            
+                                </div>
 
                             <div className="home-payDue">
                                 <div className="home-table-outer">
@@ -114,6 +161,29 @@ function Home() {
                         </div>
                     </div>
                 </div>
+
+                <Modal title="SEP-GOLD RATE" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={false}>
+                   <div className="gold-stage">
+                    <h6 className="gold-low">LOW <CaretDownOutlined /></h6>
+                    <h6 className="gold-heigh">HEIGH <CaretUpOutlined /></h6>
+                    <h6 className="gold-gram">GRAM</h6>
+                   </div>
+                   <div className="gold-price">
+                    {
+                        goldMaxMin.map((value) =>  {
+                            return(
+                                <>
+                                 <p  className="gold-minprice">Rs : {value.MINRATE}</p>
+                                <p className="gold-maxprice">Rs : {value.MAXRATE}</p>
+                                <p className="gold-gramprice">1 Gram</p>
+                                </>                              
+                            )
+                        })
+                    }
+                                      
+                   </div>
+                </Modal>
+
             </div>
 
         </div>

@@ -9,7 +9,8 @@ secondary color : #9a2526, red
     padding: 0px 100px;
     display: flex;
     align-items: center !important;
-    height: auto;
+    height: 100vh;
+    position: relative;
 }
 
 .login-left{
@@ -18,7 +19,11 @@ width: 400px;
 
 
 .login-side-img{
-  height: 782px;
+  position: absolute;
+  right: -55px;
+  bottom: 0px;
+  width: 50%;
+
 }
 
 

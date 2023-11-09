@@ -122,7 +122,7 @@ const Payment = () => {
 
                 <div className='closedDue-containerfluid'>
                     <div className='closed-container'>
-                        <div className='closedDue-title-outer'>
+                        <div className='completed-title-outer'>
                             <h2 className="completed-due-title">Completed Chit Details</h2>
                         </div>
                         <div className='select-option-outer' >

@@ -5,11 +5,10 @@ secondary color : #9a2526, red
 
 .container-signup {
   background-color:#fff2d8 ;
-
+position: relative;
   padding: 0px 100px;
   display: flex;
   align-items: center !important;
-  height: auto;
 }
 
 .signup-left {
@@ -18,9 +17,9 @@ secondary color : #9a2526, red
 }
 
 
-.login-side-img {
+/* .login-side-img {
   height: 782px;
-}
+} */
 
 
 .signup-title {
@@ -103,6 +102,11 @@ secondary color : #9a2526, red
   padding: 0px;
 }
 
+@media(min-width:1440){
+  .container-signup{
+    height: 100vh !important;
+  }
+}
 
 @media(max-width:1040px) {
 
@@ -112,6 +116,10 @@ secondary color : #9a2526, red
     align-items: center !important;
     height: auto;
     justify-content: center;
+  }
+
+  .signup-title{
+    margin-top: 20px;
   }
 
   .signup-outer {

@@ -124,7 +124,7 @@ function Signup() {
                                     <Form.Item name="remember" valuePropName="checked">
                                         <Checkbox>Remember me</Checkbox>
                                     </Form.Item>
-                                    <p style={{textDecoration:'underline'}}>Forgot Password</p>
+                                    {/* <p style={{textDecoration:'underline'}}>Forgot Password</p> */}
                                 </div>
 
                                 <Form.Item>
