@@ -8,6 +8,7 @@ import Payment from "./component/Payment/Payment";
 import ClosedDue from "./component/ClosedDue/ClosedDue";
 import Home from "./component/Home/Home";
 import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
+import ConfirmPassword from "./component/ConfirmPassword/ConfirmPassword";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/chit-details" element={<Payment />} />
           <Route path="/closed-due" element={<ClosedDue />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/confirm-password" element={<ConfirmPassword />} />
         </Routes>
       </BrowserRouter>
     </>
