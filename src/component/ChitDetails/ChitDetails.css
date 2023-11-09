@@ -5,8 +5,8 @@ secondary color : #9a2526, red
 
 .chit-main-container{
     background-color: #fff2d8;
-    padding: 50px 100px 0px 100px;
-    height: 100vh;
+    padding: 50px 100px 50px 100px;
+    height: auto;
     position: relative;
 
 }
@@ -33,11 +33,6 @@ secondary color : #9a2526, red
     margin-bottom: 25px;
 }
 
-.chit-details-image-cover{
-    /* position: absolute;
-    bottom: 0px;
-    right: -25px; */
-}
 
 .new-chit-image{
     position: absolute;
