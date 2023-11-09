@@ -186,6 +186,10 @@ secondary color : #9a2526, red
         padding: 75px 20px 0px 20px; 
     
     }
+
+    .discount-outer {
+        margin: 30px 0px 0px 0px;
+    }
 }
 
 
