@@ -8,7 +8,8 @@ import Payment from "./component/Payment/Payment";
 import ClosedDue from "./component/ClosedDue/ClosedDue";
 import Home from "./component/Home/Home";
 import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
-import ConfirmPassword from "./component/ConfirmPassword/ConfirmPassword";
+import ConfirmPassword from "./component/ForgetPassword/ConfirmPassword";
+import ForgetOtp from "./component/ForgetPassword/ForgetOtp"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/closed-due" element={<ClosedDue />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/confirm-password" element={<ConfirmPassword />} />
+          <Route path="/forget-otp" element={<ForgetOtp />} />
         </Routes>
       </BrowserRouter>
     </>

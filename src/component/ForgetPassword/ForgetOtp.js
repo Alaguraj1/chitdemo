@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import SideMenu from "../SideMenu";
-import "./ForgetPassword.css"
+import "../ForgetPassword/ForgetPassword.css"
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button,  Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
 
-const ForgetPassword = () => {
+const ForgetOtp = () => {
 
     const navigate = useNavigate();
     const [form] = Form.useForm();
@@ -14,16 +14,7 @@ const ForgetPassword = () => {
     const onFinish = (values) => {
         console.log('Form values:', values);
         form.resetFields();
-        navigate('/forget-otp');
-    };
-
-    // Custom validation rule for mobile number
-    const validateMobileNumber = (rule, value) => {
-        const mobileNumberRegex = /^[0-9]{10}$/;
-        if (!mobileNumberRegex.test(value)) {
-            return Promise.reject('Please enter a 10-digit mobile number.');
-        }
-        return Promise.resolve();
+        navigate('/confirm-password');
     };
 
 
@@ -53,28 +44,8 @@ const ForgetPassword = () => {
                                     // style={{ width: "400px" }}
                                     className="login-form"
                                 >
-                                    <Form.Item
-                                        name="mobileNumber"
-                                        label="Mobile Number"
-                                        style={{ fontSize: "18px !important" }}
-                                        rules={[
-                                            {
-                                                message: 'Please enter your mobile number!',
-                                            },
-                                            {
-                                                validator: validateMobileNumber,
-                                            },
-                                        ]}
-                                    >
-                                        <div className="forget-input-warrper" >
-                                            {/* <UserOutlined className="login-input-icon" /> */}
-                                            <Input
-                                                type="tel" className="forget-input-style"
-                                            />
-                                        </div>
-                                    </Form.Item>
 
-                                    {/* <Form.Item
+                                    <Form.Item
                                         name="otp"
                                         label="OTP"
                                         style={{ fontSize: "18px !important" }}
@@ -87,11 +58,11 @@ const ForgetPassword = () => {
                                         <div className="forget-input-warrper" >
                                             <Input className="forget-input-style" />
                                         </div>
-                                    </Form.Item> */}
+                                    </Form.Item>
 
                                     <Form.Item style={{textAlign:"end"}}>
                                         <Button type="primary" htmlType="submit" size="large" style={{ background: "#9a2526" }}>
-                                            Generate OTP
+                                            submit
                                         </Button>
                                     </Form.Item>
                                 </Form>
@@ -110,4 +81,4 @@ const ForgetPassword = () => {
     )
 }
 
-export default ForgetPassword
+export default ForgetOtp

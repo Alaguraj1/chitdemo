@@ -110,11 +110,19 @@ function Signup() {
                                 <Form.Item
                                     name="confirmPassword"
                                     label="Confirm Password"
-                                
+                                    dependencies={['password-signup']}
                                     rules={[
                                         {
                                             message: "Please confirm your password!"
                                         },
+                                        ({ getFieldValue }) => ({
+                                            validator(_, value) {
+                                              if (!value || getFieldValue('password-signup') === value) {
+                                                return Promise.resolve();
+                                              }
+                                              return Promise.reject(new Error('The two passwords do not match!'));
+                                            },
+                                          }),
                                     ]}
                                 >
                                     <Input className="login-input-style"/>
