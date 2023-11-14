@@ -45,7 +45,7 @@ const ForgetOtp = () => {
                                 >
 
                                     <Form.Item
-                                        name="new-password"
+                                        name="newPassWord"
                                         label="New Password"
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
@@ -60,17 +60,17 @@ const ForgetOtp = () => {
                                     </Form.Item>
 
                                     <Form.Item
-                                        name="confirm-new-password"
+                                        name="confirmpassWord"
                                         label="Confirm Password"
                                         style={{ fontSize: "18px !important" }}
-                                        dependencies={['new-password']}
+                                        dependencies={['newPassWord']}
                                         rules={[
                                             {
                                                 message: 'Please enter your password!',
                                             },
                                             ({ getFieldValue }) => ({
                                                 validator(_, value) {
-                                                  if (!value || getFieldValue('new-password') === value) {
+                                                  if (!value || getFieldValue('newPassWord') === value) {
                                                     return Promise.resolve();
                                                   }
                                                   return Promise.reject(new Error('The two passwords do not match!'));
