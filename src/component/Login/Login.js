@@ -1,21 +1,52 @@
 import "./Login.css"
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
 import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 function Login() {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [form] = Form.useForm();
-
 
     const onFinish = (values) => {
         console.log('Form values:', values);
-        form.resetFields();
-        navigate('/');
+
+
+        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/API/CCALOGINLIVE?IMEINUMBER=11110002222&APPCODE=1&APPVERSION=1", {
+            params: values
+        }).then((res) => {
+            console.log(res?.data?.results)
+            res.data.results.map((value) => {
+                return(
+ value?.Success === 1 ? navigate('/')  : error()
+                )
+               
+            })
+
+            form.resetFields();
+
+        }).catch((error) => {
+            console.log(error)
+            
+        })
+
+
+        const error = () => {
+            Modal.error({
+              title: 'This is an error message',
+              content: 'some messages...some messages...',
+                });
+          };
+        
+         
+
     };
+
+   
+
 
     // Custom validation rule for mobile number
     const validateMobileNumber = (rule, value) => {
@@ -54,7 +85,7 @@ function Login() {
                                 className="login-form"
                             >
                                 <Form.Item
-                                    name="mobileNumber"
+                                    name="username"
                                     label="Mobile Number"
                                     style={{ fontSize: "18px !important" }}
                                     rules={[
@@ -98,7 +129,7 @@ function Login() {
                                     >
                                         <Checkbox>Remember me</Checkbox>
                                     </Form.Item>
-                                    <p style={{textDecoration:'underline'}}><Link to="/forget-password">Forget Password</Link></p>
+                                    <p style={{ textDecoration: 'underline' }}><Link to="/forget-password">Forget Password</Link></p>
                                 </div>
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" size="large" style={{ background: "#9a2526" }}>
@@ -106,7 +137,7 @@ function Login() {
                                     </Button>
                                 </Form.Item>
                             </Form>
-                            <p>New User? <Link to="/signup" style={{textDecoration:'underline'}}>Sign Up</Link></p>
+                            <p>New User? <Link to="/signup" style={{ textDecoration: 'underline' }}>Sign Up</Link></p>
                         </div>
                     </div>
 

@@ -7,9 +7,10 @@ import PayDue from "./component/PayDue/PayDue";
 import Payment from "./component/Payment/Payment";
 import ClosedDue from "./component/ClosedDue/ClosedDue";
 import Home from "./component/Home/Home";
+// import ForgetMobileNumber from "./component/ForgetPassword/ForgetMobileNumber";
+// import ConfirmPassword from "./component/ForgetPassword/ConfirmPassword";
+// import ForgetOtp from "./component/ForgetPassword/ForgetOtp"
 import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
-import ConfirmPassword from "./component/ForgetPassword/ConfirmPassword";
-import ForgetOtp from "./component/ForgetPassword/ForgetOtp"
 
 function App() {
   return (
@@ -23,9 +24,10 @@ function App() {
           <Route path="/my-profile" element={<PayDue />} />
           <Route path="/chit-details" element={<Payment />} />
           <Route path="/closed-due" element={<ClosedDue />} />
-          <Route path="/forget-password" element={<ForgetPassword />} />
+          {/* <Route path="/forget-mobile-number" element={<ForgetMobileNumber />} />
           <Route path="/confirm-password" element={<ConfirmPassword />} />
-          <Route path="/forget-otp" element={<ForgetOtp />} />
+          <Route path="/forget-otp" element={<ForgetOtp />} /> */}
+          <Route path="/forget-password" element={<ForgetPassword />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -165,7 +165,7 @@ function Home() {
                 <Modal title="SEP-GOLD RATE" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={false}>
                    <div className="gold-stage">
                     <h6 className="gold-low">LOW <CaretDownOutlined /></h6>
-                    <h6 className="gold-heigh">HEIGH <CaretUpOutlined /></h6>
+                    <h6 className="gold-heigh">HIGH <CaretUpOutlined /></h6>
                     <h6 className="gold-gram">GRAM</h6>
                    </div>
                    <div className="gold-price">

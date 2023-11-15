@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button,  Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
 
-const ForgetOtp = () => {
+const ForgetOtp = ({ setStep, mobileNumber }) => {
 
     const navigate = useNavigate();
     const [form] = Form.useForm();
@@ -14,7 +14,7 @@ const ForgetOtp = () => {
     const onFinish = (values) => {
         console.log('Form values:', values);
         form.resetFields();
-        navigate('/confirm-password');
+        setStep(3);
     };
 
 
