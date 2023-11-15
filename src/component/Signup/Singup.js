@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom/dist';
 // import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 function Signup() {
     const navigate = useNavigate();
@@ -14,7 +15,16 @@ function Signup() {
     const onFinish = (values) => {
         console.log('Form values:', values);
         form.resetFields();
-        navigate('/');
+      
+
+        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/userregistration?IMEINUM=11110002222&APPCODE=1&APPVERSION=4&FCMID=00000&AADHAR=123456787",{
+            params : values
+        }).then((res) => {
+            console.log(res)
+            navigate('/');
+        }).catch((error) => {
+            console.log(error)
+        })
     };
 
     // Custom validation rule for mobile number
@@ -53,7 +63,7 @@ function Signup() {
                                 className="login-form"
                             >
                                 <Form.Item
-                                    name="name"
+                                    name="NAME"
                                     label="Name"
                                     rules={[
                                         {
@@ -65,7 +75,7 @@ function Signup() {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="email"
+                                    name="MAILID"
                                     label="Email"
                                     rules={[
                                         {
@@ -81,7 +91,7 @@ function Signup() {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="mobNumber"
+                                    name="USERNAME"
                                     label="Mobile Number"
                                     rules={[
                                         {
@@ -96,7 +106,7 @@ function Signup() {
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="password-signup"
+                                    name="PASSWORD"
                                     label="Password"
                                     rules={[
                                         {
@@ -107,7 +117,7 @@ function Signup() {
                                     <Input className="login-input-style"/>
                                 </Form.Item>
 
-                                <Form.Item
+                                {/* <Form.Item
                                     name="confirmPassword"
                                     label="Confirm Password"
                                     dependencies={['password-signup']}
@@ -126,7 +136,7 @@ function Signup() {
                                     ]}
                                 >
                                     <Input className="login-input-style"/>
-                                </Form.Item>
+                                </Form.Item> */}
 
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                                     <Form.Item name="remember" valuePropName="checked">
