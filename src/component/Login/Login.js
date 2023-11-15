@@ -36,8 +36,8 @@ function Login() {
 
         const error = () => {
             Modal.error({
-              title: 'This is an error message',
-              content: 'some messages...some messages...',
+              title: 'Not Registered Your Mobile Number',
+              content: 'go to Registration Section ',
                 });
           };
         

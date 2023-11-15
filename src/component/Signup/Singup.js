@@ -1,6 +1,6 @@
 import "./Signup.css"
 // import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
 // import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
@@ -21,10 +21,23 @@ function Signup() {
             params : values
         }).then((res) => {
             console.log(res)
-            navigate('/');
+
+            res.data.results.map((value) => {
+                return(
+                    value.Success === 1 ?   navigate('/') : warning()
+                )
+            })
+          
         }).catch((error) => {
             console.log(error)
         })
+
+        const warning = () => {
+            Modal.warning({
+              title: 'This Number is Already Registred',
+              content: 'Try to Another Number',
+            });
+          };
     };
 
     // Custom validation rule for mobile number
