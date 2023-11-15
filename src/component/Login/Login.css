@@ -99,6 +99,14 @@ border: none !important;
 }
 
 
+:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-title{
+  color: #fff2d8;
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-content{
+  color: #fff2d8;
+}
+
 
 @media(max-width:1040px){
 

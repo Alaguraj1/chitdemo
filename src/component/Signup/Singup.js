@@ -30,6 +30,7 @@ function Signup() {
           
         }).catch((error) => {
             console.log(error)
+            errors()
         })
 
         const warning = () => {
@@ -38,6 +39,14 @@ function Signup() {
               content: 'Try to Another Number',
             });
           };
+
+          const errors = () => {
+            Modal.error({
+              title: 'fill all input fields',
+              content: 'try again ',
+                });
+          };
+        
     };
 
     // Custom validation rule for mobile number
@@ -80,9 +89,10 @@ function Signup() {
                                     label="Name"
                                     rules={[
                                         {
-                                            message: "Please enter your name!"
-                                        }
-                                    ]}
+                                          whitespace: true,
+                                          message: "Please enter your name!",
+                                        },
+                                      ]}
                                 >
                                     <Input className="login-input-style"/>
                                 </Form.Item>

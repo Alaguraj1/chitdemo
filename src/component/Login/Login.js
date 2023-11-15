@@ -30,7 +30,7 @@ function Login() {
 
         }).catch((error) => {
             console.log(error)
-            
+            errors()
         })
 
 
@@ -41,7 +41,12 @@ function Login() {
                 });
           };
         
-         
+          const errors = () => {
+            Modal.error({
+              title: 'fill all input fields',
+              content: 'try again',
+                });
+          };
 
     };
 
