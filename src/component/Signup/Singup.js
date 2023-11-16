@@ -1,20 +1,28 @@
 import "./Signup.css"
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
-// import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 function Signup() {
+
     const navigate = useNavigate();
     const [form] = Form.useForm();
+
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
 
 
     const onFinish = (values) => {
         console.log('Form values:', values);
-        form.resetFields();
+        
       
 
         axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/userregistration?IMEINUM=11110002222&APPCODE=1&APPVERSION=4&FCMID=00000&AADHAR=123456787",{
@@ -27,7 +35,9 @@ function Signup() {
                     value.Success === 1 ?   navigate('/') : warning()
                 )
             })
-          
+            
+            form.resetFields();
+            
         }).catch((error) => {
             console.log(error)
             errors()
@@ -49,14 +59,7 @@ function Signup() {
         
     };
 
-    // Custom validation rule for mobile number
-    const validateMobileNumber = (rule, value) => {
-        const mobileNumberRegex = /^[0-9]{10}$/;
-        if (!mobileNumberRegex.test(value)) {
-            return Promise.reject('Please enter a 10-digit mobile number.');
-        }
-        return Promise.resolve();
-    };
+
 
 
     const onFinishFailed = (errorInfo) => {
@@ -118,26 +121,39 @@ function Signup() {
                                     label="Mobile Number"
                                     rules={[
                                         {
-                                            message: "Please enter your mobile number!"
+                                            required: false,
+                                            message: 'Please enter your mobile number!',
                                         },
                                         {
-                                            validator: validateMobileNumber
-                                        }
+                                            pattern: /^[0-9]{10}$/,
+                                            message: 'Mobile number must be a 10-digit number!',
+                                        },
                                     ]}
                                 >
-                                    <Input type="tel" className="login-input-style"/>
+                                    <Input type="tel" className="login-input-style"  maxLength={10}/>
                                 </Form.Item>
 
                                 <Form.Item
                                     name="PASSWORD"
                                     label="Password"
+                                    style={{ fontSize: "18px !important" }}
                                     rules={[
                                         {
-                                            message: "Please enter your password!"
+                                            message: 'Please enter your password!',
                                         },
                                     ]}
                                 >
-                                    <Input className="login-input-style"/>
+                                    <div className="login-input-wrapper">
+                                        <Input
+                                            type={passwordVisible ? 'text' : 'password'}
+                                            className="login-input-style"
+                                        />
+                                        {passwordVisible ? (
+                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon" />
+                                        ) : (
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
+                                        )}
+                                    </div>
                                 </Form.Item>
 
                                 {/* <Form.Item

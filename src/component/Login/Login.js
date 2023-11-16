@@ -1,8 +1,8 @@
 import "./Login.css"
-import React from 'react';
+import React, {useState} from 'react';
 import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
-import { UserOutlined, UnlockOutlined } from '@ant-design/icons'
+import { UserOutlined, UnlockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -11,19 +11,25 @@ function Login() {
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
+
     const onFinish = (values) => {
         console.log('Form values:', values);
-
 
         axios.get("http://tjchitwebuad.thechennaisilks.com:5775/API/CCALOGINLIVE?IMEINUMBER=11110002222&APPCODE=1&APPVERSION=1", {
             params: values
         }).then((res) => {
             console.log(res?.data?.results)
             res.data.results.map((value) => {
-                return(
- value?.Success === 1 ? navigate('/')  : error()
+                return (
+                    value?.Success === 1 ? navigate('/') : error()
                 )
-               
+
             })
 
             form.resetFields();
@@ -36,30 +42,18 @@ function Login() {
 
         const error = () => {
             Modal.error({
-              title: 'Not Registered Your Mobile Number',
-              content: 'go to Registration Section ',
-                });
-          };
-        
-          const errors = () => {
+                title: 'Not Registered Your Mobile Number',
+                content: 'go to Registration Section ',
+            });
+        };
+
+        const errors = () => {
             Modal.error({
-              title: 'fill all input fields',
-              content: 'try again',
-                });
-          };
+                title: 'fill all input fields',
+                content: 'try again',
+            });
+        };
 
-    };
-
-   
-
-
-    // Custom validation rule for mobile number
-    const validateMobileNumber = (rule, value) => {
-        const mobileNumberRegex = /^[0-9]{10}$/;
-        if (!mobileNumberRegex.test(value)) {
-            return Promise.reject('Please enter a 10-digit mobile number.');
-        }
-        return Promise.resolve();
     };
 
 
@@ -90,28 +84,33 @@ function Login() {
                                 className="login-form"
                             >
                                 <Form.Item
-                                    name="username"
+                                    name="USERNAME"
                                     label="Mobile Number"
                                     style={{ fontSize: "18px !important" }}
                                     rules={[
                                         {
+                                            required: false,
                                             message: 'Please enter your mobile number!',
                                         },
                                         {
-                                            validator: validateMobileNumber,
+                                            pattern: /^[0-9]{10}$/,
+                                            message: 'Mobile number must be a 10-digit number!',
                                         },
                                     ]}
                                 >
-                                    <div className="login-input-warrper" >
+                                    <div className="login-input-warrper">
                                         <UserOutlined className="login-input-icon" />
                                         <Input
-                                            type="tel" className="login-input-style"
+                                            type="tel"
+                                            className="login-input-style"
+                                            maxLength={10}
                                         />
                                     </div>
                                 </Form.Item>
 
+
                                 <Form.Item
-                                    name="password"
+                                    name="PASSWORD"
                                     label="Password"
                                     style={{ fontSize: "18px !important" }}
                                     rules={[
@@ -120,9 +119,17 @@ function Login() {
                                         },
                                     ]}
                                 >
-                                    <div className="login-input-warrper" >
+                                    <div className="login-input-wrapper">
                                         <UnlockOutlined className="login-input-icon" />
-                                        <Input className="login-input-style" />
+                                        <Input
+                                            type={passwordVisible ? 'text' : 'password'}
+                                            className="login-input-style"
+                                        />
+                                        {passwordVisible ? (
+                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
+                                        ) : (
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility}  className="eyeIcon"/>
+                                        )}
                                     </div>
                                 </Form.Item>
 
