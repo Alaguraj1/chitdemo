@@ -56,7 +56,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                                         ]}
                                     >
                                         <div className="forget-input-warrper" >
-                                            <Input className="forget-input-style" />
+                                            <Input type='tel' className="forget-input-style" />
                                         </div>
                                     </Form.Item>
 

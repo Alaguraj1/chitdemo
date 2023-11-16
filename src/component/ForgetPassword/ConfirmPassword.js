@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button} from 'antd';
-import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import { EyeOutlined, EyeInvisibleOutlined, UnlockOutlined,  } from '@ant-design/icons'
 
 
 const ForgetOtp = ({ setStep, mobileNumber }) => {
@@ -17,6 +17,11 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
         setPasswordVisible(!passwordVisible);
     };
 
+    const [passwordVisible2, setPasswordVisible2] = useState(false);
+
+    const togglePasswordVisibility2 = () => {
+        setPasswordVisible2(!passwordVisible2);
+    };
 
     const onFinish = (values) => {
         console.log('Form values:', values);
@@ -63,6 +68,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                                         ]}
                                     >
                                         <div className="forget-input-warrper" >
+                                        <UnlockOutlined className="login-input-icon" />
                                             <Input className="forget-input-style"  type={passwordVisible ? 'text' : 'password'}/>
                                             {passwordVisible ? (
                                             <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
@@ -91,8 +97,14 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                                               }),
                                         ]}
                                     >
-                                        <div className="forget-input-warrper" >
-                                            <Input className="forget-input-style" />
+                                      <div className="forget-input-warrper" >
+                                        <UnlockOutlined className="login-input-icon" />
+                                            <Input className="forget-input-style"  type={passwordVisible2 ? 'text' : 'password'}/>
+                                            {passwordVisible2 ? (
+                                            <EyeOutlined onClick={togglePasswordVisibility2} className="eyeIcon"/>
+                                        ) : (
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility2}  className="eyeIcon"/>
+                                        )}
                                         </div>
                                     </Form.Item>
                                     

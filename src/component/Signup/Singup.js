@@ -2,7 +2,7 @@ import "./Signup.css"
 import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import { EyeOutlined, EyeInvisibleOutlined, UserOutlined, UnlockOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -35,7 +35,7 @@ function Signup() {
                     value.Success === 1 ?   navigate('/') : warning()
                 )
             })
-            
+
             form.resetFields();
             
         }).catch((error) => {
@@ -97,7 +97,10 @@ function Signup() {
                                         },
                                       ]}
                                 >
-                                    <Input className="login-input-style"/>
+                                    <div className="login-input-warrper">
+                                        < UserOutlined className="login-input-icon" />
+                                        <Input className="login-input-style"/>
+                                    </div>
                                 </Form.Item>
 
                                 <Form.Item
@@ -113,12 +116,16 @@ function Signup() {
                                         }
                                     ]}
                                 >
-                                    <Input className="login-input-style"/>
+                                     <div className="login-input-warrper">
+                                        <MailOutlined className="login-input-icon" />
+                                        <Input className="login-input-style"/>
+                                    </div>
                                 </Form.Item>
 
-                                <Form.Item
+                                 <Form.Item
                                     name="USERNAME"
                                     label="Mobile Number"
+                                    style={{ fontSize: "18px !important" }}
                                     rules={[
                                         {
                                             required: false,
@@ -130,7 +137,14 @@ function Signup() {
                                         },
                                     ]}
                                 >
-                                    <Input type="tel" className="login-input-style"  maxLength={10}/>
+                                    <div className="login-input-warrper">
+                                        <PhoneOutlined className="login-input-icon" />
+                                        <Input
+                                            type="tel"
+                                            className="login-input-style"
+                                            maxLength={10}
+                                        />
+                                    </div>
                                 </Form.Item>
 
                                 <Form.Item
@@ -144,14 +158,15 @@ function Signup() {
                                     ]}
                                 >
                                     <div className="login-input-wrapper">
+                                        <UnlockOutlined className="login-input-icon" />
                                         <Input
                                             type={passwordVisible ? 'text' : 'password'}
                                             className="login-input-style"
                                         />
                                         {passwordVisible ? (
-                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon" />
+                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
                                         ) : (
-                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility}  className="eyeIcon"/>
                                         )}
                                     </div>
                                 </Form.Item>
