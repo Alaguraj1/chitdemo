@@ -25,15 +25,37 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/MinMaxGoldRate?MonthYear=06-2023").then((res) => {
-            setGoldMaxMin(res?.data?.results)
-        }).catch((error) => {
-            console.log(error)
-        })
-    }, []) 
+        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/MinMaxGoldRate?MonthYear=06-2023")
+            .then((res) => {
+                setGoldMaxMin(res?.data?.results);
+            })
+            .catch((error) => {
+                console.error("Axios Error:", error);
+    
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    alert("Response Data:", error.response.data);
+                    alert("Response Status:", error.response.status);
+                    alert("Response Headers:", error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    alert("Request:", error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    alert("Error Message:", error.message);
+                }
+    
+                // Modal.error({
+                //     title: error?.AxiosError?.message || "Error",
+                //     content: 'Server-side issue',
+                // });
+            });
+    }, []);
+    
 
     console.log("goldMaxMin", goldMaxMin)
 
+    
 
     const dataSource = [
         {
