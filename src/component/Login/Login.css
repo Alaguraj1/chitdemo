@@ -60,7 +60,7 @@ secondary color : #9a2526, red
   background-color: transparent;
 }
 
-.login-input-warrper input[type="tel"] Input.Password {
+.login-input-warrper input[type="tel"] {
   padding-left: 35px !important;
 }
 
