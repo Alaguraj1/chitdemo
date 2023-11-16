@@ -65,16 +65,18 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
                                             {
+                                                required: false,
                                                 message: 'Please enter your mobile number!',
                                             },
                                             {
-                                                validator: validateMobileNumber,
+                                                pattern: /^[0-9]{10}$/,
+                                                message: 'Mobile number must be a 10-digit number!',
                                             },
                                         ]}
                                     >
                                         <div className="forget-input-warrper" >
                                             <Input
-                                                type="tel" className="forget-input-style"
+                                                type="tel" className="forget-input-style" maxLength={10}
                                             />
                                         </div>
                                     </Form.Item>                   

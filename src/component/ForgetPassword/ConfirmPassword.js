@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button,  Modal } from 'antd';
-import { Link } from 'react-router-dom/dist';
+import { Form, Input, Button} from 'antd';
+import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+
 
 const ForgetOtp = ({ setStep, mobileNumber }) => {
 
     const navigate = useNavigate();
     const [form] = Form.useForm();
+
+
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
 
 
     const onFinish = (values) => {
@@ -55,7 +63,12 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                                         ]}
                                     >
                                         <div className="forget-input-warrper" >
-                                            <Input className="forget-input-style" />
+                                            <Input className="forget-input-style"  type={passwordVisible ? 'text' : 'password'}/>
+                                            {passwordVisible ? (
+                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
+                                        ) : (
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility}  className="eyeIcon"/>
+                                        )}
                                         </div>
                                     </Form.Item>
 
