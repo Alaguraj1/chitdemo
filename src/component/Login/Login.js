@@ -1,5 +1,5 @@
 import "./Login.css"
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, Modal } from 'antd';
 import { Link } from 'react-router-dom/dist';
 import { UserOutlined, UnlockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
@@ -17,45 +17,47 @@ function Login() {
         setPasswordVisible(!passwordVisible);
     };
 
-
     const onFinish = (values) => {
         console.log('Form values:', values);
-
-        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/API/CCALOGINLIVE?IMEINUMBER=11110002222&APPCODE=1&APPVERSION=1", {
-            params: values
-        }).then((res) => {
-            console.log(res?.data?.results)
-            res.data.results.map((value) => {
-                return (
-                    value?.Success === 1 ? navigate('/') : error()
-                )
-
+    
+        axios.post("http://tjchitwebuad.thechennaisilks.com:5775/API/CCALOGINLIVE", values)
+            .then((res) => {
+                console.log(res);
+    
+                if (res?.data?.Success === 1) {
+                    navigate('/');
+                } else {
+                    // Handle unsuccessful response
+                    error();
+                }
             })
-
-            form.resetFields();
-
-        }).catch((error) => {
-            console.log(error)
-            errors()
-        })
-
-
-        const error = () => {
-            Modal.error({
-                title: 'Not Registered Your Mobile Number',
-                content: 'go to Registration Section ',
+            .catch((error) => {
+                console.error(error);
+    
+                if (error.code === 'ERR_NETWORK') {
+                    // Handle network-related errors
+                    showNetworkError();
+                } else {
+                    // Handle other errors
+                    errors(error);
+                }
             });
-        };
-
-        const errors = () => {
-            Modal.error({
-                title: 'fill all input fields',
-                content: 'try again',
-            });
-        };
-
     };
-
+    
+    const showNetworkError = () => {
+        // Display a user-friendly message for network errors
+        console.error("Network error. Please check your internet connection.");
+    };
+    
+    const errors = (error) => {
+        // Handle other errors here or display a generic error message
+        console.error("An error occurred. Please try again later.");
+    };
+    
+    const error = () => {
+        // Handle specific errors or display a generic error message
+        console.error("An error occurred during the API request.");
+    };
 
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
@@ -126,9 +128,9 @@ function Login() {
                                             className="login-input-style"
                                         />
                                         {passwordVisible ? (
-                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
+                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon" />
                                         ) : (
-                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility}  className="eyeIcon"/>
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility} className="eyeIcon" />
                                         )}
                                     </div>
                                 </Form.Item>
