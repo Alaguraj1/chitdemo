@@ -18,48 +18,74 @@ function Signup() {
         setPasswordVisible(!passwordVisible);
     };
 
-
+    const initialValues = {
+        IMEINUM: 1,
+        APPCODE: 1,
+        APPVERSION: 1,
+        FCMID: 1,
+      };
 
     const onFinish = (values) => {
         console.log('Form values:', values);
-        
-      
 
-        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/userregistration?IMEINUM=11110002222&APPCODE=1&APPVERSION=4&FCMID=00000&AADHAR=123456787",{
-            params : values
-        }).then((res) => {
-            console.log(res)
+        axios.post(
+            "http://tjchitwebuad.thechennaisilks.com:5775/API/LOGIN/USERREGISTRATION",
+            values,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                params: initialValues, // Use initialValues directly
+            }
+        )
+            .then((res) => {
+                console.log(res);
 
-            res.data.results.map((value) => {
-                return(
-                    value.Success === 1 ?   navigate('/') : warning()
-                )
+                if (res?.data?.Success === 1) {
+                    navigate('/');
+                } else {
+                    // Handle unsuccessful response
+                    error();
+                }
             })
+            .catch((error) => {
+                console.error(error);
 
-            form.resetFields();
-            
-        }).catch((error) => {
-            console.log(error)
-            errors()
-        })
+                if (axios.isAxiosError(error)) {
+                    // Axios error, handle specific cases
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+                        console.error("Server responded with status:", error.response.status);
+                        // Handle specific status codes if needed
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        console.error("No response received from the server");
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.error("Error setting up the request:", error.message);
+                    }
+                } else if (error.code === 'ECONNABORTED') {
+                    // Handle timeout error
+                    console.error("Request timed out");
+                } else {
+                    // Handle other errors
+                    console.error("An error occurred:", error.message);
+                }
 
-        const warning = () => {
-            Modal.warning({
-              title: 'This Number is Already Registred',
-              content: 'Try to Another Number',
+                // Display a user-friendly message for network errors
+                showNetworkError();
             });
-          };
-
-          const errors = () => {
-            Modal.error({
-              title: 'fill all input fields',
-              content: 'try again ',
-                });
-          };
-        
     };
 
+    const showNetworkError = () => {
+        // Display a user-friendly message for network errors
+        console.error("Network error. Please check your internet connection.");
+    };
 
+    const error = () => {
+        // Handle specific errors or display a generic error message
+        console.error("An error occurred during the API request.");
+    };
 
 
     const onFinishFailed = (errorInfo) => {
@@ -79,9 +105,7 @@ function Signup() {
                             <Form
                                 form={form}
                                 name="signup-form"
-                                initialValues={{
-                                    remember: true
-                                }}
+                                initialValues={initialValues}
                                 onFinish={onFinish}
                                 onFinishFailed={onFinishFailed}
                                 layout="vertical"
@@ -92,14 +116,14 @@ function Signup() {
                                     label="Name"
                                     rules={[
                                         {
-                                          whitespace: true,
-                                          message: "Please enter your name!",
+                                            whitespace: true,
+                                            message: "Please enter your name!",
                                         },
-                                      ]}
+                                    ]}
                                 >
                                     <div className="login-input-warrper">
                                         < UserOutlined className="login-input-icon" />
-                                        <Input className="login-input-style"/>
+                                        <Input className="login-input-style" />
                                     </div>
                                 </Form.Item>
 
@@ -116,13 +140,13 @@ function Signup() {
                                         }
                                     ]}
                                 >
-                                     <div className="login-input-warrper">
+                                    <div className="login-input-warrper">
                                         <MailOutlined className="login-input-icon" />
-                                        <Input className="login-input-style"/>
+                                        <Input className="login-input-style" />
                                     </div>
                                 </Form.Item>
 
-                                 <Form.Item
+                                <Form.Item
                                     name="USERNAME"
                                     label="Mobile Number"
                                     style={{ fontSize: "18px !important" }}
@@ -164,13 +188,28 @@ function Signup() {
                                             className="login-input-style"
                                         />
                                         {passwordVisible ? (
-                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon"/>
+                                            <EyeOutlined onClick={togglePasswordVisibility} className="eyeIcon" />
                                         ) : (
-                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility}  className="eyeIcon"/>
+                                            <EyeInvisibleOutlined onClick={togglePasswordVisibility} className="eyeIcon" />
                                         )}
                                     </div>
                                 </Form.Item>
 
+                                <Form.Item name="IMEINUM" initialValue={initialValues.IMEINUM} hidden>
+                                    <Input />
+                                </Form.Item>
+
+                                <Form.Item name="APPCODE" initialValue={initialValues.APCODE}  hidden>
+                                    <Input />
+                                </Form.Item>
+
+                                <Form.Item name="APPVERSION"  initialValue={initialValues.APPVERSION} hidden>
+                                    <Input />
+                                </Form.Item>
+
+                                <Form.Item name="FCMID" initialValue={initialValues.FCMID} hidden>
+                                    <Input />
+                                </Form.Item>
                                 {/* <Form.Item
                                     name="confirmPassword"
                                     label="Confirm Password"
@@ -210,7 +249,7 @@ function Signup() {
                                     </Button>
                                 </Form.Item>
                             </Form>
-                            <p>Already user ? <Link to="/login" style={{textDecoration:'underline'}}>Login</Link></p>
+                            <p>Already user ? <Link to="/login" style={{ textDecoration: 'underline' }}>Login</Link></p>
                         </div>
                     </div>
 
