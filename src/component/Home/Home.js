@@ -193,6 +193,7 @@ function Home() {
                    <div className="gold-price">
                     {
                         goldMaxMin.map((value) =>  {
+                            console.log("maxMin rate", value)
                             return(
                                 <>
                                  <p  className="gold-minprice">Rs : {value.MINRATE}</p>
