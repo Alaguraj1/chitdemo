@@ -172,13 +172,13 @@ function Home() {
 
                             <div className="discount-outer">
                                 <h4 className="home-subTitle">Discount</h4>
-                                <img src="assets/img/home-discount.avif" alt="" />
+                                <img src="assets/img/home-discount.avif"  />
                             </div>
 
                         </div>
 
                         <div className="home-right">
-                            <img src="assets/img/bg-1.png" alt="image" className="login-side-img" />
+                            <img src="assets/img/bg-1.png" className="login-side-img" />
 
                         </div>
                     </div>

@@ -254,7 +254,7 @@ function Signup() {
                     </div>
 
                     <div className="signup-outer">
-                        <img src="assets/img/bg-1.png" alt="image" className="login-side-img" />
+                        <img src="assets/img/bg-1.png"  className="login-side-img" />
                     </div>
 
                 </div>

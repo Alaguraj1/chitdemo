@@ -135,7 +135,7 @@ const ChitDetails = () => {
                             </div>
                         </div>
                         <div className="right w-1/2 pl-[50px] chit-details-image-cover">
-                            <img src="assets/img/newChit.png" alt="image" className="new-chit-image" />
+                            <img src="assets/img/newChit.png"  className="new-chit-image" />
                         </div>
                     </div>
                 </div>
