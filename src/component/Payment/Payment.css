@@ -19,7 +19,7 @@ secondary color : #9a2526, red
 .closedDue-pay-outer{
     padding: 30px 0px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;;
 }
 
 .closedDue-pay{

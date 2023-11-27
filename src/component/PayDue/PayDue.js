@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Form, Input, Button,  Select, Upload, } from 'antd';
+import { Form, Input, Button,  Select, Upload, } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import "./PayDue.css"
 import SideMenuTwo from '../SideMenuTwo';

@@ -120,7 +120,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                         </div>
 
                         <div className="forget-outer">
-                            <img src="assets/img/bg-1.png"  className="forget-side-img" />
+                            <img src="assets/img/bg-1.png" alt='background-image'  className="forget-side-img" />
                         </div>
                    
 

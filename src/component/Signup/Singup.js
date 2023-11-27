@@ -1,6 +1,6 @@
 import "./Signup.css"
 import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox, Modal } from 'antd';
+import { Form, Input, Button, Checkbox,} from 'antd';
 import { Link } from 'react-router-dom/dist';
 import { EyeOutlined, EyeInvisibleOutlined, UserOutlined, UnlockOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
@@ -254,7 +254,7 @@ function Signup() {
                     </div>
 
                     <div className="signup-outer">
-                        <img src="assets/img/bg-1.png"  className="login-side-img" />
+                        <img src="assets/img/bg-1.png" alt="side-modal"  className="login-side-img" />
                     </div>
 
                 </div>

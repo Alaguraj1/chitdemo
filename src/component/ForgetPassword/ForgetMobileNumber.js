@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SideMenu from "../SideMenu";
 import "./ForgetPassword.css"
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button,  Modal } from 'antd';
-import { Link } from 'react-router-dom/dist';
 import axios from "axios"
 
 const ForgetPassword = ({ setStep, setMobileNumber }) => {
@@ -91,7 +90,7 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
                         </div>
 
                         <div className="forget-outer">
-                            <img src="assets/img/bg-1.png" className="forget-side-img" />
+                            <img src="assets/img/bg-1.png" alt='background-image' className="forget-side-img" />
                         </div>                   
 
                 </div>

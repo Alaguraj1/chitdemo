@@ -157,8 +157,12 @@ function Home() {
                                     productRate.map((value) => {
                                         console.log("value", value.RATE1)
                                         return (
-                                            <marquee className="product-price">Gold Rate : ₹ {value.RATE1} per GRAM   |  Silver Rate : ₹ {value.RATE2} per GRAM    |  Platinum Rate : ₹ {value.RATE4} per GRAM  </marquee>
-                                        )
+                                            // <marquee className="product-price">Gold Rate : ₹ {value.RATE1} per GRAM   |  Silver Rate : ₹ {value.RATE2} per GRAM    |  Platinum Rate : ₹ {value.RATE4} per GRAM  </marquee>
+                                        
+                                            <div className="scrolling-text">
+                                            Gold Rate : ₹ {value.RATE1} per GRAM | Silver Rate : ₹ {value.RATE2} per GRAM | Platinum Rate : ₹ {value.RATE4} per GRAM
+                                          </div>
+                                            )
                                     })
                                 }                            
                                 </div>
@@ -172,13 +176,13 @@ function Home() {
 
                             <div className="discount-outer">
                                 <h4 className="home-subTitle">Discount</h4>
-                                <img src="assets/img/home-discount.avif"  />
+                                <img src="assets/img/home-discount.avif" alt="Discound" />
                             </div>
 
                         </div>
 
                         <div className="home-right">
-                            <img src="assets/img/bg-1.png" className="login-side-img" />
+                            <img src="assets/img/bg-1.png" alt="side-modal" className="login-side-img" />
 
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Select, Table, Button, Checkbox } from 'antd';
+import { Select, Table, Button, Checkbox } from 'antd';
 import './ChitDetails.css';
 import SideMenuTwo from '../SideMenuTwo';
 
@@ -135,7 +135,7 @@ const ChitDetails = () => {
                             </div>
                         </div>
                         <div className="right w-1/2 pl-[50px] chit-details-image-cover">
-                            <img src="assets/img/newChit.png"  className="new-chit-image" />
+                            <img src="assets/img/newChit.png" alt='new-chit-image' className="new-chit-image" />
                         </div>
                     </div>
                 </div>

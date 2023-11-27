@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom/dist';
 import "./SideMenu.css"
-import { Modal } from 'antd';
-import { useNavigate } from 'react-router-dom';
 
 
 const SideMenu = () => {
@@ -10,8 +8,6 @@ const SideMenu = () => {
     const [menu, setMenu] = useState(false);
     const [menuStatus, setMenuStatus] = useState('');
     const [mobileMenuStatus, setMobileMenuStatus] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const navigate = useNavigate();
 
 
     function menuopenclose() {
@@ -30,29 +26,13 @@ const SideMenu = () => {
     }
 
 
-    const { confirm } = Modal;
-
-    const showConfirm = () => {
-        confirm({
-            title: 'Logout',
-            content: 'Do you Want to Logout ?',
-            onOk() {
-                console.log('OK');
-                navigate('/login');
-            },
-            onCancel() {
-                console.log('Cancel');
-            },
-        });
-    };
-
 
     return (
         <div>
             <div className="elisc_tm_topbar fixed top-0 left-0 right-0 h-[50px] bg-white z-[15] hidden">
                 <div className="topbar_inner w-full h-full clear-both flex items-center justify-between py-0 px-[20px]">
                     <div className='logo-cover'>
-                        <img src='assets/img/logo/logo.png'  className='logo-mobile' />
+                        <img src='assets/img/logo/logo.png' alt='logo'  className='logo-mobile' />
                     </div>
                     <div className="trigger" onClick={menuopenclose}>
                         <div className={`hamburger hamburger--slider ${menuStatus}`}>
@@ -125,7 +105,7 @@ const SideMenu = () => {
                                 </div>
                         </div> */}
                         <div className='logo-cover'>
-                            <img src='assets/img/logo/logo.png'  className='logo-mobile' />
+                            <img src='assets/img/logo/logo.png' alt='logo'  className='logo-mobile' />
                         </div>
                         <div className="name w-full float-left mt-[-19px]">
                             {/* <h3><span>Robert Elisc<span className="back">Robert Elisc</span></span></h3> */}

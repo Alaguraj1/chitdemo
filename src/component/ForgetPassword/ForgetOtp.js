@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SideMenu from "../SideMenu";
 import "../ForgetPassword/ForgetPassword.css"
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button,  Modal } from 'antd';
-import { Link } from 'react-router-dom/dist';
 
 const ForgetOtp = ({ setStep, mobileNumber }) => {
 
@@ -71,7 +70,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                         </div>
 
                         <div className="forget-outer">
-                            <img src="assets/img/bg-1.png" className="forget-side-img" />
+                            <img src="assets/img/bg-1.png" alt='side-modal' className="forget-side-img" />
                         </div>
                    
 

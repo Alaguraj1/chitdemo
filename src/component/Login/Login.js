@@ -1,6 +1,6 @@
 import "./Login.css"
 import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox, Modal } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom/dist';
 import { UserOutlined, UnlockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import SideMenu from "../SideMenu";
@@ -156,7 +156,7 @@ function Login() {
                     </div>
 
                     <div className="login-outer">
-                        <img src="assets/img/bg-1.png" className="login-side-img" />
+                        <img src="assets/img/bg-1.png" alt="side-modal" className="login-side-img" />
                     </div>
 
                 </div>
