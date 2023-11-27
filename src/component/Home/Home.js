@@ -157,11 +157,11 @@ function Home() {
                                     productRate.map((value) => {
                                         console.log("value", value.RATE1)
                                         return (
-                                            // <marquee className="product-price">Gold Rate : ₹ {value.RATE1} per GRAM   |  Silver Rate : ₹ {value.RATE2} per GRAM    |  Platinum Rate : ₹ {value.RATE4} per GRAM  </marquee>
+                                            <marquee className="product-price">Gold Rate : ₹ {value.RATE1} per GRAM   |  Silver Rate : ₹ {value.RATE2} per GRAM    |  Platinum Rate : ₹ {value.RATE4} per GRAM  </marquee>
                                         
-                                            <div className="scrolling-text">
-                                            Gold Rate : ₹ {value.RATE1} per GRAM | Silver Rate : ₹ {value.RATE2} per GRAM | Platinum Rate : ₹ {value.RATE4} per GRAM
-                                          </div>
+                                        //     <div className="scrolling-text">
+                                        //     Gold Rate : ₹ {value.RATE1} per GRAM | Silver Rate : ₹ {value.RATE2} per GRAM | Platinum Rate : ₹ {value.RATE4} per GRAM
+                                        //   </div>
                                             )
                                     })
                                 }                            
