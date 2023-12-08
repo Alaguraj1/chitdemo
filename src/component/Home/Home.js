@@ -14,7 +14,7 @@ function Home() {
     const [goldMaxMin, setGoldMaxMin]  = useState([])
 
     useEffect(() => {
-        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/API/login/GoldRate").then((res) => {
+        axios.get("https://chatbot.thechennaisilks.com:5575/API/login/GoldRate").then((res) => {
             setProductRate(res?.data?.results)
         }).catch((error) => {
             console.log(error)
@@ -25,7 +25,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get("http://tjchitwebuad.thechennaisilks.com:5775/api/login/MinMaxGoldRate?MonthYear=06-2023")
+        axios.get("https://chatbot.thechennaisilks.com:5575/api/login/MinMaxGoldRate?MonthYear=06-2023")
             .then((res) => {
                 setGoldMaxMin(res?.data?.results);
             })
