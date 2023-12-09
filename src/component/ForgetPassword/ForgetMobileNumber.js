@@ -14,7 +14,7 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
         form.resetFields();
         setStep(2);
       
-        axios.post("http://mtjchitapp.thechennaisilks.com/api/Login/forgetOtp", values)
+        axios.post("https://chatbot.thechennaisilks.com:5575/api/Login/forgetOtp", values)
             .then((res) => {
                 console.log('Response:', res);
             })

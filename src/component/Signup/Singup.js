@@ -29,7 +29,7 @@ function Signup() {
         console.log('Form values:', values);
 
         axios.post(
-            "http://tjchitwebuad.thechennaisilks.com:5775/API/LOGIN/USERREGISTRATION",
+            "https://chatbot.thechennaisilks.com:5575/API/LOGIN/USERREGISTRATION",
             values,
             {
                 headers: {
