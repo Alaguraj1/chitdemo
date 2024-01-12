@@ -19,21 +19,20 @@ function Login() {
 
     const onFinish = (values) => {
         console.log('Form values:', values);
-    
+
         axios.post("https://chatbot.thechennaisilks.com:5575/API/CCALOGINLIVE", values)
             .then((res) => {
                 console.log(res);
-    
-                if (res?.data?.Success === 1) {
+                if (res?.data?.results[0].Success === 1) {
+                    // If the Success value is 1, navigate to the '/' route
                     navigate('/');
                 } else {
-                    // Handle unsuccessful response
+                    // If the Success value is not 1, handle an unsuccessful response
                     error();
                 }
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 console.error(error);
-    
+
                 if (error.code === 'ERR_NETWORK') {
                     // Handle network-related errors
                     showNetworkError();
@@ -42,18 +41,47 @@ function Login() {
                     errors(error);
                 }
             });
+
+
+        // const request = new Request("https://chatbot.thechennaisilks.com:5575/API/CCALOGINLIVE",
+        //     {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json', 'Access-Control-Allow-Origin': "http://localhost:3000/",
+        //             'Accept': 'application/json'
+        //         },
+        //         body: values,
+        //         mode: 'cors',
+        //     });
+        // console.log(request)
+        // fetch(request)
+        //     .then(response => {
+        //         if (response.status === 200) {
+        //             return response.json();
+        //         }
+        //         else {
+        //             throw new Error('Something went wrong on api server!');
+        //         }
+        //     })
+        //     .then(response => {
+        //         console.debug(response);
+        //         // ...
+        //     }).catch(error => {
+        //         console.error(error);
+        //     });
+
     };
-    
+
     const showNetworkError = () => {
         // Display a user-friendly message for network errors
         console.error("Network error. Please check your internet connection.");
     };
-    
+
     const errors = (error) => {
         // Handle other errors here or display a generic error message
         console.error("An error occurred. Please try again later.");
     };
-    
+
     const error = () => {
         // Handle specific errors or display a generic error message
         console.error("An error occurred during the API request.");
