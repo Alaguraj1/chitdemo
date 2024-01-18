@@ -129,6 +129,7 @@ function Signup() {
                                         label="Name"
                                         rules={[
                                             {
+                                                required:true,
                                                 whitespace: true,
                                                 message: "Please enter your name!",
                                             },
@@ -145,6 +146,8 @@ function Signup() {
                                         label="Email"
                                         rules={[
                                             {
+                                                required:true,
+                                                whitespace: true,
                                                 type: "email",
                                                 message: "The input is not a valid email!"
                                             },
@@ -165,7 +168,8 @@ function Signup() {
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
                                             {
-                                                required: false,
+                                                required:true,
+                                                whitespace: true,
                                                 message: 'Please enter your mobile number!',
                                             },
                                             {
@@ -190,6 +194,8 @@ function Signup() {
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
                                             {
+                                                required:true,
+                                                whitespace: true,
                                                 message: 'Please enter your password!',
                                             },
                                         ]}

@@ -35,18 +35,24 @@ function Login() {
                 localStorage.setItem("code", res?.data?.results[0].Code)
                 localStorage.setItem("ccadate", res?.data?.results[0].ccaDate)
 
-
-                messageApi.open({
-                    type: 'success',
-                    content: 'Successfully Login',
-                });
-
                 if (res?.data?.results[0].Success === 1) {
+
+                    messageApi.open({
+                        type: 'success',
+                        content: 'Successfully Login',
+                    });
+
+
                     // If the Success value is 1, navigate to the '/' route
                     navigate('/');
                 } else {
                     // If the Success value is not 1, handle an unsuccessful response
                     error();
+                    messageApi.open({
+                        type: 'error',
+                        content:res?.data?.results[0].Msg ,
+                    });
+
                 }
             }).catch((error) => {
                 console.error(error);
@@ -139,7 +145,8 @@ function Login() {
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
                                             {
-                                                required: false,
+                                                required: true,
+                                                whitespace: true,
                                                 message: 'Please enter your mobile number!',
                                             },
                                             {
@@ -165,6 +172,8 @@ function Login() {
                                         style={{ fontSize: "18px !important" }}
                                         rules={[
                                             {
+                                                required: true,
+                                                whitespace: true,
                                                 message: 'Please enter your password!',
                                             },
                                         ]}
