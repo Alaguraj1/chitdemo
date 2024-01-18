@@ -9,11 +9,12 @@ position: relative;
   padding: 20px 100px 40px 100px;
   display: flex;
   align-items: center !important;
+  height: 100vh;
 }
 
 .signup-left {
   width: 400px;
-  padding: 50px 0px;
+  /* padding: 50px 0px; */
 }
 
 
@@ -102,6 +103,14 @@ position: relative;
   padding: 0px;
 }
 
+@media (min-height: 670px) {
+  .container-signup {
+    height: 100vh;
+  }
+}
+
+
+
 @media(min-width:1440){
   .container-signup{
     height: 100vh !important;
@@ -116,6 +125,11 @@ position: relative;
     align-items: center !important;
     height: auto;
     justify-content: center;
+  }
+  
+  .signup-left {
+    width: 100%;
+    padding: 70px 0px 20px 0px;
   }
 
   .signup-title{
@@ -143,3 +157,4 @@ position: relative;
     padding: 70px 0px 20px 0px;
   }
 }
+
