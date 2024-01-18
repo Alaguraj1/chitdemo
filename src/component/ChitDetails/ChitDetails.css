@@ -5,12 +5,15 @@ secondary color : #9a2526, red
 
 .chit-main-container{
     background-color: #fff2d8;
-    padding: 50px 100px 50px 100px;
-    height: 100vh;
-    position: relative;
-
 }
 
+.chit-details{
+    position: relative;
+}
+.chit-container{
+    padding: 50px 100px 50px 100px;
+   
+}
 .container-chit-details {
     display: flex;
     align-items: center !important;
@@ -37,8 +40,8 @@ secondary color : #9a2526, red
 .new-chit-image{
     position: absolute;
     bottom: 0px;
-    right: 0px;
-    width: 50%;
+    right: -35px;
+    width: 40%;
 }
 
 :where(.css-dev-only-do-not-override-amq5gd).ant-table-wrapper .ant-table-thead>tr>th {
@@ -57,20 +60,10 @@ secondary color : #9a2526, red
 
 }
 
-@media(max-width:1990px) {
-
-    .chit-main-container{
-        height: 100vh;
-    }
-}
-
-
 @media(max-width:1040px) {
 
-    .chit-main-container{
-        background-color: #fff2d8;
+    .chit-container{
         padding: 70px 50px 0px 50px;
-        height: auto;
     }
 
     .container-chit-details {
@@ -98,10 +91,8 @@ secondary color : #9a2526, red
 
 
 @media(max-width:500px) {
-    .chit-main-container{
-        background-color: #fff2d8;
+    .chit-container{
         padding: 70px 20px 0px 20px;
-        height: auto;
     }
   
     :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper table{

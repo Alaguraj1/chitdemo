@@ -208,7 +208,7 @@ function Login() {
                                         </Button>
                                     </Form.Item>
                                 </Form>
-                                <p>New User? <Link to="/signup" style={{ textDecoration: 'underline' }}>Sign Up</Link></p>
+                                <p>No account yet? <Link to="/signup" style={{ textDecoration: 'underline' }}>Sign Up</Link></p>
                             </div>
                         </div>
 

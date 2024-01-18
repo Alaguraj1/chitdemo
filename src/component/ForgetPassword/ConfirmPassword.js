@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SideMenu from "../SideMenu";
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { EyeOutlined, EyeInvisibleOutlined, UnlockOutlined, } from '@ant-design/icons'
 import axios from "axios"
 
@@ -9,6 +9,8 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
 
     const navigate = useNavigate();
     const [form] = Form.useForm();
+
+    const [messageApi, contextHolder] = message.useMessage();
 
 
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -35,11 +37,22 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
         }
         console.log('✌️body --->', body);
         console.log('Form values:', values);
-        form.resetFields();
-        navigate('/login');
+
 
         axios.post("http://tjchitwebuad.thechennaisilks.com:5775/api/LOGIN/FORGETPASSWORD", body).then((res) => {
             console.log(res)
+
+            form.resetFields();
+
+            message.success({
+                content: "Password Updated Successfully",
+                onClose: () => {
+                  setTimeout(() => {
+                    navigate('/login');
+                  }, 100);
+                }
+              });
+
         }).catch((error) => {
             console.log(error)
         })
@@ -53,6 +66,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
 
     return (
         <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
+            {contextHolder}
             <SideMenu />
             <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] lo" >
                 <div className='container-forget'>
@@ -127,7 +141,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
 
                                 <Form.Item style={{ textAlign: "end" }}>
                                     <Button type="primary" htmlType="submit" size="large" style={{ background: "#9a2526" }}>
-                                        submit
+                                        Submit
                                     </Button>
                                 </Form.Item>
                             </Form>

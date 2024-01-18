@@ -3,9 +3,13 @@ primary color :  #fff2d8,  yellow
 secondary color : #9a2526, red 
 */
 
-.container-signup {
+.signup-container{
   background-color:#fff2d8 ;
-position: relative;
+
+}
+
+.container-signup {
+ position: relative;
   padding: 20px 100px 40px 100px;
   display: flex;
   align-items: center !important;
@@ -128,7 +132,7 @@ position: relative;
   }
   
   .signup-left {
-    width: 100%;
+    width: 400px;
     padding: 70px 0px 20px 0px;
   }
 

@@ -75,7 +75,7 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
                                     style={{ fontSize: "18px !important" }}
                                     rules={[
                                         {
-                                            required: false,
+                                            required: true,
                                             message: 'Please enter your mobile number!',
                                         },
                                         {

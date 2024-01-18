@@ -7,8 +7,11 @@ secondary color : #9a2526, red
 
 .closedDue-container{
     background-color:#fff2d8 ;
-    padding: 0px 100px;
    
+}
+.closedDue{
+    padding: 0px 100px;
+
 }
 
 .closedDue-title-outer{
@@ -45,7 +48,7 @@ secondary color : #9a2526, red
 
 @media(max-width:1040px) {
 
-    .closedDue-container{
+    .closedDue{
         padding: 0px 50px;    
     }
 
@@ -61,7 +64,7 @@ secondary color : #9a2526, red
 
 @media(max-width:500px) {
 
-    .closedDue-container{
+    .closedDue{
         padding: 0px 20px;    
     }
     .select-option-outer{

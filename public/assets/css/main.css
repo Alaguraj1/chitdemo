@@ -607,6 +607,11 @@ h6 {
     /*---------------------------------------------------*/
 
 /******** Larger Screens *********/
+.elisc_tm_sidebar {
+  width: 300px !important;
+  background-color: white;
+}
+
 
 @media (max-width: 1600px) {
   body {
@@ -620,6 +625,7 @@ h6 {
 
   .elisc_tm_sidebar {
     width: 300px !important;
+    background-color: white;
   }
 
   .elisc_tm_mainpart {

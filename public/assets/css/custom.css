@@ -221,6 +221,7 @@ body::-webkit-scrollbar-thumb {
 .elisc_tm_section::-webkit-scrollbar {
   width: 0px;
 }
+
 .elisc_tm_topbar .logo[data-type="image"] .image {
   display: inline-block;
 }
