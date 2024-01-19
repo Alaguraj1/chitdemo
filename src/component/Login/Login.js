@@ -120,7 +120,7 @@ function Login() {
             {contextHolder}
             <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
                 <SideMenu />
-                <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] lo" >
+                <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px]" >
 
                     <div className='container-login'>
                         <div className="login-left">

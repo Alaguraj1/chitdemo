@@ -6,6 +6,7 @@ import { Table, Button } from 'antd';
 import axios from "axios";
 import { CalendarFilled, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
+import { DatePicker, Space } from 'antd';
 
 function Home() {
 
@@ -18,11 +19,11 @@ function Home() {
         console.log('✌️Token --->', token);
       
         axios.get("https://chatbot.thechennaisilks.com:5575/API/login/GoldRate",
-        //  {
-        //   headers: {
-        //     "Authorization": `${token}`
-        //   }
-        // }
+         {
+          headers: {
+            "Authorization": `${token}`
+          }
+        }
         )
         .then((response) => {
           setProductRate(response.data.results);
@@ -43,11 +44,11 @@ function Home() {
         console.log('✌️Token --->', token);
         
         axios.get("https://chatbot.thechennaisilks.com:5575/api/login/MinMaxGoldRate?MonthYear=06-2023",
-        // {
-        //     headers: {
-        //       "Authorization": `${token}`
-        //     }
-        //   }
+        {
+            headers: {
+              "Authorization": `${token}`
+            }
+          }
           )
             .then((res) => {
                 setGoldMaxMin(res?.data?.results);
@@ -162,6 +163,10 @@ function Home() {
         console.log('Pay', record);
     };
 
+
+    const onChange = (date, dateString) => {
+        console.log(date, dateString);
+      };
     return (
         <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
             <SideMenuTwo/>
@@ -175,6 +180,7 @@ function Home() {
 
                             <div className="priceDetails">
                                 <CalendarFilled className="calendor" onClick={showModal} />
+                                {/* <DatePicker onChange={onChange} picker="month" /> */}
                                 {
                                     productRate.map((value) => {
                                         console.log("value", value.RATE1)

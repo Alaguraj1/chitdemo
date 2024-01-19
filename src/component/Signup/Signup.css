@@ -3,12 +3,13 @@ primary color :  #fff2d8,  yellow
 secondary color : #9a2526, red 
 */
 
-.signup-container{
+.signup-bg{
   background-color:#fff2d8 ;
 
 }
 
 .container-signup {
+  
  position: relative;
   padding: 20px 100px 40px 100px;
   display: flex;

@@ -104,11 +104,10 @@ function Signup() {
 
     return (
         <>
-            <SideMenu />
-            <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
-                {contextHolder}
-
-                <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] signup-container">
+           {contextHolder}
+            <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">  
+                <SideMenu />
+                <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] signup-bg">
 
                     <div className='container-signup'>
                         <div className="signup-left">
