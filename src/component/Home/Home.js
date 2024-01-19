@@ -2,84 +2,47 @@
 import "./Home.css"
 import React, { useState, useEffect } from 'react';
 import SideMenuTwo from "../SideMenuTwo";
-import { Table, Button } from 'antd';
+import { Table, Button, Space } from 'antd';
 import axios from "axios";
 import { CalendarFilled, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
-import { DatePicker, Space } from 'antd';
+import { Calendar } from 'antd';
+import dayjs from 'dayjs';
+import 'dayjs/locale/en'; // You may need to import the locale if not already imported
 
 function Home() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [calendarOpen, setCalendarOpen] = useState(false);
+    const [date, setDate] = useState()
     const [productRate, setProductRate] = useState([])
     const [goldMaxMin, setGoldMaxMin] = useState([])
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         console.log('✌️Token --->', token);
-      
+
         axios.get("https://chatbot.thechennaisilks.com:5575/API/login/GoldRate",
-         {
-          headers: {
-            "Authorization": `${token}`
-          }
-        }
-        )
-        .then((response) => {
-          setProductRate(response.data.results);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-          // You can handle the error in a way that makes sense for your application
-        });
-      
-      }, []);
-      
-
-    console.log("productRate", productRate)
-
-
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        console.log('✌️Token --->', token);
-        
-        axios.get("https://chatbot.thechennaisilks.com:5575/api/login/MinMaxGoldRate?MonthYear=06-2023",
-        {
-            headers: {
-              "Authorization": `${token}`
+            {
+                headers: {
+                    "Authorization": `${token}`
+                }
             }
-          }
-          )
-            .then((res) => {
-                setGoldMaxMin(res?.data?.results);
+        )
+            .then((response) => {
+                setProductRate(response.data.results);
             })
             .catch((error) => {
-                console.error("Axios Error:", error);
-
-                if (error.response) {
-                    // The request was made and the server responded with a status code
-                    alert("Response Data:", error.response.data);
-                    alert("Response Status:", error.response.status);
-                    alert("Response Headers:", error.response.headers);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    alert("Request:", error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    alert("Error Message:", error.message);
-                }
-
-                // Modal.error({
-                //     title: error?.AxiosError?.message || "Error",
-                //     content: 'Server-side issue',
-                // });
+                console.error("Error fetching data:", error);
+                // You can handle the error in a way that makes sense for your application
             });
+
     }, []);
 
 
+    console.log("productRate", productRate)
+
     console.log("goldMaxMin", goldMaxMin)
-
-
 
     const dataSource = [
         {
@@ -149,12 +112,20 @@ function Home() {
 
     // modal
     const showModal = () => {
-        setIsModalOpen(true);
+        setCalendarOpen(true);
     };
     const handleOk = () => {
-        setIsModalOpen(false);
+        setCalendarOpen(false);
     };
     const handleCancel = () => {
+        setCalendarOpen(false);
+    };
+
+
+    const handleOk2 = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel2 = () => {
         setIsModalOpen(false);
     };
 
@@ -164,14 +135,63 @@ function Home() {
     };
 
 
-    const onChange = (date, dateString) => {
-        console.log(date, dateString);
-      };
+    function onPanelChange(value, mode) {
+        // console.log('✌️mode --->', mode);
+        // console.log('✌️value --->', value);
+        // console.log(value, mode);
+        const formattedDate = dayjs(value).format('MM-YYYY');
+        console.log(formattedDate);
+
+        setDate(formattedDate)
+    }
+
+    const dateSubmit = (() => {
+        const token = localStorage.getItem("token");
+        console.log('✌️Token --->', token);
+
+
+        axios.get("https://chatbot.thechennaisilks.com:5575/api/login/MinMaxGoldRate",
+            {
+                params: {
+                    "MonthYear": date
+                },
+            },
+            {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            }).then((res) => {
+                setIsModalOpen(true)
+                setCalendarOpen(false);
+                setGoldMaxMin(res?.data?.results);
+            }).catch((error) => {
+                console.error("Axios Error:", error);
+
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    alert("Response Data:", error.response.data);
+                    alert("Response Status:", error.response.status);
+                    alert("Response Headers:", error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    alert("Request:", error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    alert("Error Message:", error.message);
+                }
+
+                // Modal.error({
+                //     title: error?.AxiosError?.message || "Error",
+                //     content: 'Server-side issue',
+                // });
+            });
+
+    })
     return (
         <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
-            <SideMenuTwo/>
+            <SideMenuTwo />
             <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] home-container-fluid"  >
-                <div  className="imagePosition">
+                <div className="imagePosition">
                     <h3 className="chit-details-title">Hi Karthick,  Welcome To Thangam Jewellery</h3>
 
                     <div className="home-container">
@@ -180,7 +200,7 @@ function Home() {
 
                             <div className="priceDetails">
                                 <CalendarFilled className="calendor" onClick={showModal} />
-                                {/* <DatePicker onChange={onChange} picker="month" /> */}
+
                                 {
                                     productRate.map((value) => {
                                         console.log("value", value.RATE1)
@@ -211,12 +231,17 @@ function Home() {
 
                         <div className="home-right">
                             <img src="assets/img/bg-1.png" alt="side-modal" className="home-side-img" />
-
                         </div>
                     </div>
                 </div>
 
-                <Modal title="SEP-GOLD RATE" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={false}>
+
+
+
+                <Modal title="SEP-GOLD RATE" open={isModalOpen} onOk={handleOk2} onCancel={handleCancel2} footer={false}>
+                    {/* <div style={{ width: 290, border: '1px solid #d9d9d9', borderRadius: 4 }}>
+                        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+                    </div> */}
                     <div className="gold-stage">
                         <h6 className="gold-low">LOW <CaretDownOutlined /></h6>
                         <h6 className="gold-heigh">HIGH <CaretUpOutlined /></h6>
@@ -237,6 +262,23 @@ function Home() {
                         }
 
                     </div>
+                </Modal>
+
+
+                {/* calendor */}
+                <Modal title="SEP-GOLD RATE" open={calendarOpen} width={350} onOk={handleOk} onCancel={handleCancel} footer={false}>
+                    <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4 }}>
+                        <Calendar fullscreen={false} mode="year" onChange={onPanelChange} />
+                    </div>
+                    <Space style={{ marginTop: "15px", }}>
+                        <Button type="primary" onClick={handleCancel} size="medium" style={{ border: "1px solid white" }}>
+                            cancel
+                        </Button>
+
+                        <Button type="primary" htmlType="submit" size="medium" onClick={dateSubmit} style={{ border: "1px solid white" }}>
+                            Submit
+                        </Button>
+                    </Space>
                 </Modal>
 
             </div>

@@ -69,9 +69,9 @@ const ChitDetails = () => {
     return (
 
         <>
-     
+
             <div className="elisc_tm_all_wrap chit-details" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
-            <SideMenuTwo />
+                <SideMenuTwo />
                 <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] chit-main-container" >
 
                     <div className='chit-container'>
@@ -91,6 +91,14 @@ const ChitDetails = () => {
                                         <Option value="thirupur">thirupur</Option>
                                         <Option value="dindigul">dindigul</Option>
                                     </Select>
+
+                                    {/* <Select >
+                                        {formFields?.city1?.map((val) => (
+                                            <Select.Option key={val.name} value={val.id} >
+                                                {val.name}
+                                            </Select.Option>
+                                        ))}
+                                    </Select> */}
                                 </div>
                                 <div className="select-option-outer">
                                     <p style={{ paddingRight: "43px" }}>Chit Name</p>

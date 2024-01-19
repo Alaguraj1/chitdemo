@@ -134,6 +134,8 @@ secondary color : #9a2526, red
     font-weight: 600;
 }
 
+
+/* local server */
 :where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-content {
     background-color: #9a2526;
 }
@@ -148,6 +150,40 @@ secondary color : #9a2526, red
 :where(.css-dev-only-do-not-override-3mqfnx).ant-modal .ant-modal-close {
     color: white;
 }
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch{
+    display: none;
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-picker-calendar .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+    background-color: #9a2526;
+}
+
+/* online server */
+:where(.css-3mqfnx).ant-modal .ant-modal-content {
+    background-color: #9a2526;
+}
+
+:where(.css-3mqfnx).ant-modal .ant-modal-title {
+    background-color: #9a2526;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+:where(.css-3mqfnx).ant-modal .ant-modal-close {
+    color: white;
+}
+
+:where(.css-3mqfnx).ant-picker-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch{
+    display: none;
+}
+
+:where(.css-3mqfnx).ant-picker-calendar .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner{
+    background-color: #9a2526;
+}
+
+
 
 /* .home-right {
  position: absolute;
