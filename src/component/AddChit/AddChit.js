@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Select, Table, Button, Checkbox } from 'antd';
-import './ChitDetails.css';
+import './AddChit.css';
 import SideMenuTwo from '../SideMenuTwo';
 
 const { Option } = Select;
@@ -126,7 +126,7 @@ const ChitDetails = () => {
                                 </div>
                                 <p style={{ fontSize: "14px" }}>*NOTE you can purchase from the selected branch</p>
                                 <div style={{ marginTop: "20px" }}>
-                                    <Table dataSource={dataSource} columns={columns} pagination={false} style={{ width: "100%" }} className="responsive-table" />
+                                    <Table dataSource={dataSource} columns={columns} pagination={false} style={{ width: "100%" }} scroll={{ x: '100%' }} className="responsive-table" />
                                 </div>
                                 <div style={{ marginTop: "35px" }}>
                                     <h6 style={{ paddingBottom: "10px" }}>Reference User<span style={{ fontSize: "16px", paddingLeft: "5px" }}>(optional)</span></h6>
