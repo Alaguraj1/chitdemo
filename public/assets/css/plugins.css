@@ -110,7 +110,7 @@ input[type="color"],
 	font-family: var(--font-karla);
 	
 	line-height:1.6;
-	padding:20px 35px ;
+	padding:20px 10px ;
 	height:30px;
 	vertical-align:middle;
 	border:1px solid #eee;
