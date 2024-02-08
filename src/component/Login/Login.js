@@ -28,14 +28,11 @@ function Login() {
   const onFinish = async (values) => {
     try {
       const res = await Models.auth.Login(values);
-console.log('✌️res --->', res.data);
+      console.log("✌️res --->", res.data);
       localStorage.setItem("token", res?.results[0].key);
-      const userData = {
-        userName: res?.results[0].Name,
-        code: res?.results[0].Code,
-        ccaDate: res?.results[0].ccaDate,
-      };
-      localStorage.setItem("userData", userData);
+      localStorage.setItem("userName", res?.results[0].Name);
+      localStorage.setItem("code", res?.results[0].Code);
+      localStorage.setItem("ccaDate", res?.results[0].ccaDate);
 
       if (res?.results[0].Success === 1) {
         messageApi.open({
@@ -57,16 +54,6 @@ console.log('✌️res --->', res.data);
     } catch (error) {
       console.log("Form error:", error);
     }
-  };
-
-  const showNetworkError = () => {
-    // Display a user-friendly message for network errors
-    console.error("Network error. Please check your internet connection.");
-  };
-
-  const errors = (error) => {
-    // Handle other errors here or display a generic error message
-    console.error("An error occurred. Please try again later.");
   };
 
   const error = () => {

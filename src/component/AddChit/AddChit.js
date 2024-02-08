@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from "react";
-import {
-  Select,
-  Table,
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  InputNumber,
-} from "antd";
+import React, { useEffect } from "react";
+import { Select, Table, Button, Checkbox, Form, Input } from "antd";
 import "./AddChit.css";
 import SideMenuTwo from "../SideMenuTwo";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { columns } from "../../utils/constants.utils";
 import { useSetState } from "../../utils/function.utils";
@@ -21,48 +12,54 @@ const { Option } = Select;
 const ChitDetails = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const { TextArea } = Input;
 
   const [state, setState] = useSetState({
+    localCode: "",
     city: [],
     selectedBranch: null,
     branch: [],
     chit: [],
     selectedChit: null,
-
+    getChit: [],
+    ReferenseUser: [],
+    chitTable: [],
+    selectedAmount: "",
   });
 
+
   useEffect(() => {
-    GetCity()
-    getBranch()
+    GetCity();
+    getBranch();
   }, []);
 
-const GetCity = async() => {
-  try{
-    const res = await Models.chit.City();
-    if (res.results[0].Message == "Authentication Session Failed") {
-      navigate("/login");
-      return false;
+  useEffect(() => {
+    const LocalDatas = localStorage.getItem("code");
+    setState({ localCode: LocalDatas });
+    console.log("✌️LocalDatas --->", LocalDatas);
+  }, []);
+
+  const GetCity = async () => {
+    try {
+      const res = await Models.chit.City();
+      if (res.results[0].Message == "Authentication Session Failed") {
+        navigate("/login");
+        return false;
+      }
+      setState({
+        city:
+          res.results[0].Success === 1
+            ? res?.results[0]?.Message
+            : alert(res?.results[0].Message),
+      });
+    } catch (error) {
+      console.log("Form error:", error);
     }
-    setState({
-      city:
-        res.results[0].Success === 1
-          ? res?.results[0]?.Message
-          : alert(res?.results[0].Message),
-    });
-  }
-  catch(error) {
-    console.log("Form error:", error);
-  }
-}
+  };
 
-
-console.log("state.city", state.city)
-// city change
-const handleCityChange = async (value) => {
-  console.log(value)
-}
-
+  // city change
+  const handleCityChange = async (value) => {
+    console.log(value);
+  };
 
   const getBranch = async () => {
     try {
@@ -82,12 +79,13 @@ const handleCityChange = async (value) => {
     }
   };
 
-  // branch  onchange function
+  // branch onchange function
   const handleBranchChange = async (value) => {
     console.log("✌️value --->", value);
     setState({ selectedBranch: value, selectedChit: null });
-
     Chit(value);
+    getChitDetails(null, value);
+    ReferenseEmployee(value);
   };
 
   // Chit api call
@@ -111,12 +109,71 @@ const handleCityChange = async (value) => {
     }
   };
 
-  // chit onchange
+  // chit onchange function
   const handleChitChange = async (value) => {
-    console.log("✌️value --->", value);
     setState({ selectedChit: value });
+    getChitDetails(value, state.selectedBranch);
   };
-  console.log("✌️selectedChit --->", state.selectedChit);
+
+  // function to get chit details
+  const getChitDetails = async (chitValue1, chitValue2) => {
+    try {
+      const res = await Models.chit.GetChit({
+        CHTCODE: chitValue1,
+        BRNCODE: chitValue2,
+      });
+      console.log("✌️res --->", res);
+      if (res.results[0].Message == "Authentication Session Failed") {
+        navigate("/login");
+        return false;
+      }
+      const data = res.results[0].Message;
+      let filterData = [];
+      if (state.selectedAmount) {
+        filterData = data.filter(
+          (item) => item.CHTAMNT === state.selectedAmount
+        );
+      } else {
+        filterData = data;
+      }
+      console.log("✌️res.results[0] --->", res.results[0]);
+
+      setState({ getChit: data, chitTable: filterData });
+    } catch (error) {
+      console.log("Form error:", error);
+    }
+  };
+
+  // reference user
+  const ReferenseEmployee = async (Reference) => {
+    console.log("✌️Reference --->", Reference);
+    try {
+      const res = await Models.chit.EmployeeName({
+        brncode: Reference,
+      });
+      console.log("✌️res --->", res);
+      if (res.results[0].Message == "Authentication Session Failed") {
+        navigate("/login");
+        return false;
+      }
+      setState({ ReferenseUser: res.results[0].Message });
+    } catch (error) {
+      console.log("Form error:", error);
+    }
+  };
+
+  // amount change
+
+  const handleAmountChange = (value) => {
+    console.log("✌️value --->", value);
+    const tableData = state.getChit;
+    console.log("✌️tableData --->", tableData);
+    const filter = tableData?.filter((item) => item.CHTAMNT === value);
+    setState({ chitTable: filter });
+    console.log("✌️filter --->", filter);
+
+    setState({ selectedAmount: value });
+  };
 
   const onFinish = (values) => {
     console.log("Received values:", values);
@@ -126,16 +183,8 @@ const handleCityChange = async (value) => {
     console.log("Failed:", errorInfo);
   };
 
-  const dataSource = [
-    {
-      key: "1",
-      chitGroup: "SLABU",
-      noOfDues: 12,
-      groupCapacity: 300,
-      bonusAmount: 500,
-      giftAmount: 0,
-    },
-  ];
+  console.log("✌️state --->", state.localCode);
+
   return (
     <>
       <div
@@ -222,12 +271,13 @@ const handleCityChange = async (value) => {
                       rules={[
                         {
                           required: false,
-                          message: "Address field is required.",
+                          message: "Mobile Number field is required.",
                         },
                       ]}
                     >
                       <Input type="number" />
                     </Form.Item>
+
                     <Form.Item
                       label="Select City"
                       name="city"
@@ -251,7 +301,7 @@ const handleCityChange = async (value) => {
                     </Form.Item>
 
                     <Form.Item
-                      label="Pin Code"
+                      label="Pincode"
                       name="pin_code"
                       style={{ width: "350px" }}
                       rules={[
@@ -263,19 +313,6 @@ const handleCityChange = async (value) => {
                     >
                       <Input type="number" />
                     </Form.Item>
-
-                    {/* <Form.Item>
-                            <div className="form-btn-main">
-                                <Space>
-                                    <Button danger htmlType="submit" onClick={() => onClose()}>
-                                        Cancel
-                                    </Button>
-                                    <Button type="primary" htmlType="submit">
-                                        Submit
-                                    </Button>
-                                </Space>
-                            </div>
-                        </Form.Item> */}
                   </Form>
                 </div>
                 <h6 className="chit-details-subTitle">Add Chit</h6>
@@ -301,28 +338,6 @@ const handleCityChange = async (value) => {
                   </Select>
                 </Form.Item>
 
-                {/* <Select >
-                                        {formFields?.city1?.map((val) => (
-                                            <Select.Option key={val.name} value={val.id} >
-                                                {val.name}
-                                            </Select.Option>
-                                        ))}
-                                    </Select> */}
-                {/* <div className="select-option-outer">
-                  <p style={{ paddingRight: "43px" }}>Chit Name</p>
-                  <Select
-                    defaultValue={selectedOption}
-                    style={{ width: 200 }}
-                    onChange={(value) => handleChange("chitName", value)}
-                  >
-                    <Option value="Gold Virksham">Gold Virksham</Option>
-                    <Option value="Swarna Laksita">Swarna Laksita</Option>
-                    <Option value="Gold Virksham Plus">
-                      Gold Virksham Plus
-                    </Option>
-                  </Select>
-                </div> */}
-
                 <Form.Item
                   label="Chit Name"
                   name="chit_name"
@@ -345,24 +360,15 @@ const handleCityChange = async (value) => {
                     ))}
                   </Select>
                 </Form.Item>
-                {/* <div className="select-option-outer">
-                  <p style={{ paddingRight: "60px" }}>Amount</p>
-                  <Select
-                    defaultValue={selectedOption}
-                    style={{ width: 200 }}
-                    onChange={(value) => handleChange("amount", value)}
-                  >
-                    <Option value="5000">5000</Option>
-                    <Option value="10000">10000</Option>
-                    <Option value="15000">15000</Option>
-                  </Select>
-                </div> */}
+
                 <Form.Item
                   label="Amount"
                   name="amount"
                   style={{ width: "300px" }}
+                  onChange={handleAmountChange}
                 >
                   <Select
+                    onChange={handleAmountChange}
                     showSearch
                     filterOption={(input, option) =>
                       option.children
@@ -370,9 +376,9 @@ const handleCityChange = async (value) => {
                         .indexOf(input.toLowerCase()) >= 0
                     }
                   >
-                    {state?.branch[0]?.Message?.map((val) => (
-                      <Option key={val?.BRNCODE} value={val?.NICADDR}>
-                        {val?.NICADDR}
+                    {state?.getChit?.map((val) => (
+                      <Option key={val?.CHTAMNT} value={val?.CHTAMNT}>
+                        {val?.CHTAMNT}
                       </Option>
                     ))}
                   </Select>
@@ -380,34 +386,22 @@ const handleCityChange = async (value) => {
 
                 <p style={{ fontSize: "14px" }}>
                   *NOTE you can purchase from the selected branch
+                  {state.chitTable?.length > 0 && state.selectedAmount !== "" && (
+                    <>
+                      <div style={{ margin: "20px 0px" }}>
+                        <Table
+                          dataSource={state.chitTable}
+                          columns={columns}
+                          pagination={false}
+                          style={{ width: "100%" }}
+                          scroll={{ x: "100%" }}
+                          className="responsive-table"
+                        />
+                      </div>
+                    </>
+                  )}
                 </p>
-                <div style={{ margin: "20px 0px" }}>
-                  <Table
-                    dataSource={dataSource}
-                    columns={columns}
-                    pagination={false}
-                    style={{ width: "100%" }}
-                    scroll={{ x: "100%" }}
-                    className="responsive-table"
-                  />
-                </div>
-                {/* <div style={{ marginTop: "35px" }}>
-                  <h6 style={{ paddingBottom: "10px" }}>
-                    Reference User
-                    <span style={{ fontSize: "16px", paddingLeft: "5px" }}>
-                      (optional)
-                    </span>
-                  </h6>
-                  <Select
-                    defaultValue={selectedOption}
-                    style={{ width: 200 }}
-                    onChange={(value) => handleChange("referenceUser", value)}
-                  >
-                    <Option value="Person 1">Person 1</Option>
-                    <Option value="Person 2">Person 2</Option>
-                    <Option value="Person 3">Person 3</Option>
-                  </Select>
-                </div> */}
+
                 <Form.Item
                   label="Reference User (Optional)"
                   name="amount"
@@ -421,9 +415,9 @@ const handleCityChange = async (value) => {
                         .indexOf(input.toLowerCase()) >= 0
                     }
                   >
-                    {state?.branch[0]?.Message?.map((val) => (
-                      <Option key={val?.BRNCODE} value={val?.NICADDR}>
-                        {val?.NICADDR}
+                    {state?.ReferenseUser?.map((val) => (
+                      <Option key={val?.EMPCODE} value={val?.EMPCODE}>
+                        {val?.EMPCODE} - {val?.EMPNAME}
                       </Option>
                     ))}
                   </Select>

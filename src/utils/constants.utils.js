@@ -1,27 +1,49 @@
-export const  columns = [
+import { Checkbox } from "antd";
+
+
+export const columns = [
   {
     title: "Chit Group",
-    dataIndex: "chitGroup",
-    key: "chitGroup",
+    dataIndex: "CHTGRUP",
+    key: "CHTGRUP",
   },
   {
     title: "No Of Dues",
-    dataIndex: "noOfDues",
-    key: "noOfDues",
+    dataIndex: "NOOFDUE",
+    key: "NOOFDUE",
+  },
+  {
+    title: "Group Amount",
+    dataIndex: "CHTAMNT",
+    key: "CHTAMNT",
   },
   {
     title: "Group Capacity",
-    dataIndex: "groupCapacity",
-    key: "groupCapacity",
+    dataIndex: "GRPCAPY",
+    key: "GRPCAPY",
   },
   {
     title: "Bonus Amount",
-    dataIndex: "bonusAmount",
-    key: "bonusAmount",
+    dataIndex: "BONAMNT",
+    key: "BONAMNT",
   },
+
   {
     title: "Gift Amount",
-    dataIndex: "giftAmount",
-    key: "giftAmount",
+    dataIndex: "GFTAMNT",
+    key: "GFTAMNT",
+  },
+  {
+    title: "Chtsrno",
+    dataIndex: "CHTSRNO",
+    key: "CHTSRNO",
+  },
+  {
+    title: "Lucky Draw",
+    dataIndex: "LUKDRAW",
+    key: "LUKDRAW",
+    render: (text) => {
+      return <Checkbox checked={text === "Y"} />;
+    },
   },
 ];
