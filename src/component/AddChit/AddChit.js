@@ -1,5 +1,14 @@
 import React, { useEffect } from "react";
-import { Select, Table, Button, Checkbox, Form, Input } from "antd";
+import {
+  Select,
+  Table,
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Modal,
+  Space,
+} from "antd";
 import "./AddChit.css";
 import SideMenuTwo from "../SideMenuTwo";
 import { useNavigate } from "react-router-dom";
@@ -24,8 +33,9 @@ const ChitDetails = () => {
     ReferenseUser: [],
     chitTable: [],
     selectedAmount: "",
+    isModalVisible: false,
+    isCheckboxChecked: false,
   });
-
 
   useEffect(() => {
     GetCity();
@@ -175,8 +185,25 @@ const ChitDetails = () => {
     setState({ selectedAmount: value });
   };
 
+  console.log("state.chit", state.selectedChit);
+
   const onFinish = (values) => {
-    console.log("Received values:", values);
+    const completeMobileNumber = `${state.localCode}`;
+
+    const body = {
+      customer_name: values.customer_name,
+      address: values.address,
+      landMark: values.landMark,
+      email: values.email,
+      mobile_number: completeMobileNumber,
+      city: values.city,
+      pin_code: values.pin_code,
+      branch: values.branch,
+      chit_name: values.chit_name,
+      amount: values.amount,
+      referenceUser: values.referenceUser,
+    };
+    console.log("body", body);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -184,6 +211,21 @@ const ChitDetails = () => {
   };
 
   console.log("✌️state --->", state.localCode);
+
+  // terms and conditions Modal
+  const handleCheckboxChange = () => {
+    setState({ isModalVisible: true });
+  };
+
+  const handleModalAccept = () => {
+    setState({ isModalVisible: false });
+    setState({ isCheckboxChecked: true });
+  };
+
+  const handleModalCancel = () => {
+    setState({ isCheckboxChecked: false });
+    setState({ isModalVisible: false });
+  };
 
   return (
     <>
@@ -198,245 +240,251 @@ const ChitDetails = () => {
           <div className="chit-container">
             <div className="details w-full flex items-center container-chit-details">
               <div className="left w-1/2 chit-details-left">
-                <div>
-                  <h6 className="chit-details-subTitle">Personal Details</h6>
-                  <Form
-                    name="basic"
-                    form={form}
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                  >
-                    <Form.Item
-                      label="Customer Name"
-                      name="customer_name"
-                      style={{ width: "350px" }}
-                      rules={[
-                        {
-                          required: false,
-                          message: "Customer Name field is required.",
-                        },
-                      ]}
-                    >
-                      <Input style={{ padding: "10px 5px !important" }} />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Address"
-                      name="address"
-                      style={{ width: "350px" }}
-                      rules={[
-                        {
-                          required: false,
-                          message: "Address field is required.",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Land Mark"
-                      name="landMark"
-                      style={{ width: "350px" }}
-                      rules={[
-                        {
-                          required: false,
-                          message: "Address field is required.",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Email"
-                      name="email"
-                      style={{ width: "350px" }}
-                      rules={[
-                        {
-                          required: false,
-                          message: "Address field is required.",
-                        },
-                      ]}
-                    >
-                      <Input type="email" />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Mobile Number"
-                      name="mobile_number"
-                      style={{ width: "350px" }}
-                      rules={[
-                        {
-                          required: false,
-                          message: "Mobile Number field is required.",
-                        },
-                      ]}
-                    >
-                      <Input type="number" />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Select City"
-                      name="city"
-                      style={{ width: "350px" }}
-                    >
-                      <Select
-                        showSearch
-                        filterOption={(input, option) =>
-                          option.children
-                            .toLowerCase()
-                            .indexOf(input.toLowerCase()) >= 0
-                        }
-                        onChange={handleCityChange}
-                      >
-                        {state?.city?.map((val) => (
-                          <Option key={val?.CITYCODE} value={val?.CITYCODE}>
-                            {val?.CITYNAME}
-                          </Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Pincode"
-                      name="pin_code"
-                      style={{ width: "350px" }}
-                      rules={[
-                        {
-                          required: false,
-                          message: "Address field is required.",
-                        },
-                      ]}
-                    >
-                      <Input type="number" />
-                    </Form.Item>
-                  </Form>
-                </div>
-                <h6 className="chit-details-subTitle">Add Chit</h6>
-                <Form.Item
-                  label="Select Branch"
-                  name="branch"
-                  style={{ width: "300px" }}
+                <h6 className="chit-details-subTitle">Personal Details</h6>
+                <Form
+                  name="basic"
+                  form={form}
+                  initialValues={{ remember: true }}
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
+                  autoComplete="off"
                 >
-                  <Select
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    }
-                    onChange={handleBranchChange}
+                  <Form.Item
+                    label="Customer Name"
+                    name="customer_name"
+                    style={{ width: "350px" }}
+                    rules={[
+                      {
+                        required: false,
+                        message: "Customer Name field is required.",
+                      },
+                    ]}
                   >
-                    {state?.branch[0]?.Message?.map((val) => (
-                      <Option key={val?.BRNCODE} value={val?.BRNCODE}>
-                        {val?.NICADDR}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                    <Input style={{ padding: "10px 5px !important" }} />
+                  </Form.Item>
 
-                <Form.Item
-                  label="Chit Name"
-                  name="chit_name"
-                  style={{ width: "300px" }}
-                  onChange={handleChitChange}
-                >
-                  <Select
+                  <Form.Item
+                    label="Address"
+                    name="address"
+                    style={{ width: "350px" }}
+                    rules={[
+                      {
+                        required: false,
+                        message: "Address field is required.",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Land Mark"
+                    name="landMark"
+                    style={{ width: "350px" }}
+                    rules={[
+                      {
+                        required: false,
+                        message: "Address field is required.",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    style={{ width: "350px" }}
+                    required={true}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Address field is required.",
+                      },
+                    ]}
+                  >
+                    <Input type="email" />
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Mobile Number"
+                    name="mobile_number"
+                    style={{ width: "350px" }}
+                    rules={[
+                      {
+                        required: false,
+                        message: "Mobile Number field is required.",
+                      },
+                    ]}
+                  >
+                    <Input prefix={state.localCode} disabled />
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Select City"
+                    name="city"
+                    style={{ width: "350px" }}
+                  >
+                    <Select
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                      onChange={handleCityChange}
+                    >
+                      {state?.city?.map((val) => (
+                        <Option key={val?.CITYCODE} value={val?.CITYCODE}>
+                          {val?.CITYNAME}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Pincode"
+                    name="pin_code"
+                    style={{ width: "350px" }}
+                    rules={[
+                      {
+                        required: false,
+                        message: "Address field is required.",
+                      },
+                    ]}
+                  >
+                    <Input type="number" />
+                  </Form.Item>
+
+                  <h6 className="chit-details-subTitle">Add Chit</h6>
+                  <Form.Item
+                    label="Select Branch"
+                    name="branch"
+                    style={{ width: "350px" }}
+                  >
+                    <Select
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                      onChange={handleBranchChange}
+                    >
+                      {state?.branch[0]?.Message?.map((val) => (
+                        <Option key={val?.BRNCODE} value={val?.BRNCODE}>
+                          {val?.NICADDR}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Chit Name"
+                    name="chit_name"
+                    style={{ width: "350px" }}
                     onChange={handleChitChange}
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    }
                   >
-                    {state?.chit?.map((val) => (
-                      <Option key={val?.CHTCODE} value={val?.CHTCODE}>
-                        {val?.CHTNAME}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                    <Select
+                      onChange={handleChitChange}
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {state?.chit?.map((val) => (
+                        <Option key={val?.CHTCODE} value={val?.CHTCODE}>
+                          {val?.CHTNAME}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
 
-                <Form.Item
-                  label="Amount"
-                  name="amount"
-                  style={{ width: "300px" }}
-                  onChange={handleAmountChange}
-                >
-                  <Select
+                  <Form.Item
+                    label="Amount"
+                    name="amount"
+                    style={{ width: "350px" }}
                     onChange={handleAmountChange}
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    }
                   >
-                    {state?.getChit?.map((val) => (
-                      <Option key={val?.CHTAMNT} value={val?.CHTAMNT}>
-                        {val?.CHTAMNT}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                    <Select
+                      onChange={handleAmountChange}
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {state?.getChit?.map((val) => (
+                        <Option key={val?.CHTAMNT} value={val?.CHTAMNT}>
+                          {val?.CHTAMNT}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
 
-                <p style={{ fontSize: "14px" }}>
-                  *NOTE you can purchase from the selected branch
-                  {state.chitTable?.length > 0 && state.selectedAmount !== "" && (
-                    <>
-                      <div style={{ margin: "20px 0px" }}>
-                        <Table
-                          dataSource={state.chitTable}
-                          columns={columns}
-                          pagination={false}
-                          style={{ width: "100%" }}
-                          scroll={{ x: "100%" }}
-                          className="responsive-table"
-                        />
-                      </div>
-                    </>
-                  )}
-                </p>
+                  <p style={{ fontSize: "14px" }}>
+                    *NOTE you can purchase from the selected branch
+                    {state.chitTable?.length > 0 &&
+                      state.selectedAmount !== "" && (
+                        <>
+                          <div style={{ margin: "20px 0px" }}>
+                            <Table
+                              dataSource={state.chitTable}
+                              columns={columns}
+                              pagination={false}
+                              style={{ width: "100%" }}
+                              scroll={{ x: "100%" }}
+                              className="responsive-table"
+                            />
+                          </div>
+                        </>
+                      )}
+                  </p>
 
-                <Form.Item
-                  label="Reference User (Optional)"
-                  name="amount"
-                  style={{ width: "400px" }}
-                >
-                  <Select
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    }
+                  <Form.Item
+                    label="Reference User (Optional)"
+                    name="referenceUser"
+                    style={{ width: "400px" }}
                   >
-                    {state?.ReferenseUser?.map((val) => (
-                      <Option key={val?.EMPCODE} value={val?.EMPCODE}>
-                        {val?.EMPCODE} - {val?.EMPNAME}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
+                    <Select
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.children
+                          .toLowerCase()
+                          .indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {state?.ReferenseUser?.map((val) => (
+                        <Option key={val?.EMPCODE} value={val?.EMPCODE}>
+                          {val?.EMPCODE} - {val?.EMPNAME}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
 
-                <Form.Item>
-                  <Checkbox>Terms and conditions</Checkbox>
-                </Form.Item>
+                  <Form.Item>
+                    <Checkbox
+                      onChange={handleCheckboxChange}
+                      checked={state.isCheckboxChecked}
+                    >
+                      Terms and conditions
+                    </Checkbox>
+                  </Form.Item>
 
-                <Form.Item>
-                  <Button
-                    type="primary"
-                    size="large"
-                    style={{ backgroundColor: "#9a2526", marginTop: "10px" }}
-                    htmlType="submit"
-                  >
-                    Add Chit
-                  </Button>
-                </Form.Item>
+                  <Form.Item>
+                    <Button
+                      type="primary"
+                      size="large"
+                      style={{ backgroundColor: "#9a2526", marginTop: "10px" }}
+                      htmlType="submit"
+                    >
+                      Add Chit
+                    </Button>
+                  </Form.Item>
+                </Form>
               </div>
               <div className="right w-1/2 pl-[50px] chit-details-image-cover">
                 <img
@@ -449,6 +497,37 @@ const ChitDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* terms and conditions */}
+      <Modal
+        visible={state.isModalVisible}
+        // onOk={handleModalAccept}
+        // okText="Accept"
+        // onCancel={handleModalCancel}
+        width={700}
+        footer={false}
+      >
+        {state.selectedChit == 4 ? (
+          <>
+            <div style={{ marginTop: "30px" }}>
+              <img src="assets/img/terms_swarna-laksita.png" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ marginTop: "30px" }}>
+              <img src="assets/img/terms-goldvirksham.png" />
+            </div>
+          </>
+        )}
+        <div style={{display:"flex", justifyContent:"end"}}>
+        <Space style={{ marginTop: "30px"}}>
+          <button className="terms_accept" onClick={handleModalCancel}>Cancel</button>
+          <button className="terms_cancel" onClick={handleModalAccept}>Accept</button>
+        </Space>
+        </div>
+      
+      </Modal>
     </>
   );
 };

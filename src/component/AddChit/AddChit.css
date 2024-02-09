@@ -44,20 +44,22 @@ secondary color : #9a2526, red
     width: 40%;
 }
 
-:where(.css-dev-only-do-not-override-amq5gd).ant-table-wrapper .ant-table-thead>tr>th {
-    background-color: #9a2526 !important;
-    color: white !important;
-    font-size: 14px;
-    overflow-x: auto !important;
+
+.terms_accept{
+    font-size: 16px;
+    color: #fff2d8;
+    background-color: #9a2526;
+    padding: 6px 15px;
+    border-radius: 6px;
+    border: 1px solid #fff2d8;
+   
 }
-
-:where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>th,
-:where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>td {
-    background: #9a2526;
-    font-size: 14px;
-    overflow-x: auto !important;
-    color: white !important;
-
+.terms_cancel{
+    font-size: 16px;
+    color: #9a2526;
+    background-color: #fff2d8;
+    padding: 6px 15px;
+    border-radius: 6px;
 }
 
 @media(max-width:1040px) {
@@ -98,4 +100,47 @@ secondary color : #9a2526, red
     :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper table{
         overflow-x: scroll;
     }
+}
+
+
+
+
+
+:where(.css-dev-only-do-not-override-amq5gd).ant-table-wrapper .ant-table-thead>tr>th {
+    background-color: #9a2526 !important;
+    color: white !important;
+    font-size: 14px;
+    overflow-x: auto !important;
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>th,
+:where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>td {
+    background: #9a2526;
+    font-size: 14px;
+    overflow-x: auto !important;
+    color: white !important;
+
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper-disabled .ant-input[disabled] {
+    display: none;
+}
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper-disabled{
+    color: black !important;
+    border-top: none;
+    border-left:none;
+    border-right:none;
+    font-size: 16px;
+    border-bottom: 1px solid rgb(153 148 146);
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper {
+    border-radius: 0px !important;
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper-disabled{
+    background-color: transparent;
+}
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper-disabled:hover{
+    background-color: transparent;
 }
