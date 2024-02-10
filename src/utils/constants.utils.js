@@ -1,6 +1,5 @@
 import { Checkbox } from "antd";
 
-
 export const columns = [
   {
     title: "Chit Group",
@@ -45,5 +44,24 @@ export const columns = [
     render: (text) => {
       return <Checkbox checked={text === "Y"} />;
     },
+  },
+];
+
+export const ClosedDue = [
+  {
+    title: "Group",
+    dataIndex: "CLSCHTGRUP",
+    key: "CLSCHTGRUP",
+  },
+  {
+    title: "Name",
+    dataIndex: "CHTNAME",
+    key: "CHTNAME",
+  },
+
+  {
+    title: "Amount",
+    dataIndex: "CLSDUEAMT",
+    key: "CLSDUEAMT",
   },
 ];

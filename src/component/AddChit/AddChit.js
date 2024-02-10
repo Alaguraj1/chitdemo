@@ -284,7 +284,7 @@ const ChitDetails = () => {
                     rules={[
                       {
                         required: false,
-                        message: "Address field is required.",
+                        message: "landmark field is required.",
                       },
                     ]}
                   >
@@ -299,7 +299,7 @@ const ChitDetails = () => {
                     rules={[
                       {
                         required: true,
-                        message: "Address field is required.",
+                        message: "email field is required.",
                       },
                     ]}
                   >

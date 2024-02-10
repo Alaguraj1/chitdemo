@@ -28,7 +28,6 @@ function Login() {
   const onFinish = async (values) => {
     try {
       const res = await Models.auth.Login(values);
-      console.log("✌️res --->", res.data);
       localStorage.setItem("token", res?.results[0].key);
       localStorage.setItem("userName", res?.results[0].Name);
       localStorage.setItem("code", res?.results[0].Code);
@@ -44,21 +43,15 @@ function Login() {
         navigate("/");
       } else {
         // If the Success value is not 1, handle an unsuccessful response
-        error();
         messageApi.open({
           type: "error",
-          content: res?.data?.results[0].Msg,
+          content: res?.results[0]?.Msg,
         });
       }
       console.log("✌️res --->", res);
     } catch (error) {
       console.log("Form error:", error);
     }
-  };
-
-  const error = () => {
-    // Handle specific errors or display a generic error message
-    console.error("An error occurred during the API request.");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -134,7 +127,7 @@ function Login() {
                       },
                     ]}
                   >
-                    <div className="login-input-wrapper">
+                    <div className="login-input-wrapper password-sec">
                       <UnlockOutlined className="login-input-icon" />
                       <Input
                         type={state.passwordVisible ? "text" : "password"}

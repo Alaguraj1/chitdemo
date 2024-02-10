@@ -110,7 +110,7 @@ input[type="color"],
 	font-family: var(--font-karla);
 	
 	line-height:1.6;
-	padding:15px 10px ;
+	padding:20px 10px ;
 	height:30px;
 	vertical-align:middle;
 	border:1px solid #eee;
@@ -120,6 +120,17 @@ input[type="color"],
 	    -ms-transition: all .3s ease;
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
+}
+
+.password-sec input[type="password"]{
+  padding-left: 30px;
+}
+.password-sec input[type="text"]{
+  padding-left: 30px;
+} 
+
+.password-sec input[type="number"]{
+  padding-left: 30px;
 }
 
 textarea:focus,
