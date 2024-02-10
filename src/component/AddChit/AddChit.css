@@ -62,6 +62,15 @@ secondary color : #9a2526, red
     border-radius: 6px;
 }
 
+.add-chit-inputs{
+ width: 350px;
+}
+
+.chit-details-left{
+    display: flex;
+    justify-content: start;
+}
+
 @media(max-width:1040px) {
 
     .chit-container{
@@ -70,11 +79,16 @@ secondary color : #9a2526, red
 
     .container-chit-details {
        
-        display: block;
+        display: flex;
         align-items: center !important;
-       
+        justify-content: center;
     }
-
+    .add-chit-inputs{
+        width: 450px;
+       }
+.chit-details-left{
+    justify-content: center;
+}
     .chit-details-image-cover {
         display: none;
     }
@@ -100,6 +114,9 @@ secondary color : #9a2526, red
     :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper table{
         overflow-x: scroll;
     }
+    .add-chit-inputs{
+        width:100%;
+       }
 }
 
 
