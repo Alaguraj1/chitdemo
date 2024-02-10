@@ -36,7 +36,7 @@ function Signup() {
 
   const onFinish = (values) => {
     console.log("Form values:", values);
-  
+
     if (values.otp !== String(otp)) {
       messageApi.open({
         type: "error",
@@ -48,7 +48,7 @@ function Signup() {
         type: "success",
         content: "OTP verified",
       });
-  
+
       axios
         .post(
           "https://chatbot.thechennaisilks.com:5575/API/LOGIN/USERREGISTRATION",
@@ -62,7 +62,7 @@ function Signup() {
         )
         .then((res) => {
           console.log(res);
-  
+
           if (res?.data?.results[0]?.Success === 1) {
             messageApi.open({
               type: "success",
@@ -72,7 +72,7 @@ function Signup() {
           } else {
             // Handle unsuccessful response
             error();
-  
+
             messageApi.open({
               type: "error",
               content: res?.data?.results[0]?.Msg,
@@ -81,11 +81,14 @@ function Signup() {
         })
         .catch((error) => {
           console.error(error);
-  
+
           if (axios.isAxiosError(error)) {
             // Handle specific cases for Axios errors
             if (error.response) {
-              console.error("Server responded with status:", error.response.status);
+              console.error(
+                "Server responded with status:",
+                error.response.status
+              );
               // Handle specific status codes if needed
             } else if (error.request) {
               console.error("No response received from the server");
@@ -97,12 +100,12 @@ function Signup() {
           } else {
             console.error("An error occurred:", error.message);
           }
-  
+
           showNetworkError();
         });
     }
   };
-  
+
   const showNetworkError = () => {
     // Display a user-friendly message for network errors
     console.error("Network error. Please check your internet connection.");
@@ -253,7 +256,7 @@ function Signup() {
                       },
                     ]}
                   >
-                    <div className="login-input-wrapper">
+                    <div className="login-input-wrapper password-sec">
                       <UnlockOutlined className="login-input-icon" />
                       <Input
                         type={passwordVisible ? "text" : "password"}
@@ -304,26 +307,6 @@ function Signup() {
                   >
                     <Input />
                   </Form.Item>
-                  {/* <Form.Item
-                                    name="confirmPassword"
-                                    label="Confirm Password"
-                                    dependencies={['password-signup']}
-                                    rules={[
-                                        {
-                                            message: "Please confirm your password!"
-                                        },
-                                        ({ getFieldValue }) => ({
-                                            validator(_, value) {
-                                              if (!value || getFieldValue('password-signup') === value) {
-                                                return Promise.resolve();
-                                              }
-                                              return Promise.reject(new Error('The two passwords do not match!'));
-                                            },
-                                          }),
-                                    ]}
-                                >
-                                    <Input className="login-input-style"/>
-                                </Form.Item> */}
 
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
@@ -331,7 +314,6 @@ function Signup() {
                     <Form.Item name="remember" valuePropName="checked">
                       <Checkbox>Remember me</Checkbox>
                     </Form.Item>
-                    {/* <p style={{textDecoration:'underline'}}>Forgot Password</p> */}
                   </div>
 
                   <Form.Item>

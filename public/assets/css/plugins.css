@@ -123,14 +123,30 @@ input[type="color"],
 }
 
 .password-sec input[type="password"]{
-  padding-left: 30px;
+  padding-left: 35px;
 }
 .password-sec input[type="text"]{
-  padding-left: 30px;
+  padding-left: 35px;
 } 
 
 .password-sec input[type="number"]{
-  padding-left: 30px;
+  padding-left: 35px;
+}
+
+.chit_inputs input[type="text"]{
+  padding:15px 10px ;
+} 
+
+.chit_inputs input[type="password"]{
+  padding:15px 10px ;
+}
+
+.chit_inputs input[type="number"]{
+  padding:15px 10px ;
+}
+
+.chit_inputs input[type="email"]{
+  padding:15px 10px ;
 }
 
 textarea:focus,

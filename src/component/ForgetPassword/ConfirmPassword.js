@@ -57,28 +57,6 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
       console.log(error);
     }
 
-    // axios
-    //   .post(
-    //     "http://tjchitwebuad.thechennaisilks.com:5775/api/LOGIN/FORGETPASSWORD",
-    //     body
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-
-    //     form.resetFields();
-
-    //     message.success({
-    //       content: "Password Updated Successfully",
-    //       onClose: () => {
-    //         setTimeout(() => {
-    //           navigate("/login");
-    //         }, 100);
-    //       },
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -122,7 +100,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                     },
                   ]}
                 >
-                  <div className="forget-input-warrper">
+                  <div className="forget-input-warrper password-sec">
                     <UnlockOutlined className="login-input-icon" />
                     <Input
                       className="forget-input-style"
@@ -163,7 +141,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                     }),
                   ]}
                 >
-                  <div className="forget-input-warrper">
+                  <div className="forget-input-warrper password-sec">
                     <UnlockOutlined className="login-input-icon" />
                     <Input
                       className="forget-input-style"

@@ -92,28 +92,6 @@ secondary color : #9a2526, red
   border: none !important;
 }
 
-:where(.css-dev-only-do-not-override-3mqfnx).ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
-  border-bottom: 1px solid #ff4d4f !important;
-}
-
-.ant-form-item .ant-form-item-label>label {
-  font-size: 16px !important;
-  font-weight: 600;
-}
-
-:where(.css-dev-only-do-not-override-amq5gd).ant-btn.ant-btn-lg {
-  padding: 6.428571428571429px 30px;
-  border-radius: 2px;
-}
-
-
-:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-title {
-  color: #fff2d8;
-}
-
-:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-content {
-  color: #fff2d8;
-}
 
 
 .eyeIcon {
@@ -168,4 +146,28 @@ secondary color : #9a2526, red
     font-size: 35px;
   }
 
+}
+
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+  border-bottom: 1px solid #ff4d4f !important;
+}
+
+.ant-form-item .ant-form-item-label>label {
+  font-size: 16px !important;
+  font-weight: 600;
+}
+
+:where(.css-dev-only-do-not-override-amq5gd).ant-btn.ant-btn-lg {
+  padding: 6.428571428571429px 30px;
+  border-radius: 2px;
+}
+
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-title {
+  color: #fff2d8;
+}
+
+:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-content {
+  color: #fff2d8;
 }

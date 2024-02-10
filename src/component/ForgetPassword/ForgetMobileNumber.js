@@ -33,13 +33,7 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
 
   };
 
-  // const validateMobileNumber = (rule, value) => {
-  //     const mobileNumberRegex = /^[0-9]{10}$/;
-  //     if (!mobileNumberRegex.test(value)) {
-  //         return Promise.reject('Please enter a 10-digit mobile number.');
-  //     }
-  //     return Promise.resolve();
-  // };
+
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);

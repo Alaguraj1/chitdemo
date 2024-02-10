@@ -28,6 +28,12 @@ function Home() {
 
   useEffect(() => {
     getGoldRate();
+
+    const intervalId = setInterval(() => {
+      getGoldRate();
+    }, 5 * 60 * 1000); 
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const getGoldRate = async () => {

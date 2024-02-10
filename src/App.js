@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css';
-import Login from "./component/Login/Login"
+import "./index.css";
+import Login from "./component/Login/Login";
 import Signup from "./component/Signup/Singup";
 import AddChit from "./component/AddChit/AddChit";
 import PayDue from "./component/PayDue/PayDue";
@@ -13,7 +13,7 @@ import Home from "./component/Home/Home";
 import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
 
 function App() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   return (
     <BrowserRouter>
@@ -34,16 +34,16 @@ function App() {
           </>
         )} */}
 
-<Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-<Route path="/" element={<Home />} />
-            <Route path="/add-chit" element={<AddChit />} />
-            <Route path="/my-profile" element={<PayDue />} />
-            <Route path="/chit-details" element={<Payment />} />
-            <Route path="/closed-due" element={<ClosedDue />} />
-            <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/add-chit" element={<AddChit />} />
+        {/* <Route path="/my-profile" element={<PayDue />} /> */}
+        <Route path="/chit-details" element={<Payment />} />
+        <Route path="/closed-due" element={<ClosedDue />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
       </Routes>
     </BrowserRouter>
   );
 }
-export default App
+export default App;
