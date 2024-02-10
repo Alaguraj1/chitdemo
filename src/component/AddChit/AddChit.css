@@ -134,6 +134,10 @@ secondary color : #9a2526, red
     border-bottom: 1px solid rgb(153 148 146);
 }
 
+:where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper-disabled:hover{
+
+    border-bottom: 1px solid #9a2526
+}
 :where(.css-dev-only-do-not-override-3mqfnx).ant-input-affix-wrapper {
     border-radius: 0px !important;
 }
