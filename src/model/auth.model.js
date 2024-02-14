@@ -23,10 +23,35 @@ const user = {
     });
     return promise;
   },
+  
 
   ForgetOtp: (data) => {
     let promise = new Promise((resolve, reject) => {
       let url = "api/Login/forgetOtp";
+      console.log("✌️url --->", url);
+      instance()
+        .post(url, data)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            reject(error.response.data.message);
+          } else if (error.message) {
+            reject(error.message);
+          } else {
+            console.log(error);
+            reject(error);
+          }
+        });
+    });
+    return promise;
+  },
+
+
+  GetOtp: (data) => {
+    let promise = new Promise((resolve, reject) => {
+      let url = "api/Login/otp";
       console.log("✌️url --->", url);
       instance()
         .post(url, data)

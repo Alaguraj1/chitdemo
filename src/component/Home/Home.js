@@ -175,7 +175,7 @@ function Home() {
       <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] home-container-fluid">
         <div className="imagePosition">
           <h3 className="chit-details-title">
-            Hi Karthick, Welcome To Thangam Jewellery
+            Hi {localStorage.getItem("userName")}, Welcome To Thangam Jewellery
           </h3>
 
           <div className="home-container">
@@ -259,7 +259,7 @@ function Home() {
 
         {/* calendor */}
         <Modal
-          title="SEP-GOLD RATE"
+          title={dayjs(state?.date, "MM-YYYY").format("MMMM YYYY")}
           open={state?.calendarOpen}
           width={350}
           onOk={handleOk}

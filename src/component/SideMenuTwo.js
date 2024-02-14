@@ -31,6 +31,7 @@ const SideMenuTwo = () => {
       content: "Do you Want to Logout ?",
       onOk() {
         console.log("OK");
+        localStorage.removeItem('token');
         navigate("/login");
       },
       onCancel() {

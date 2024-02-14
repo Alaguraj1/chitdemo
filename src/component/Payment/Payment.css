@@ -46,6 +46,21 @@ secondary color : #9a2526, red
     font-size: 25px;
 }
 
+.PayDueShowHeading{
+background-color: #fff2d8;
+text-align: center;
+padding: 10px 0px;
+margin: 20px 0px 10px 0px;
+}
+
+
+.PayDueLineShow{
+    display: flex;
+    padding-bottom: 10px;
+}
+.getPayDueDetails{
+font-weight: bold;
+}
 @media(max-width:1040px) {
 
     .closedDue{

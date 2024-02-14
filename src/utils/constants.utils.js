@@ -65,3 +65,33 @@ export const ClosedDue = [
     key: "CLSDUEAMT",
   },
 ];
+
+export const PayDueHeadings = [
+  {
+    title: "S No",
+    dataIndex: "sNo",
+    key: "sNo",
+  },
+  {
+    title: "Group",
+    dataIndex: "CHTGRUP",
+    key: "CHTGRUP",
+  },
+  {
+    title: "Name",
+    dataIndex: "CHTNAME",
+    key: "CHTNAME",
+  },
+  {
+    title: "Current Due",
+    dataIndex: "DUENUMB",
+    key: "DUENUMB",
+  },
+  {
+    title: "Amount",
+    dataIndex: "DUEAMNT",
+    key: "DUEAMNT",
+  },
+];
+
+

@@ -26,6 +26,7 @@ function Signup() {
   };
   const [messageApi, contextHolder] = message.useMessage();
   const [otp, setOtp] = useState(null);
+  const [mail, setMail] = useState("");
 
   const initialValues = {
     IMEINUM: 1,
@@ -71,7 +72,7 @@ function Signup() {
             navigate("/");
           } else {
             // Handle unsuccessful response
-            error();
+            // error();
 
             messageApi.open({
               type: "error",
@@ -101,37 +102,44 @@ function Signup() {
             console.error("An error occurred:", error.message);
           }
 
-          showNetworkError();
         });
     }
   };
 
-  const showNetworkError = () => {
-    // Display a user-friendly message for network errors
-    console.error("Network error. Please check your internet connection.");
-  };
-
-  const error = () => {
-    // Handle specific errors or display a generic error message
-    console.error("An error occurred during the API request.");
-  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   console.log("otp", otp);
+
+  const mailChange = (e) => {
+    const value = e.target.value;
+    setMail(value);
+  };
+
   //   generate otp
-  const ForgetOtp = async (values) => {
-    console.log("✌️values --->", values);
+  const ForgetOtp = async (value) => {
+    console.log("✌️value --->", value);
+
     try {
-      const res = await Models.auth.ForgetOtp({ mobileNumber: values });
+      const res = await Models.auth.GetOtp({ USERNAME: value, mail: mail });
       console.log("✌️res --->", res);
-      setOtp(res?.results[0]?.Otp);
+
+      if (res?.results[0]?.Msg === "ALREDY REGISTERED") {
+        messageApi.open({
+          type: "error",
+          content: res?.results[0]?.Msg,
+        });
+      } else {
+        setOtp(res?.results[0]?.Code);
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
+  
   return (
     <>
       {contextHolder}
@@ -173,7 +181,6 @@ function Signup() {
                       <Input className="login-input-style" />
                     </div>
                   </Form.Item>
-
                   <Form.Item
                     name="MAILID"
                     label="Email"
@@ -191,10 +198,12 @@ function Signup() {
                   >
                     <div className="login-input-warrper">
                       <MailOutlined className="login-input-icon" />
-                      <Input className="login-input-style" />
+                      <Input
+                        className="login-input-style"
+                        onChange={mailChange}
+                      />
                     </div>
                   </Form.Item>
-
                   <Form.Item
                     name="USERNAME"
                     label="Mobile Number"
@@ -225,8 +234,7 @@ function Signup() {
                       />
                     </div>
                   </Form.Item>
-
-                  {otp !== null && (
+                  {otp === null || otp === "ALREDY REGISTERED" ? null : (
                     <Form.Item
                       name="otp"
                       label="OTP"
@@ -243,7 +251,6 @@ function Signup() {
                       </div>
                     </Form.Item>
                   )}
-
                   <Form.Item
                     name="PASSWORD"
                     label="Password"
@@ -275,7 +282,6 @@ function Signup() {
                       )}
                     </div>
                   </Form.Item>
-
                   <Form.Item
                     name="IMEINUM"
                     initialValue={initialValues.IMEINUM}
@@ -283,15 +289,13 @@ function Signup() {
                   >
                     <Input />
                   </Form.Item>
-
                   <Form.Item
                     name="APPCODE"
-                    initialValue={initialValues.APCODE}
+                    initialValue={initialValues.APPCODE}
                     hidden
                   >
                     <Input />
                   </Form.Item>
-
                   <Form.Item
                     name="APPVERSION"
                     initialValue={initialValues.APPVERSION}
@@ -299,7 +303,6 @@ function Signup() {
                   >
                     <Input />
                   </Form.Item>
-
                   <Form.Item
                     name="FCMID"
                     initialValue={initialValues.FCMID}
@@ -307,7 +310,6 @@ function Signup() {
                   >
                     <Input />
                   </Form.Item>
-
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
@@ -315,7 +317,6 @@ function Signup() {
                       <Checkbox>Remember me</Checkbox>
                     </Form.Item>
                   </div>
-
                   <Form.Item>
                     <Button
                       type="primary"
