@@ -11,6 +11,7 @@ import Home from "./component/Home/Home";
 // import ConfirmPassword from "./component/ForgetPassword/ConfirmPassword";
 // import ForgetOtp from "./component/ForgetPassword/ForgetOtp"
 import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
+import LuckyWinner from "./component/LuckyWinner/LuckyWinner";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -42,6 +43,7 @@ function App() {
         <Route path="/chit-details" element={<Payment />} />
         <Route path="/closed-due" element={<ClosedDue />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/lucky-winner" element={<LuckyWinner />}/>
       </Routes>
     </BrowserRouter>
   );

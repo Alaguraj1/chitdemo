@@ -1,4 +1,5 @@
 import { Checkbox } from "antd";
+import dayjs from "dayjs";
 
 export const columns = [
   {
@@ -95,3 +96,34 @@ export const PayDueHeadings = [
 ];
 
 
+export const LuckyWinnerHeading = [
+  {
+    title: "Date",
+    dataIndex: "LDRDATE",
+    key: "LDRDATE",
+    render: (text, record) => (
+      <span>{dayjs(text).format('DD-MM-YYYY')}</span>
+    ),
+  },
+  {
+    title: "Group",
+    dataIndex: "CHTGRUP",
+    key: "CHTGRUP",
+  },
+  {
+    title: "No.of Due",
+    dataIndex: "NOOFDUE",
+    key: "NOOFDUE",
+  },
+  {
+    title: "Customer Name",
+    dataIndex: "CUSNAME",
+    key: "CUSNAME",
+  },
+
+  {
+    title: "City",
+    dataIndex: "CTYNAME",
+    key: "CTYNAME",
+  },
+];

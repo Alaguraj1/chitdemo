@@ -11,7 +11,7 @@ import { Modal } from "antd";
 import { Calendar } from "antd";
 import dayjs from "dayjs";
 import "dayjs/locale/en";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSetState } from "../../utils/function.utils";
 import Models from "../../imports/models.import";
 
@@ -209,8 +209,8 @@ function Home() {
               </div>
 
               <div className="discount-outer">
-                <h4 className="home-subTitle">Discount</h4>
-                <img src="assets/img/home-discount.avif" alt="Discound" />
+                <h4 className="home-subTitle">Lucky Winner</h4>
+               <Link to="/lucky-winner"><img src="assets/img/lucky_winner.jpg" alt="Discound" /></Link> 
               </div>
             </div>
 

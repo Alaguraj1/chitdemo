@@ -1,8 +1,8 @@
 import instance from "../utils/axios.utils";
 
-const payDue = {
+const luckyWinner = {
 
-  CdBranch: (params) => {
+  Branch: (params) => {
 console.log('✌️data --->', params);
     let promise = new Promise((resolve, reject) => {
       let url = "api/Login/custBranch";
@@ -27,39 +27,12 @@ console.log('✌️data --->', params);
     });
     return promise;
   },
-  
-  PayDue: (params) => {
+
+
+  LuckyWinner: (params) => {
     console.log('✌️data --->', params);
         let promise = new Promise((resolve, reject) => {
-          let url = "api/login/custviewLive/";
-          console.log("✌️url --->", url);
-          instance()
-            .get(url, {
-              params: params,
-            })
-            .then((res) => {
-              resolve(res.data);
-            })
-            .catch((error) => {
-              if (error.response) {
-                reject(error.response.data.message);
-              } else if (error.message) {
-                reject(error.message);
-              } else {
-                console.log(error);
-                reject(error);
-              }
-            });
-        });
-        return promise;
-      },
-
-
-
-  ClosedDue: (params) => {
-    console.log('✌️data --->', params);
-        let promise = new Promise((resolve, reject) => {
-          let url = "api/login/closedDue";
+          let url = "api/LOGIN/LUCKYDRAW";
           console.log("✌️url --->", url);
           instance()
             .get(url, {
@@ -83,4 +56,4 @@ console.log('✌️data --->', params);
       },
 };
 
-export default payDue;
+export default luckyWinner;
