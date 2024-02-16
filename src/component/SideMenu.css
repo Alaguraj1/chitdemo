@@ -8,20 +8,6 @@ secondary color : #9a2526, red
     justify-content: center;
 }
 
-:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-btns .ant-btn+.ant-btn{
-    background:#9a2526 ;
-}
-
-
-.ant-btn-primary{
-    background-color: #a94f4f ;
-    font-weight: 600;
-}
-
-:where(.css-dev-only-do-not-override-3mqfnx).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover{
-    background-color: #a94f4f ;
-}
-
 
 @media(max-width:1040px){
 
@@ -48,3 +34,35 @@ secondary color : #9a2526, red
         bottom: 100px;
     }
 }
+
+
+
+/* local server start*/
+:where(.css-dev-only-do-not-override-3mqfnx).ant-modal-confirm .ant-modal-confirm-btns .ant-btn+.ant-btn{
+    background:#9a2526 ;
+}
+.ant-btn-primary{
+    background-color: #a94f4f ;
+    font-weight: 600;
+}
+:where(.css-dev-only-do-not-override-3mqfnx).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover{
+    background-color: #a94f4f ;
+}
+
+/* local server end */
+
+/* live server start */
+:where(.css-3mqfnx).ant-modal-confirm .ant-modal-confirm-btns .ant-btn+.ant-btn{
+    background:#9a2526 ;
+}
+
+.ant-btn-primary{
+    background-color: #a94f4f ;
+    font-weight: 600;
+}
+
+:where(.css-3mqfnx).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover{
+    background-color: #a94f4f ;
+}
+
+/* live server end */

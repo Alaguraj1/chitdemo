@@ -90,9 +90,16 @@ font-weight: bold;
 
     }
 
-
+/* local server start */
     :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-cell, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>th, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-tbody>tr>th, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-tbody>tr>td, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper tfoot>tr>th, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper tfoot>tr>td {
         padding: 16px 5px;
     }
-   
+    /* local server end */
+
+
+/* live server start */
+    :where(.css-3mqfnx).ant-table-wrapper .ant-table-cell, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>th, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-tbody>tr>th, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-tbody>tr>td, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper tfoot>tr>th, :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper tfoot>tr>td {
+        padding: 16px 5px;
+    }
+   /* live server end */
 }
