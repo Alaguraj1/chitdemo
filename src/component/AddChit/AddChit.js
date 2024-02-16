@@ -8,6 +8,7 @@ import {
   Input,
   Modal,
   Space,
+  message,
 } from "antd";
 import "./AddChit.css";
 import SideMenuTwo from "../SideMenuTwo";
@@ -21,6 +22,8 @@ const { Option } = Select;
 const ChitDetails = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+
+  const [ messageApi, contextHolder ] = message.useMessage();
 
   const [state, setState] = useSetState({
     localCode: "",
@@ -59,7 +62,12 @@ const ChitDetails = () => {
         city:
           res.results[0].Success === 1
             ? res?.results[0]?.Message
-            : alert(res?.results[0].Message),
+            :
+            //  alert(res?.results[0].Message),
+            messageApi.open({
+              type: "error",
+              content: res?.results[0].Message,
+            })
       });
     } catch (error) {
       console.log("Form error:", error);
@@ -82,7 +90,12 @@ const ChitDetails = () => {
         branch:
           res.results[0].Success === 1
             ? res?.results
-            : alert(res?.results[0].Message),
+            :
+            //  alert(res?.results[0].Message),
+            messageApi.open({
+              type: "error",
+              content: res?.results[0].Message,
+            })
       });
     } catch (error) {
       console.log("Form error:", error);
@@ -235,6 +248,7 @@ const ChitDetails = () => {
         data-enter="fadeInLeft"
         data-exit="true"
       >
+        {contextHolder}
         <SideMenuTwo />
         <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] chit-main-container">
           <div className="chit-container">

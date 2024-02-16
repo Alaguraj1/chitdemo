@@ -2,13 +2,15 @@ import React from "react";
 import SideMenu from "../SideMenu";
 import "./ForgetPassword.css";
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import axios from "axios";
 import Models from "../../imports/models.import";
 
 const ForgetPassword = ({ setStep, setMobileNumber }) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
+
   const onFinish = async (values) => {
     console.log("Form values:", values);
 
@@ -25,7 +27,11 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
         form.resetFields();
         console.log("otpotpotp", res?.results[0]?.Otp);
       } else {
-        alert(res?.results[0]?.Otp);
+        // alert(res?.results[0]?.Otp);
+        messageApi.open({
+          type: "error",
+          content: res?.results[0]?.Otp,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -46,6 +52,7 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
       data-enter="fadeInLeft"
       data-exit="true"
     >
+      {contextHolder}
       <SideMenu />
       <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] lo">
         <div className="container-forget">

@@ -2,13 +2,13 @@ import React from 'react'
 import SideMenu from "../SideMenu";
 import "../ForgetPassword/ForgetPassword.css"
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button, Modal } from 'antd';
+import { Form, Input, Button, Modal, message } from 'antd';
 
 const ForgetOtp = ({ setStep, mobileNumber }) => {
 
     const navigate = useNavigate();
     const [form] = Form.useForm();
-
+const [ messageApi, contextHolder ] = message.useMessage();
 
     const onFinish = (values) => {
         console.log('Form values:', values);
@@ -20,7 +20,11 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
             setStep(3);
             form.resetFields(); // Reset the form fields
         } else {
-            alert("Enter Correct OTP");
+            // alert("Enter Correct OTP");
+            messageApi.open({
+                type: "error",
+                content: "Enter Correct OTP",
+              });
         }
     };
 
@@ -32,6 +36,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
 
     return (
         <div className="elisc_tm_all_wrap" data-magic-cursor="show" data-enter="fadeInLeft" data-exit="true">
+        {contextHolder}
             <SideMenu />
             <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] lo" >
                 <div className='container-forget'>
