@@ -252,7 +252,7 @@ const Payment = () => {
               >
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "20px" }}>
-                    <p>Chit Group / Chit SRNo :</p>
+                    <p>Chit Group / Chit SRNo:</p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
@@ -264,7 +264,7 @@ const Payment = () => {
 
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "70px" }}>
-                    <p>Customer Name :</p>
+                    <p>Customer Name:</p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
@@ -275,7 +275,7 @@ const Payment = () => {
 
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "120px" }}>
-                    <p>Address1 :</p>
+                    <p>Address1:</p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
@@ -286,7 +286,7 @@ const Payment = () => {
 
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "120px" }}>
-                    <p>Address2 :</p>
+                    <p>Address2:</p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
@@ -297,7 +297,7 @@ const Payment = () => {
 
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "135px" }}>
-                    <p>Mobile :</p>
+                    <p>Mobile:</p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
@@ -308,7 +308,7 @@ const Payment = () => {
 
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "145px" }}>
-                    <p>Email :</p>
+                    <p>Email:</p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
@@ -355,7 +355,7 @@ const Payment = () => {
 
                   <div className="PayDueLineShow">
                     <div style={{ paddingRight: "5px" }}>
-                      <p>Nof Dues:</p>
+                      <p>No of Dues:</p>
                     </div>
                     <div>
                       <p className="getPayDueDetails">

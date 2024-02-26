@@ -195,7 +195,7 @@ function Home() {
                 })}
               </div>
 
-              <div className="home-payDue">
+              {/* <div className="home-payDue">
                 <div className="home-table-outer">
                   <h4 className="home-subTitle">Pay Due</h4>
                   <Table
@@ -206,7 +206,7 @@ function Home() {
                     className="custom-table"
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className="discount-outer">
                 <h4 className="home-subTitle">Lucky Winner</h4>
@@ -278,7 +278,7 @@ function Home() {
               size="medium"
               style={{ border: "1px solid white" }}
             >
-              cancel
+              Cancel
             </Button>
 
             <Button
