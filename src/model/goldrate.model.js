@@ -4,7 +4,6 @@ const goldrate = {
   GoldRate: (data) => {
     let promise = new Promise((resolve, reject) => {
       let url = "API/login/GoldRate";
-      console.log("✌️url --->", url);
       instance()
         .get(url, data)
         .then((res) => {
@@ -16,7 +15,6 @@ const goldrate = {
           } else if (error.message) {
             reject(error.message);
           } else {
-            console.log(error);
             reject(error);
           }
         });
@@ -25,10 +23,8 @@ const goldrate = {
   },
 
   GoldMaxMinRate: (params) => {
-console.log('✌️data --->', params);
     let promise = new Promise((resolve, reject) => {
       let url = "api/login/MinMaxGoldRate";
-      console.log("✌️url --->", url);
       instance()
         .get(url, {
           params: params,
@@ -42,7 +38,6 @@ console.log('✌️data --->', params);
           } else if (error.message) {
             reject(error.message);
           } else {
-            console.log(error);
             reject(error);
           }
         });

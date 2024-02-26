@@ -8,7 +8,6 @@ export const instance = () => {
   });
   data.interceptors.request.use(async function (config) {
     const accessToken = localStorage.getItem("token");
-console.log('✌️accessToken --->', accessToken);
     config.headers["authorization"] = accessToken;
     return config;
   });

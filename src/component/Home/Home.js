@@ -39,14 +39,12 @@ function Home() {
   const getGoldRate = async () => {
     try {
       const res = await Models.goldrate.GoldRate();
-      console.log("✌️res --->", res);
       if (res?.results[0].Success === 1) {
         setState({ productRate: res?.results });
       } else {
         navigate("/login");
       }
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
@@ -55,7 +53,6 @@ function Home() {
       const res = await Models.goldrate.GoldMaxMinRate({
         MonthYear: state?.date,
       });
-      console.log("✌️res --->", res);
       setState({ isModalOpen: true });
       setState({ calendarOpen: false });
       if (res?.results[0].Success === 1) {
@@ -64,7 +61,6 @@ function Home() {
         navigate("/login");
       }
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
@@ -155,12 +151,10 @@ function Home() {
   };
 
   const handlePay = (record) => {
-    console.log("Pay", record);
   };
 
   function onPanelChange(value, mode) {
     const formattedDate = dayjs(value).format("MM-YYYY");
-    console.log(formattedDate);
     setState({ date: formattedDate });
   }
 
@@ -184,7 +178,6 @@ function Home() {
                 <CalendarFilled className="calendor" onClick={showModal} />
 
                 {state?.productRate[0]?.Message?.map((value) => {
-                  console.log("value", value?.RATE1);
                   return (
                     <marquee className="product-price">
                       Gold Rate : ₹ {value?.RATE1} per GRAM | Silver Rate : ₹{" "}
@@ -245,7 +238,6 @@ function Home() {
           </div>
           <div className="gold-price">
             {state?.goldMaxMin[0]?.Message?.map((value) => {
-              console.log("maxMin rate", value);
               return (
                 <>
                   <p className="gold-minprice">Rs : {value.MINRATE}</p>

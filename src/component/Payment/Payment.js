@@ -42,7 +42,6 @@ const Payment = () => {
       }
       setState({ branch: res.results[0].Message });
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -66,7 +65,6 @@ const Payment = () => {
 
       setState({ dataSource: res.results[0].Message });
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -92,7 +90,6 @@ const Payment = () => {
 
       setState({ payDueDataSource: updatedDataSource });
     } catch (error) {
-      console.log("error", error);
     }
   };
 
@@ -153,6 +150,7 @@ const Payment = () => {
               }
               style={{ width: 200 }}
               onChange={payDueChange}
+              placeholder="Select Branch"
             >
               {state?.branch?.map((val) => (
                 <Option key={val?.BRNCODE} value={val?.BRNCODE}>
@@ -201,6 +199,7 @@ const Payment = () => {
                 }
                 style={{ width: 200 }}
                 onChange={handleBranchChange}
+                placeholder="Select Branch"
               >
                 {state?.branch?.map((val) => (
                   <Option key={val?.BRNCODE} value={val?.BRNCODE}>
@@ -217,7 +216,6 @@ const Payment = () => {
                 pagination={false}
                 style={{ width: "100%" }}
                 onRow={(record, rowIndex) => {
-                  console.log("✌️rowIndex --->", rowIndex);
                   return {
                     onClick: () => handleRowClick(record),
                   };

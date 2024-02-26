@@ -32,12 +32,10 @@ const getBranch = async() => {
       branch: res.results[0].Message,
     });
   } catch (error) {
-    console.log(error);
   }
 }
 
 const BranchChange = (value) => {
-console.log('✌️value --->', value);
 LuckyWinner(null,value)
 }
 
@@ -49,7 +47,6 @@ const res = await Models.luckyWinner.LuckyWinner({
   BRNCODE: brncode,
 }) 
 
-console.log('✌️res --->', res);
 
 setState({
   luckyTableData: res.results[0].Message,
@@ -57,12 +54,10 @@ setState({
 
 
   }catch(error){
-    console.log(error);
   }
 }
 
 
-console.log("✌️state --->", state.luckyTableData);
 
 
 

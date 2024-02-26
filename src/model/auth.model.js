@@ -4,7 +4,6 @@ const user = {
   Login: (data) => {
     let promise = new Promise((resolve, reject) => {
       let url = "API/CCALOGINLIVE";
-      console.log("✌️url --->", url);
       instance()
         .post(url, data)
         .then((res) => {
@@ -16,7 +15,6 @@ const user = {
           } else if (error.message) {
             reject(error.message);
           } else {
-            console.log(error);
             reject(error);
           }
         });
@@ -28,7 +26,6 @@ const user = {
   ForgetOtp: (data) => {
     let promise = new Promise((resolve, reject) => {
       let url = "api/Login/forgetOtp";
-      console.log("✌️url --->", url);
       instance()
         .post(url, data)
         .then((res) => {
@@ -40,7 +37,6 @@ const user = {
           } else if (error.message) {
             reject(error.message);
           } else {
-            console.log(error);
             reject(error);
           }
         });
@@ -52,7 +48,6 @@ const user = {
   GetOtp: (data) => {
     let promise = new Promise((resolve, reject) => {
       let url = "api/Login/otp";
-      console.log("✌️url --->", url);
       instance()
         .post(url, data)
         .then((res) => {
@@ -64,7 +59,6 @@ const user = {
           } else if (error.message) {
             reject(error.message);
           } else {
-            console.log(error);
             reject(error);
           }
         });
@@ -75,7 +69,6 @@ const user = {
   ForgetPassword: (data) => {
     let promise = new Promise((resolve, reject) => {
       let url = "api/LOGIN/FORGETPASSWORD";
-      console.log("✌️url --->", url);
       instance()
         .post(url, data)
         .then((res) => {
@@ -87,7 +80,6 @@ const user = {
           } else if (error.message) {
             reject(error.message);
           } else {
-            console.log(error);
             reject(error);
           }
         });

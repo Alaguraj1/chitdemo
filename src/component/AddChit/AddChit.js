@@ -48,7 +48,6 @@ const ChitDetails = () => {
   useEffect(() => {
     const LocalDatas = localStorage.getItem("code");
     setState({ localCode: LocalDatas });
-    console.log("✌️LocalDatas --->", LocalDatas);
   }, []);
 
   const GetCity = async () => {
@@ -70,13 +69,11 @@ const ChitDetails = () => {
             })
       });
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
   // city change
   const handleCityChange = async (value) => {
-    console.log(value);
   };
 
   const getBranch = async () => {
@@ -98,13 +95,11 @@ const ChitDetails = () => {
             })
       });
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
   // branch onchange function
   const handleBranchChange = async (value) => {
-    console.log("✌️value --->", value);
     setState({ selectedBranch: value, selectedChit: null });
     Chit(value);
     getChitDetails(null, value);
@@ -128,7 +123,6 @@ const ChitDetails = () => {
         setState({ chit: [] });
       }
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
@@ -145,7 +139,6 @@ const ChitDetails = () => {
         CHTCODE: chitValue1,
         BRNCODE: chitValue2,
       });
-      console.log("✌️res --->", res);
       if (res.results[0].Message == "Authentication Session Failed") {
         navigate("/login");
         return false;
@@ -159,46 +152,37 @@ const ChitDetails = () => {
       } else {
         filterData = data;
       }
-      console.log("✌️res.results[0] --->", res.results[0]);
 
       setState({ getChit: data, chitTable: filterData });
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
   // reference user
   const ReferenseEmployee = async (Reference) => {
-    console.log("✌️Reference --->", Reference);
     try {
       const res = await Models.chit.EmployeeName({
         brncode: Reference,
       });
-      console.log("✌️res --->", res);
       if (res.results[0].Message == "Authentication Session Failed") {
         navigate("/login");
         return false;
       }
       setState({ ReferenseUser: res.results[0].Message });
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
   // amount change
 
   const handleAmountChange = (value) => {
-    console.log("✌️value --->", value);
     const tableData = state.getChit;
-    console.log("✌️tableData --->", tableData);
     const filter = tableData?.filter((item) => item.CHTAMNT === value);
     setState({ chitTable: filter });
-    console.log("✌️filter --->", filter);
 
     setState({ selectedAmount: value });
   };
 
-  console.log("state.chit", state.selectedChit);
 
   const onFinish = (values) => {
     const completeMobileNumber = `${state.localCode}`;
@@ -216,14 +200,11 @@ const ChitDetails = () => {
       amount: values.amount,
       referenceUser: values.referenceUser,
     };
-    console.log("body", body);
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
-  console.log("✌️state --->", state.localCode);
 
   // terms and conditions Modal
   const handleCheckboxChange = () => {
@@ -320,7 +301,7 @@ const ChitDetails = () => {
                       rules={[
                         {
                           required: true,
-                          message: "email field is required.",
+                          message: "This Field is required.",
                         },
                       ]}
                     >

@@ -66,7 +66,6 @@ const PayDue = () => {
 
 
   const onFinish = (values) => {
-    console.log("Received values:", values);
     form.resetFields();
   };
 
@@ -80,7 +79,6 @@ const PayDue = () => {
   };
 
   const normFile = (e) => {
-    console.log('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -88,7 +86,6 @@ const PayDue = () => {
   };
 
   const normFile2 = (e) => {
-    console.log('Upload event:', e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -96,7 +93,6 @@ const PayDue = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
 

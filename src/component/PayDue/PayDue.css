@@ -185,11 +185,11 @@ secondary color : #9a2526, red
     border-color: #9a2526;
     background: none !important;
 }
-
+/* 
 :where(.css-dev-only-do-not-override-3mqfnx).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #9a2526;
     border-color: #9a2526;
-}
+} */
 
 :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>th,
 :where(.css-dev-only-do-not-override-3mqfnx).ant-table-wrapper .ant-table-thead>tr>td {
@@ -278,10 +278,10 @@ secondary color : #9a2526, red
     background: none !important;
 }
 
-:where(.css-3mqfnx).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+/* :where(.css-3mqfnx).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #9a2526;
     border-color: #9a2526;
-}
+} */
 
 :where(.css-3mqfnx).ant-table-wrapper .ant-table-thead>tr>th,
 :where(.css-3mqfnx).ant-table-wrapper .ant-table-thead>tr>td {

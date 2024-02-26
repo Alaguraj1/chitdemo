@@ -2,30 +2,29 @@ import React from "react";
 import SideMenu from "../SideMenu";
 import "./ForgetPassword.css";
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Space } from "antd";
 import axios from "axios";
 import Models from "../../imports/models.import";
 
 const ForgetPassword = ({ setStep, setMobileNumber }) => {
   const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values) => {
-    console.log("Form values:", values);
 
     try {
       const res = await Models.auth.ForgetOtp(values);
-      console.log("✌️res forget--->", res);
       if (res?.results[0]?.success === 1) {
-        localStorage.setItem(
-          "mobileNumber",
-          res?.results[0]?.mobileNumber
-        );
+        localStorage.setItem("mobileNumber", res?.results[0]?.mobileNumber);
         localStorage.setItem("otp", res?.results[0]?.Otp);
         setStep(2);
         form.resetFields();
-        console.log("otpotpotp", res?.results[0]?.Otp);
       } else {
         // alert(res?.results[0]?.Otp);
         messageApi.open({
@@ -34,15 +33,10 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
-
   };
 
-
-
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
   return (
@@ -96,14 +90,23 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
                 </Form.Item>
 
                 <Form.Item style={{ textAlign: "end" }}>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    size="large"
-                    style={{ background: "#9a2526" }}
-                  >
-                    Generate OTP
-                  </Button>
+                  <Space>
+                    <Button
+                      size="large"
+                      style={{ background: "#9a2526" }}
+                      onClick={handleGoBack}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      style={{ background: "#9a2526" }}
+                    >
+                      Generate OTP
+                    </Button>
+                  </Space>
                 </Form.Item>
               </Form>
             </div>

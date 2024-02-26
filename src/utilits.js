@@ -56,7 +56,6 @@ export const eliscUtilits = {
           i = 0,
           o = !1;
         (window.onmousemove = function (s) {
-          // console.log(document.querySelector(this));
           o ||
             (t.style.transform =
               "translate(" + s.clientX + "px, " + s.clientY + "px)"),
@@ -130,10 +129,8 @@ export const eliscUtilits = {
       list.addEventListener("mouseenter", (event) => {
         box.classList.add("opened");
         var imgURL = list.getAttribute("data-img");
-        console.log(imgURL);
         box.style.backgroundImage = `url(${imgURL})`;
         box.style.top = event.clientY - 50 + "px";
-        console.log(event.clientY);
         if (imgURL === "") {
           box.classList.remove("opened");
           return false;

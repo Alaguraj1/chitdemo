@@ -36,7 +36,6 @@ function Signup() {
   };
 
   const onFinish = (values) => {
-    console.log("Form values:", values);
 
     if (values.otp !== String(otp)) {
       messageApi.open({
@@ -62,7 +61,6 @@ function Signup() {
           }
         )
         .then((res) => {
-          console.log(res);
 
           if (res?.data?.results[0]?.Success === 1) {
             messageApi.open({
@@ -108,10 +106,8 @@ function Signup() {
 
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
-  console.log("otp", otp);
 
   const mailChange = (e) => {
     const value = e.target.value;
@@ -120,11 +116,9 @@ function Signup() {
 
   //   generate otp
   const ForgetOtp = async (value) => {
-    console.log("✌️value --->", value);
 
     try {
       const res = await Models.auth.GetOtp({ USERNAME: value, mail: mail });
-      console.log("✌️res --->", res);
 
       if (res?.results[0]?.Msg === "ALREDY REGISTERED") {
         messageApi.open({
@@ -135,7 +129,6 @@ function Signup() {
         setOtp(res?.results[0]?.Code);
       }
     } catch (error) {
-      console.log(error);
     }
   };
 

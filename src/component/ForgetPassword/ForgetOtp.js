@@ -11,10 +11,8 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
 const [ messageApi, contextHolder ] = message.useMessage();
 
     const onFinish = (values) => {
-        console.log('Form values:', values);
 
         const storedOTP = localStorage.getItem("otp");
-        console.log('✌️storedOTP --->', storedOTP);
 
         if (values.otp === storedOTP) {
             setStep(3);
@@ -30,7 +28,6 @@ const [ messageApi, contextHolder ] = message.useMessage();
 
 
     const onFinishFailed = (errorInfo) => {
-        console.log("Failed:", errorInfo);
     };
 
 
@@ -69,13 +66,13 @@ const [ messageApi, contextHolder ] = message.useMessage();
                                     ]}
                                 >
                                     <div className="forget-input-warrper" >
-                                        <Input type='tel' className="forget-input-style" />
+                                        <Input type='tel' className="forget-input-style" maxLength={4}/>
                                     </div>
                                 </Form.Item>
 
                                 <Form.Item style={{ textAlign: "end" }}>
                                     <Button type="primary" htmlType="submit" size="large" style={{ background: "#9a2526" }}>
-                                        submit
+                                        Submit
                                     </Button>
                                 </Form.Item>
                             </Form>

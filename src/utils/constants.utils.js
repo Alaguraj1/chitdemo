@@ -69,7 +69,7 @@ export const ClosedDue = [
 
 export const PayDueHeadings = [
   {
-    title: "S No",
+    title: "S. No",
     dataIndex: "sNo",
     key: "sNo",
   },

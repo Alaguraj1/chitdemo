@@ -48,14 +48,11 @@ function Login() {
           content: res?.results[0]?.Msg,
         });
       }
-      console.log("✌️res --->", res);
     } catch (error) {
-      console.log("Form error:", error);
     }
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
   const togglePasswordVisibility = () => {

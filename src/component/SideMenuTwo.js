@@ -28,15 +28,15 @@ const SideMenuTwo = () => {
   const showConfirm = () => {
     confirm({
       title: "Logout",
-      content: "Do you Want to Logout ?",
+      content: "Do you Want to Logout?",
       onOk() {
-        console.log("OK");
         localStorage.removeItem('token');
         navigate("/login");
       },
       onCancel() {
-        console.log("Cancel");
       },
+      okButtonProps: { style: { textTransform: 'uppercase' } },
+      cancelButtonProps: { style: { textTransform: 'uppercase', fontWeight:"600" } },
     });
   };
 

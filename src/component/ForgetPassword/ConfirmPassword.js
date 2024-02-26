@@ -30,19 +30,15 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
 
   const onFinish = async (values) => {
     const MobileNumber = localStorage.getItem("mobileNumber");
-    console.log("✌️MobileNumber --->", MobileNumber);
 
     const body = {
       mobileNumber: MobileNumber,
       newPassWord: values.newPassWord,
       confirmpassWord: values.confirmpassWord,
     };
-    console.log("✌️body --->", body);
-    console.log("Form values:", values);
 
     try {
       const res = await Models.auth.ForgetPassword(body);
-      console.log("✌️res --->", res);
       form.resetFields();
 
       message.success({
@@ -54,13 +50,11 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
         },
       });
     } catch (error) {
-      console.log(error);
     }
 
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
   return (
@@ -168,7 +162,7 @@ const ForgetOtp = ({ setStep, mobileNumber }) => {
                     size="large"
                     style={{ background: "#9a2526" }}
                   >
-                    Submit
+                    Update Password
                   </Button>
                 </Form.Item>
               </Form>
