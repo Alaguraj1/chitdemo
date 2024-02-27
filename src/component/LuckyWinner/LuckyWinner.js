@@ -84,7 +84,7 @@ setState({
           </div>
 
           <div className="select-option-outer">
-            <p style={{ paddingRight: "20px" }}>Select Branch</p>
+            <p style={{ paddingRight: "20px" }}>Select Branch To Know The Winner</p>
             <Select
               showSearch
               filterOption={(input, option) =>
@@ -92,6 +92,7 @@ setState({
               }
               style={{ width: 200 }}
               onChange={BranchChange}
+              placeholder="Select Branch"
             >
               {state?.branch?.map((val) => (
                 <Option key={val?.BRNCODE} value={val?.BRNCODE}>

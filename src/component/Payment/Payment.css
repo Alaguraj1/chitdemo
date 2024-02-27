@@ -4,7 +4,10 @@ primary color :  #fff2d8,  yellow
 secondary color : #9a2526, red 
 */
 
-
+.custom-cursor-pointer {
+    cursor: pointer;
+  }
+  
 .closedDue-container{
     background-color:#fff2d8 ;
    

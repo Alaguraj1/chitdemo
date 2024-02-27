@@ -240,7 +240,7 @@ function Signup() {
                       ]}
                     >
                       <div className="login-input-wrapper">
-                        <Input className="login-input-style" />
+                        <Input className="login-input-style"  maxLength={4}/>
                       </div>
                     </Form.Item>
                   )}

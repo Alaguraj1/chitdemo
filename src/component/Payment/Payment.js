@@ -175,7 +175,7 @@ const Payment = () => {
               dataSource={state.payDueDataSource}
               columns={PayDueHeadings}
               pagination={false}
-              style={{ width: "100%" }}
+              style={{ width: "100%", }}
               rowSelection={{
                 type: state.selectedPayDueShowData,
                 ...rowSelection,
@@ -183,6 +183,13 @@ const Payment = () => {
               onRow={(record, rowIndex) => ({
                 onClick: () => handlePayDueRowClick(record),
               })}
+              components={{
+                body: {
+                  row: ({ className, ...restProps }) => {
+                    return <tr className={`${className} custom-cursor-pointer`} {...restProps} />;
+                  },
+                },
+              }}
             />
           </div>
           <div className="closedDue-pay-outer">
@@ -229,6 +236,13 @@ const Payment = () => {
                   return {
                     onClick: () => handleRowClick(record),
                   };
+                }}
+                components={{
+                  body: {
+                    row: ({ className, ...restProps }) => {
+                      return <tr className={`${className} custom-cursor-pointer`} {...restProps} />;
+                    },
+                  },
                 }}
               />
             </div>
