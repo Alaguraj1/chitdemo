@@ -93,7 +93,7 @@ const ForgetPassword = ({ setStep, setMobileNumber }) => {
                   <Space>
                     <Button
                       size="large"
-                      style={{ background: "#9a2526" }}
+                      style={{ background: "#9a2526", fontWeight: "600" }}
                       onClick={handleGoBack}
                     >
                       Cancel

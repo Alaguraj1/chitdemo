@@ -12,9 +12,11 @@ import Home from "./component/Home/Home";
 // import ForgetOtp from "./component/ForgetPassword/ForgetOtp"
 import ForgetPassword from "./component/ForgetPassword/ForgetPassword";
 import LuckyWinner from "./component/LuckyWinner/LuckyWinner";
+import { useEffect } from "react";
+import { useSetState } from "./utils/function.utils";
 
 function App() {
-  const token = localStorage.getItem("token");
+
 
   return (
     <BrowserRouter>

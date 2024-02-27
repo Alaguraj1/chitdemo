@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom/dist";
+import { Link, useLocation } from "react-router-dom/dist";
 import "./SideMenu.css";
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const SideMenuTwo = () => {
+
   const [menu, setMenu] = useState(false);
   const [menuStatus, setMenuStatus] = useState("");
   const [mobileMenuStatus, setMobileMenuStatus] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
 
   function menuopenclose() {
     if (menu) {
@@ -30,13 +36,14 @@ const SideMenuTwo = () => {
       title: "Logout",
       content: "Do you Want to Logout?",
       onOk() {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
         navigate("/login");
       },
-      onCancel() {
+      onCancel() {},
+      okButtonProps: { style: { textTransform: "uppercase" } },
+      cancelButtonProps: {
+        style: { textTransform: "uppercase", fontWeight: "600" },
       },
-      okButtonProps: { style: { textTransform: 'uppercase' } },
-      cancelButtonProps: { style: { textTransform: 'uppercase', fontWeight:"600" } },
     });
   };
 
@@ -72,19 +79,28 @@ const SideMenuTwo = () => {
               </div>
               <div className="menu_list w-full h-auto clear-both float-left mb-[50px] ">
                 <ul className="transition_link m-0">
-                  <li className="mb-[7px] active">
+                  <li className={`mb-[7px] ${isActive("/") ? "active" : ""}`}>
                     <Link to="/">Home</Link>
                   </li>
-                  <li className="mb-[7px] ">
+                  <li
+                    className={`mb-[7px] ${
+                      isActive("/add-chit") ? "active" : ""
+                    }`}
+                  >
                     <Link to="/add-chit">Add Chit</Link>
                   </li>
-                  {/* <li className="mb-[7px] ">
-                                        <Link to="/my-profile">My Profile</Link>
-                                    </li> */}
-                  <li className="mb-[7px] ">
+                  <li
+                    className={`mb-[7px] ${
+                      isActive("/chit-details") ? "active" : ""
+                    }`}
+                  >
                     <Link to="/chit-details">Chit Details</Link>
                   </li>
-
+                  {/* 
+        <li className={`mb-[7px] ${isActive('/my-profile') ? 'active' : ''}`}>
+          <Link to="/my-profile">My Profile</Link>
+        </li>
+      */}
                   <li className="mb-[7px]" onClick={showConfirm}>
                     <Link to="">Logout</Link>
                   </li>
@@ -169,22 +185,27 @@ const SideMenuTwo = () => {
           </div>
           <div className="menu scrollable w-full float-left">
             <ul className="transition_link h-full flex items-center justify-center flex-col">
-              <li className="mb-[7px] active">
+              <li className={`mb-[7px] ${isActive("/") ? "active" : ""}`}>
                 <Link to="/">Home</Link>
               </li>
-              <li className="mb-[7px] ">
+              <li
+                className={`mb-[7px] ${isActive("/add-chit") ? "active" : ""}`}
+              >
                 <Link to="/add-chit">Add Chit</Link>
               </li>
-
-              <li className="mb-[7px] ">
+              <li
+                className={`mb-[7px] ${
+                  isActive("/chit-details") ? "active" : ""
+                }`}
+              >
                 <Link to="/chit-details">Chit Details</Link>
               </li>
-
-              {/* <li className="mb-[7px] ">
-                                <Link to="/my-profile">My Profile</Link>
-                            </li> */}
-
-              <li className="mb-[7px] " onClick={showConfirm}>
+              {/* 
+        <li className={`mb-[7px] ${isActive('/my-profile') ? 'active' : ''}`}>
+          <Link to="/my-profile">My Profile</Link>
+        </li>
+      */}
+              <li className="mb-[7px]" onClick={showConfirm}>
                 <Link to="">Logout</Link>
               </li>
             </ul>

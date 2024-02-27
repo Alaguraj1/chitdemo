@@ -19,6 +19,14 @@ useEffect(() => {
   getBranch();
 },[])
 
+useEffect(() => {
+  const Token = localStorage.getItem("token");
+
+  if (Token == null) {
+    Navigate("/login");
+  }
+},[])
+
 const getBranch = async() => {
   try {
     const res = await Models.luckyWinner.Branch({

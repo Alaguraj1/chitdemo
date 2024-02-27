@@ -27,6 +27,14 @@ function Home() {
   });
 
   useEffect(() => {
+    const Token = localStorage.getItem("token");
+  
+    if (Token == null) {
+      navigate("/login");
+    }
+  },[])
+
+  useEffect(() => {
     getGoldRate();
 
     const intervalId = setInterval(() => {

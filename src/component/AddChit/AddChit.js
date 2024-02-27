@@ -53,7 +53,8 @@ const ChitDetails = () => {
   const GetCity = async () => {
     try {
       const res = await Models.chit.City();
-      if (res.results[0].Message == "Authentication Session Failed") {
+console.log('✌️res --->', res);
+      if (res.results[0].Message == "Authentication Not Valid") {
         navigate("/login");
         return false;
       }

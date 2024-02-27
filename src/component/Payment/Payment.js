@@ -25,12 +25,22 @@ const Payment = () => {
     isModalVisible: false,
     payDueModalVisible: false,
     SelectedPayDueBranch: null,
+
   });
 
   useEffect(() => {
     closedDueBranch();
   }, []);
 
+
+  
+    useEffect(() => {
+      const Token = localStorage.getItem("token");
+
+      if (Token == null) {
+        navigate("/login");
+      }
+    },[])
   const closedDueBranch = async () => {
     try {
       const res = await Models.paydue.CdBranch({

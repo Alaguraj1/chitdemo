@@ -8,6 +8,9 @@ secondary color : #9a2526, red
     justify-content: center;
 }
 
+.active{
+    color:  var(--blue-color) !important;
+}
 
 @media(max-width:1040px){
 
