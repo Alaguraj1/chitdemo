@@ -251,6 +251,7 @@ const Payment = () => {
                 dataSource={state?.dataSource}
                 columns={ClosedDue}
                 pagination={false}
+                scroll={{ x: "100%" }}
                 style={{ width: "100%" }}
                 onRow={(record, rowIndex) => {
                   return {
@@ -301,20 +302,24 @@ const Payment = () => {
                   color: "#ab6465",
                 }}
               >
+              
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "20px" }}>
-                    <p>Chit Group / Chit SRNo:</p>
+                  <div style={{ paddingRight: "45px" }}>
+                    <p>
+                      Chit Group / <br />
+                      Chit SRNo:
+                    </p>
                   </div>
                   <div>
                     <p className="getPayDueDetails">
-                      {" "}
+                    <br/>
                       {state?.selectedPayDueShowData?.CHTGRUP}
                     </p>
                   </div>
                 </div>
 
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "70px" }}>
+                  <div style={{ paddingRight: "15px" }}>
                     <p>Customer Name:</p>
                   </div>
                   <div>
@@ -325,7 +330,7 @@ const Payment = () => {
                 </div>
 
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "120px" }}>
+                  <div style={{ paddingRight: "65px" }}>
                     <p>Address1:</p>
                   </div>
                   <div>
@@ -336,7 +341,7 @@ const Payment = () => {
                 </div>
 
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "120px" }}>
+                  <div style={{ paddingRight: "65px" }}>
                     <p>Address2:</p>
                   </div>
                   <div>
@@ -347,7 +352,7 @@ const Payment = () => {
                 </div>
 
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "135px" }}>
+                  <div style={{ paddingRight: "82px" }}>
                     <p>Mobile:</p>
                   </div>
                   <div>
@@ -358,7 +363,7 @@ const Payment = () => {
                 </div>
 
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "145px" }}>
+                  <div style={{ paddingRight: "95px" }}>
                     <p>Email:</p>
                   </div>
                   <div>
@@ -369,7 +374,7 @@ const Payment = () => {
                 </div>
 
                 <div className="PayDueLineShow">
-                  <div style={{ paddingRight: "135px" }}>
+                  <div style={{ paddingRight: "85px" }}>
                     <p>Branch:</p>
                   </div>
                   <div>
