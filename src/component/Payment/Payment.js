@@ -184,6 +184,7 @@ const Payment = () => {
               dataSource={state.payDueDataSource}
               columns={PayDueHeadings}
               pagination={false}
+              scroll={{ x: "100%" }}
               style={{ width: "100%" }}
               rowSelection={{
                 type: state.selectedPayDueShowData,
