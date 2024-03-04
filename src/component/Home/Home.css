@@ -5,6 +5,7 @@ secondary color : #9a2526, red
 
 .home-container-fluid {
     background-color: #fff2d8;
+    overflow: hidden;
 
 }
 
@@ -18,7 +19,6 @@ secondary color : #9a2526, red
 .home-side-img {
     position: absolute;
     right: -50px;
-    bottom: -160px;
     width: 50%;
   }
 

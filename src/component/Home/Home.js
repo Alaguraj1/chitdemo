@@ -147,7 +147,7 @@ function Home() {
 
               <div className="discount-outer">
                 <h4 className="home-subTitle">Our Scheme</h4>
-               <Link to="/add-chit"><img src="assets/img/lucky_winner.jpg" alt="Discound" /></Link> 
+               <Link to="/add-chit"><img src="assets/img/scheme.jpg" alt="Discound" /></Link> 
               </div>
             </div>
 

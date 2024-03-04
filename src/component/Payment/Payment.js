@@ -197,7 +197,7 @@ const Payment = () => {
                   row: ({ className, ...restProps }) => {
                     return (
                       <>
-                        <Tooltip title="View Details" mouseEnterDelay={0.5}>
+                        <Tooltip title="Click Here" mouseEnterDelay={0.5}>
                           <tr
                             className={`${className} custom-cursor-pointer`}
                             {...restProps}
@@ -261,7 +261,7 @@ const Payment = () => {
                     row: ({ className, ...restProps }) => {
                       return (
                         <>
-                          <Tooltip title="View Details" mouseEnterDelay={0.5}>
+                          <Tooltip title="Click Here" mouseEnterDelay={0.5}>
                             <tr
                               className={`${className} custom-cursor-pointer`}
                               {...restProps}
