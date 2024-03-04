@@ -1,4 +1,4 @@
-import { Checkbox } from "antd";
+import { Button, Checkbox } from "antd";
 import dayjs from "dayjs";
 
 export const columns = [
@@ -48,52 +48,68 @@ export const columns = [
   },
 ];
 
-export const ClosedDue = [
-  {
-    title: "Group",
-    dataIndex: "CLSCHTGRUP",
-    key: "CLSCHTGRUP",
-  },
-  {
-    title: "Name",
-    dataIndex: "CHTNAME",
-    key: "CHTNAME",
-  },
+// export const ClosedDue = [
+//   {
+//     title: "Group",
+//     dataIndex: "CLSCHTGRUP",
+//     key: "CLSCHTGRUP",
+//   },
+//   {
+//     title: "Name",
+//     dataIndex: "CHTNAME",
+//     key: "CHTNAME",
+//   },
 
-  {
-    title: "Amount",
-    dataIndex: "CLSDUEAMT",
-    key: "CLSDUEAMT",
-  },
-];
+//   {
+//     title: "Amount",
+//     dataIndex: "CLSDUEAMT",
+//     key: "CLSDUEAMT",
+//   },
+//   {
+//     title: "Details",
+//     dataIndex: "details",
+//     key: "details",
+//     render: (text, record) => (
+//       <Button type="primary">View</Button>
+//     ),
+//   },
+// ];
 
-export const PayDueHeadings = [
-  {
-    title: "S. No",
-    dataIndex: "sNo",
-    key: "sNo",
-  },
-  {
-    title: "Group",
-    dataIndex: "CHTGRUP",
-    key: "CHTGRUP",
-  },
-  {
-    title: "Name",
-    dataIndex: "CHTNAME",
-    key: "CHTNAME",
-  },
-  {
-    title: "Current Due",
-    dataIndex: "DUENUMB",
-    key: "DUENUMB",
-  },
-  {
-    title: "Amount",
-    dataIndex: "DUEAMNT",
-    key: "DUEAMNT",
-  },
-];
+// export const PayDueHeadings = [
+//   {
+//     title: "S. No",
+//     dataIndex: "sNo",
+//     key: "sNo",
+//   },
+//   {
+//     title: "Group",
+//     dataIndex: "CHTGRUP",
+//     key: "CHTGRUP",
+//   },
+//   {
+//     title: "Name",
+//     dataIndex: "CHTNAME",
+//     key: "CHTNAME",
+//   },
+//   {
+//     title: "Current Due",
+//     dataIndex: "DUENUMB",
+//     key: "DUENUMB",
+//   },
+//   {
+//     title: "Amount",
+//     dataIndex: "DUEAMNT",
+//     key: "DUEAMNT",
+//   },
+//   {
+//     title: "Details",
+//     dataIndex: "details",
+//     key: "details",
+//     render: (text, record) => (
+//       <Button type="primary" >View</Button>
+//     ),
+//   },
+// ];
 
 
 export const LuckyWinnerHeading = [

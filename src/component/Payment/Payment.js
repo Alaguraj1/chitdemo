@@ -5,7 +5,6 @@ import { Select, Modal } from "antd";
 import SideMenuTwo from "../SideMenuTwo";
 import Models from "../../imports/models.import";
 import { useSetState } from "../../utils/function.utils";
-import { ClosedDue, PayDueHeadings } from "../../utils/constants.utils";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
@@ -143,6 +142,78 @@ const Payment = () => {
   };
   console.log("state?.branch?.[0]?.BRNCODE", state?.branch?.[0]?.BRNCODE);
 
+
+
+
+ const PayDueHeadings = [
+    {
+      title: "S. No",
+      dataIndex: "sNo",
+      key: "sNo",
+    },
+    {
+      title: "Group",
+      dataIndex: "CHTGRUP",
+      key: "CHTGRUP",
+    },
+    {
+      title: "Name",
+      dataIndex: "CHTNAME",
+      key: "CHTNAME",
+    },
+    {
+      title: "Current Due",
+      dataIndex: "DUENUMB",
+      key: "DUENUMB",
+    },
+    {
+      title: "Amount",
+      dataIndex: "DUEAMNT",
+      key: "DUEAMNT",
+    },
+    {
+      title: "Details",
+      dataIndex: "details",
+      key: "details",
+      render: (text, record) => (
+        <button size="small" className="view" onClick={() => handlePayDueRowClick(record)}>
+        view
+      </button>
+      ),
+    },
+  ];
+
+
+const ClosedDue = [
+    {
+      title: "Group",
+      dataIndex: "CLSCHTGRUP",
+      key: "CLSCHTGRUP",
+    },
+    {
+      title: "Name",
+      dataIndex: "CHTNAME",
+      key: "CHTNAME",
+    },
+  
+    {
+      title: "Amount",
+      dataIndex: "CLSDUEAMT",
+      key: "CLSDUEAMT",
+    },
+    {
+      title: "Details",
+      dataIndex: "details",
+      key: "details",
+      render: (text, record) => (
+        <button size="small" className="view" onClick={() => handleRowClick(record)}>
+        view
+      </button>
+      ),
+    },
+  ];
+
+
   return (
     <div
       className="elisc_tm_all_wrap"
@@ -190,20 +261,18 @@ const Payment = () => {
                 type: state.selectedPayDueShowData,
                 ...rowSelection,
               }}
-              onRow={(record, rowIndex) => ({
-                onClick: () => handlePayDueRowClick(record),
-              })}
+              // onRow={(record, rowIndex) => ({
+              //   onClick: () => handlePayDueRowClick(record),
+              // })}
               components={{
                 body: {
                   row: ({ className, ...restProps }) => {
                     return (
                       <>
-                        <Tooltip title="Click Here" mouseEnterDelay={0.5}>
                           <tr
-                            className={`${className} custom-cursor-pointer`}
+                            className={`${className} `}
                             {...restProps}
                           />
-                        </Tooltip>
                       </>
                     );
                   },
@@ -251,24 +320,24 @@ const Payment = () => {
                 dataSource={state?.dataSource}
                 columns={ClosedDue}
                 pagination={false}
-                scroll={{ x: "100%" }}
+                // scroll={{ x: "100%" }}
                 style={{ width: "100%" }}
-                onRow={(record, rowIndex) => {
-                  return {
-                    onClick: () => handleRowClick(record),
-                  };
-                }}
+                // onRow={(record, rowIndex) => {
+                //   return {
+                //     onClick: () => handleRowClick(record),
+                //   };
+                // }}
                 components={{
                   body: {
                     row: ({ className, ...restProps }) => {
                       return (
                         <>
-                          <Tooltip title="Click Here" mouseEnterDelay={0.5}>
+                          {/* <Tooltip title="Click Here" mouseEnterDelay={0.5}> */}
                             <tr
-                              className={`${className} custom-cursor-pointer`}
+                              className={`${className}`}
                               {...restProps}
                             />
-                          </Tooltip>
+                          {/* </Tooltip> */}
                         </>
                       );
                     },

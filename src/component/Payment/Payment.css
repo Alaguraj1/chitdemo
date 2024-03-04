@@ -39,6 +39,17 @@ secondary color : #9a2526, red
     background-color: #a84647;
 }
 
+.view{
+    padding: 5px 20px !important;
+    background-color: #9a2526;
+    color: white;
+    font-weight: 600;
+    border-radius: 5PX;
+}
+.view:hover{
+    background-color: #a84647;
+}
+
 .closed-due-title{
     color: #9a2526;
     font-size: 25px;
