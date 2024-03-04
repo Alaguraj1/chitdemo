@@ -28,18 +28,18 @@ function Home() {
 
   useEffect(() => {
     const Token = localStorage.getItem("token");
-  
+
     if (Token == null) {
       navigate("/login");
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     getGoldRate();
 
     const intervalId = setInterval(() => {
       getGoldRate();
-    }, 5 * 60 * 1000); 
+    }, 5 * 60 * 1000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -52,8 +52,7 @@ function Home() {
       } else {
         navigate("/login");
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // const dateSubmit = async () => {
@@ -72,7 +71,6 @@ function Home() {
   //   }
   // };
 
- 
   // modal
   const showModal = () => {
     setState({ calendarOpen: true });
@@ -94,8 +92,7 @@ function Home() {
     setState({ isModalOpen: false });
   };
 
-  const handlePay = (record) => {
-  };
+  const handlePay = (record) => {};
 
   function onPanelChange(value, mode) {
     const formattedDate = dayjs(value).format("MM-YYYY");
@@ -113,7 +110,8 @@ function Home() {
       <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] home-container-fluid">
         <div className="imagePosition">
           <h3 className="chit-details-title">
-            Hi {localStorage.getItem("userName")}, Welcome To Sree Thangam Jewellery
+            Hi {localStorage.getItem("userName")}, Welcome To Sree Thangam
+            Jewellery
           </h3>
 
           <div className="home-container">
@@ -147,7 +145,13 @@ function Home() {
 
               <div className="discount-outer">
                 <h4 className="home-subTitle">Our Scheme</h4>
-               <Link to="/add-chit"><img src="assets/img/scheme.jpg" alt="Discound" /></Link> 
+                <Link to="/add-chit">
+                  <img
+                    src="assets/img/scheme.jpg"
+                    alt="Discound"
+                    style={{ width: "100% !important" }}
+                  />
+                </Link>
               </div>
             </div>
 
