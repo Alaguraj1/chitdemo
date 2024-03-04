@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { Table, Tooltip } from "antd";
 import "./Payment.css";
 import { Select, Modal } from "antd";
 import SideMenuTwo from "../SideMenuTwo";
@@ -8,12 +8,9 @@ import { useSetState } from "../../utils/function.utils";
 import { ClosedDue, PayDueHeadings } from "../../utils/constants.utils";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Payment = () => {
   const navigate = useNavigate();
   const { Option } = Select;
-
 
   const [state, setState] = useSetState({
     selectedBranch: null,
@@ -25,22 +22,34 @@ const Payment = () => {
     isModalVisible: false,
     payDueModalVisible: false,
     SelectedPayDueBranch: null,
-
   });
 
   useEffect(() => {
     closedDueBranch();
   }, []);
 
+  useEffect(() => {
+    const Token = localStorage.getItem("token");
 
-  
-    useEffect(() => {
-      const Token = localStorage.getItem("token");
+    if (Token == null) {
+      navigate("/login");
+    }
+  }, []);
 
-      if (Token == null) {
-        navigate("/login");
-      }
-    },[])
+  useEffect(() => {
+    const Phone = localStorage.getItem("code");
+    console.log("✌️LocalDatas --->", Phone);
+
+    PayDue(Phone, 204);
+  }, []);
+
+  useEffect(() => {
+    const Phone = localStorage.getItem("code");
+    console.log("✌️LocalDatas --->", Phone);
+
+    closedDue(Phone, 204);
+  }, []);
+
   const closedDueBranch = async () => {
     try {
       const res = await Models.paydue.CdBranch({
@@ -51,8 +60,7 @@ const Payment = () => {
         return false;
       }
       setState({ branch: res.results[0].Message });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   //   branch change
@@ -74,8 +82,7 @@ const Payment = () => {
       }
 
       setState({ dataSource: res.results[0].Message });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const payDueChange = (value) => {
@@ -99,8 +106,7 @@ const Payment = () => {
       });
 
       setState({ payDueDataSource: updatedDataSource });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const rowSelection = {
@@ -135,6 +141,8 @@ const Payment = () => {
   const handleClosePayDueModal = () => {
     setState({ payDueModalVisible: false });
   };
+  console.log("state?.branch?.[0]?.BRNCODE", state?.branch?.[0]?.BRNCODE);
+
   return (
     <div
       className="elisc_tm_all_wrap"
@@ -161,6 +169,7 @@ const Payment = () => {
               style={{ width: 200 }}
               onChange={payDueChange}
               placeholder="Select Branch"
+              value={state?.branch?.[0]?.BRNCODE}
             >
               {state?.branch?.map((val) => (
                 <Option key={val?.BRNCODE} value={val?.BRNCODE}>
@@ -175,7 +184,7 @@ const Payment = () => {
               dataSource={state.payDueDataSource}
               columns={PayDueHeadings}
               pagination={false}
-              style={{ width: "100%", }}
+              style={{ width: "100%" }}
               rowSelection={{
                 type: state.selectedPayDueShowData,
                 ...rowSelection,
@@ -186,7 +195,16 @@ const Payment = () => {
               components={{
                 body: {
                   row: ({ className, ...restProps }) => {
-                    return <tr className={`${className} custom-cursor-pointer`} {...restProps} />;
+                    return (
+                      <>
+                        <Tooltip title="View Details" mouseEnterDelay={0.5}>
+                          <tr
+                            className={`${className} custom-cursor-pointer`}
+                            {...restProps}
+                          />
+                        </Tooltip>
+                      </>
+                    );
                   },
                 },
               }}
@@ -217,6 +235,7 @@ const Payment = () => {
                 style={{ width: 200 }}
                 onChange={handleBranchChange}
                 placeholder="Select Branch"
+                value={state?.branch?.[0]?.BRNCODE}
               >
                 {state?.branch?.map((val) => (
                   <Option key={val?.BRNCODE} value={val?.BRNCODE}>
@@ -240,7 +259,16 @@ const Payment = () => {
                 components={{
                   body: {
                     row: ({ className, ...restProps }) => {
-                      return <tr className={`${className} custom-cursor-pointer`} {...restProps} />;
+                      return (
+                        <>
+                          <Tooltip title="View Details" mouseEnterDelay={0.5}>
+                            <tr
+                              className={`${className} custom-cursor-pointer`}
+                              {...restProps}
+                            />
+                          </Tooltip>
+                        </>
+                      );
                     },
                   },
                 }}

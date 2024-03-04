@@ -56,87 +56,23 @@ function Home() {
     }
   };
 
-  const dateSubmit = async () => {
-    try {
-      const res = await Models.goldrate.GoldMaxMinRate({
-        MonthYear: state?.date,
-      });
-      setState({ isModalOpen: true });
-      setState({ calendarOpen: false });
-      if (res?.results[0].Success === 1) {
-        setState({ goldMaxMin: res?.results });
-      } else {
-        navigate("/login");
-      }
-    } catch (error) {
-    }
-  };
+  // const dateSubmit = async () => {
+  //   try {
+  //     const res = await Models.goldrate.GoldMaxMinRate({
+  //       MonthYear: state?.date,
+  //     });
+  //     setState({ isModalOpen: true });
+  //     setState({ calendarOpen: false });
+  //     if (res?.results[0].Success === 1) {
+  //       setState({ goldMaxMin: res?.results });
+  //     } else {
+  //       navigate("/login");
+  //     }
+  //   } catch (error) {
+  //   }
+  // };
 
-  const dataSource = [
-    {
-      key: "1",
-      sno: 1,
-      scheme: "Gold Virksham",
-      amount: 1000,
-      shouldPay: true,
-    },
-    {
-      key: "2",
-      sno: 2,
-      scheme: "Swarna Laksita",
-      amount: 2000,
-      shouldPay: false,
-    },
-    {
-      key: "3",
-      sno: 3,
-      scheme: "Gold Virksham",
-      amount: 1000,
-      shouldPay: false,
-    },
-    {
-      key: "4",
-      sno: 4,
-      scheme: "Gold Virksham Plus",
-      amount: 3000,
-      shouldPay: true,
-    },
-  ];
-
-  const columns = [
-    {
-      title: "S.No",
-      dataIndex: "sno",
-      key: "sno",
-    },
-    {
-      title: "Scheme",
-      dataIndex: "scheme",
-      key: "scheme",
-    },
-    {
-      title: "Amount",
-      dataIndex: "amount",
-      key: "amount",
-    },
-    {
-      title: "Due",
-      key: "due",
-      render: (text, record) => {
-        const amountContent = record.shouldPay ? record.amount : "Nill";
-        return (
-          <span>
-            {record.shouldPay ? (
-              <Button onClick={() => handlePay(record)}>{amountContent}</Button>
-            ) : (
-              <span>{amountContent}</span>
-            )}
-          </span>
-        );
-      },
-    },
-  ];
-
+ 
   // modal
   const showModal = () => {
     setState({ calendarOpen: true });
@@ -177,13 +113,13 @@ function Home() {
       <div className="elisc_tm_mainpart w-full min-h-[100vh] clear-both float-left pl-[370px] home-container-fluid">
         <div className="imagePosition">
           <h3 className="chit-details-title">
-            Hi {localStorage.getItem("userName")}, Welcome To Thangam Jewellery
+            Hi {localStorage.getItem("userName")}, Welcome To Sree Thangam Jewellery
           </h3>
 
           <div className="home-container">
             <div className="home-left">
               <div className="priceDetails">
-                <CalendarFilled className="calendor" onClick={showModal} />
+                {/* <CalendarFilled className="calendor" onClick={showModal} /> */}
 
                 {state?.productRate[0]?.Message?.map((value) => {
                   return (
@@ -210,8 +146,8 @@ function Home() {
               </div> */}
 
               <div className="discount-outer">
-                <h4 className="home-subTitle">Lucky Winner</h4>
-               <Link to="/lucky-winner"><img src="assets/img/lucky_winner.jpg" alt="Discound" /></Link> 
+                <h4 className="home-subTitle">Our Scheme</h4>
+               <Link to="/add-chit"><img src="assets/img/lucky_winner.jpg" alt="Discound" /></Link> 
               </div>
             </div>
 
@@ -225,16 +161,13 @@ function Home() {
           </div>
         </div>
 
-        <Modal
+        {/* <Modal
           title={dayjs(state?.date, "MM-YYYY").format("MMMM YYYY")}
           open={state?.isModalOpen}
           onOk={handleOk2}
           onCancel={handleCancel2}
           footer={false}
         >
-          {/* <div style={{ width: 290, border: '1px solid #d9d9d9', borderRadius: 4 }}>
-                        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
-                    </div> */}
           <div className="gold-stage">
             <h6 className="gold-low">
               LOW <CaretDownOutlined />
@@ -255,10 +188,10 @@ function Home() {
               );
             })}
           </div>
-        </Modal>
+        </Modal> */}
 
         {/* calendor */}
-        <Modal
+        {/* <Modal
           title={dayjs(state?.date, "MM-YYYY").format("MMMM YYYY")}
           open={state?.calendarOpen}
           width={350}
@@ -291,7 +224,7 @@ function Home() {
               Submit
             </Button>
           </Space>
-        </Modal>
+        </Modal> */}
       </div>
     </div>
   );

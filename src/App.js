@@ -45,7 +45,7 @@ function App() {
         <Route path="/chit-details" element={<Payment />} />
         <Route path="/closed-due" element={<ClosedDue />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
-        <Route path="/lucky-winner" element={<LuckyWinner />}/>
+        {/* <Route path="/lucky-winner" element={<LuckyWinner />}/> */}
       </Routes>
     </BrowserRouter>
   );

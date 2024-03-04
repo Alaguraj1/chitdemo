@@ -23,7 +23,7 @@ const ChitDetails = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
-  const [ messageApi, contextHolder ] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const [state, setState] = useSetState({
     localCode: "",
@@ -53,7 +53,7 @@ const ChitDetails = () => {
   const GetCity = async () => {
     try {
       const res = await Models.chit.City();
-console.log('✌️res --->', res);
+      console.log("✌️res --->", res);
       if (res.results[0].Message == "Authentication Not Valid") {
         navigate("/login");
         return false;
@@ -62,20 +62,17 @@ console.log('✌️res --->', res);
         city:
           res.results[0].Success === 1
             ? res?.results[0]?.Message
-            :
-            //  alert(res?.results[0].Message),
-            messageApi.open({
-              type: "error",
-              content: res?.results[0].Message,
-            })
+            : //  alert(res?.results[0].Message),
+              messageApi.open({
+                type: "error",
+                content: res?.results[0].Message,
+              }),
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // city change
-  const handleCityChange = async (value) => {
-  };
+  const handleCityChange = async (value) => {};
 
   const getBranch = async () => {
     try {
@@ -88,15 +85,13 @@ console.log('✌️res --->', res);
         branch:
           res.results[0].Success === 1
             ? res?.results
-            :
-            //  alert(res?.results[0].Message),
-            messageApi.open({
-              type: "error",
-              content: res?.results[0].Message,
-            })
+            : //  alert(res?.results[0].Message),
+              messageApi.open({
+                type: "error",
+                content: res?.results[0].Message,
+              }),
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // branch onchange function
@@ -123,8 +118,7 @@ console.log('✌️res --->', res);
       } else {
         setState({ chit: [] });
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // chit onchange function
@@ -155,8 +149,7 @@ console.log('✌️res --->', res);
       }
 
       setState({ getChit: data, chitTable: filterData });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // reference user
@@ -170,8 +163,7 @@ console.log('✌️res --->', res);
         return false;
       }
       setState({ ReferenseUser: res.results[0].Message });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // amount change
@@ -183,7 +175,6 @@ console.log('✌️res --->', res);
 
     setState({ selectedAmount: value });
   };
-
 
   const onFinish = (values) => {
     const completeMobileNumber = `${state.localCode}`;
@@ -203,9 +194,7 @@ console.log('✌️res --->', res);
     };
   };
 
-  const onFinishFailed = (errorInfo) => {
-  };
-
+  const onFinishFailed = (errorInfo) => {};
 
   // terms and conditions Modal
   const handleCheckboxChange = () => {
@@ -221,6 +210,8 @@ console.log('✌️res --->', res);
     setState({ isCheckboxChecked: false });
     setState({ isModalVisible: false });
   };
+
+console.log("state?.selectedChit", state?.selectedChit)
 
   return (
     <>
@@ -244,6 +235,8 @@ console.log('✌️res --->', res);
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
                     autoComplete="off"
                   >
                     <Form.Item
@@ -257,7 +250,7 @@ console.log('✌️res --->', res);
                         },
                       ]}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs name-input">
                         <Input style={{ padding: "10px 5px !important" }} />
                       </div>
                     </Form.Item>
@@ -273,7 +266,7 @@ console.log('✌️res --->', res);
                         },
                       ]}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs address-input">
                         <Input />
                       </div>
                     </Form.Item>
@@ -289,7 +282,7 @@ console.log('✌️res --->', res);
                         },
                       ]}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs landmark-input">
                         <Input />
                       </div>
                     </Form.Item>
@@ -306,7 +299,7 @@ console.log('✌️res --->', res);
                         },
                       ]}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs email-input">
                         <Input type="email" />
                       </div>
                     </Form.Item>
@@ -322,7 +315,7 @@ console.log('✌️res --->', res);
                         },
                       ]}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs mobile-input">
                         <Input prefix={state.localCode} disabled />
                       </div>
                     </Form.Item>
@@ -332,7 +325,7 @@ console.log('✌️res --->', res);
                       name="city"
                       className="add-chit-inputs"
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs city-input">
                         <Select
                           showSearch
                           filterOption={(input, option) =>
@@ -362,7 +355,7 @@ console.log('✌️res --->', res);
                         },
                       ]}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs pincode-input">
                         <Input type="number" />
                       </div>
                     </Form.Item>
@@ -373,7 +366,7 @@ console.log('✌️res --->', res);
                       name="branch"
                       className="add-chit-inputs"
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs branch-input">
                         <Select
                           showSearch
                           filterOption={(input, option) =>
@@ -398,7 +391,7 @@ console.log('✌️res --->', res);
                       className="add-chit-inputs"
                       onChange={handleChitChange}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs chit-input">
                         <Select
                           onChange={handleChitChange}
                           showSearch
@@ -423,26 +416,34 @@ console.log('✌️res --->', res);
                       className="add-chit-inputs"
                       onChange={handleAmountChange}
                     >
-                      <div className="chit_inputs">
-                        <Select
-                          onChange={handleAmountChange}
-                          showSearch
-                          filterOption={(input, option) =>
-                            option.children
-                              .toLowerCase()
-                              .indexOf(input.toLowerCase()) >= 0
-                          }
-                        >
-                          {state?.getChit?.map((val) => (
-                            <Option key={val?.CHTAMNT} value={val?.CHTAMNT}>
-                              {val?.CHTAMNT}
-                            </Option>
-                          ))}
-                        </Select>
+                      <div className="chit_inputs amount-input">
+                        {state?.selectedChit == 6 ? (
+                          <>
+                            <Input type="number"/>
+                            <p>Min amount is Rs 50,000/-</p>
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <Select
+                              onChange={handleAmountChange}
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.indexOf(input) >= 0
+                              }
+                            >
+                              {state?.getChit?.map((val) => (
+                                <Option key={val?.CHTAMNT} value={val?.CHTAMNT}>
+                                  {val?.CHTAMNT}
+                                </Option>
+                              ))}
+                            </Select>{" "}
+                          </>
+                        )}
                       </div>
                     </Form.Item>
 
-                    <p style={{ fontSize: "14px" }}>
+                    {/* <p style={{ fontSize: "14px" }}>
                       *NOTE you can purchase from the selected branch
                       {state.chitTable?.length > 0 &&
                         state.selectedAmount !== "" && (
@@ -459,14 +460,16 @@ console.log('✌️res --->', res);
                             </div>
                           </>
                         )}
-                    </p>
+                    </p> */}
 
                     <Form.Item
                       label="Reference User (Optional)"
                       name="referenceUser"
-                      style={{ width: "400px" }}
+                      // style={{ width: "400px" }}
+                      labelCol={{ span: 14 }}
+                      wrapperCol={{ span: 18 }}
                     >
-                      <div className="chit_inputs">
+                      <div className="chit_inputs refer-input">
                         <Select
                           showSearch
                           filterOption={(input, option) =>

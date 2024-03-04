@@ -63,7 +63,7 @@ secondary color : #9a2526, red
 }
 
 .add-chit-inputs{
- width: 350px;
+ width: 100%;
 }
 
 .chit-details-left{
@@ -173,6 +173,10 @@ secondary color : #9a2526, red
     background-color: transparent;
 }
 
+:where(.css-dev-only-do-not-override-3mqfnx).ant-form-item .ant-form-item-label{
+    text-align: start;
+}
+
 
 /* live server */
 :where(.css-amq5gd).ant-table-wrapper .ant-table-thead>tr>th {
@@ -216,4 +220,8 @@ secondary color : #9a2526, red
 }
 :where(.css-3mqfnx).ant-input-affix-wrapper-disabled:hover{
     background-color: transparent;
+}
+
+:where(.css-3mqfnx).ant-form-item .ant-form-item-label{
+    text-align: start;
 }
