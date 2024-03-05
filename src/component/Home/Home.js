@@ -54,7 +54,7 @@ function Home() {
       }
     } catch (error) {}
   };
-
+console.log("goldrate",state?.productRate)
   // const dateSubmit = async () => {
   //   try {
   //     const res = await Models.goldrate.GoldMaxMinRate({
