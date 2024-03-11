@@ -21,6 +21,7 @@ const Payment = () => {
     isModalVisible: false,
     payDueModalVisible: false,
     SelectedPayDueBranch: null,
+    paydueSelectData: null,
   });
 
   useEffect(() => {
@@ -110,6 +111,7 @@ const Payment = () => {
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
+      setState({ paydueSelectData: selectedRows });
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         "selectedRows: ",
@@ -142,10 +144,7 @@ const Payment = () => {
   };
   console.log("state?.branch?.[0]?.BRNCODE", state?.branch?.[0]?.BRNCODE);
 
-
-
-
- const PayDueHeadings = [
+  const PayDueHeadings = [
     {
       title: "S. No",
       dataIndex: "sNo",
@@ -176,15 +175,18 @@ const Payment = () => {
       dataIndex: "details",
       key: "details",
       render: (text, record) => (
-        <button size="small" className="view" onClick={() => handlePayDueRowClick(record)}>
-        view
-      </button>
+        <button
+          size="small"
+          className="view"
+          onClick={() => handlePayDueRowClick(record)}
+        >
+          view
+        </button>
       ),
     },
   ];
 
-
-const ClosedDue = [
+  const ClosedDue = [
     {
       title: "Group",
       dataIndex: "CLSCHTGRUP",
@@ -195,7 +197,7 @@ const ClosedDue = [
       dataIndex: "CHTNAME",
       key: "CHTNAME",
     },
-  
+
     {
       title: "Amount",
       dataIndex: "CLSDUEAMT",
@@ -206,13 +208,32 @@ const ClosedDue = [
       dataIndex: "details",
       key: "details",
       render: (text, record) => (
-        <button size="small" className="view" onClick={() => handleRowClick(record)}>
-        view
-      </button>
+        <button
+          size="small"
+          className="view"
+          onClick={() => handleRowClick(record)}
+        >
+          view
+        </button>
       ),
     },
   ];
 
+
+  const totalAmount = state?.paydueSelectData?.reduce((acc, obj) => acc + parseInt(obj.DUEAMNT), 0);
+  console.log(totalAmount);
+
+
+const handlepayduePay = async () => {
+  console.log( `successfully paid ${totalAmount}`)
+  // try {
+  //   const res = await Models.paydue.PayDue({
+  //     CUSMOBI: localStorage.getItem("code"),
+  //     BRNCODE: state?.SelectedPayDueBranch,
+  //   });
+  //   setState({ payDueDataSource: res.results[0].Message });
+  // } catch (error) {}
+}
 
   return (
     <div
@@ -269,10 +290,7 @@ const ClosedDue = [
                   row: ({ className, ...restProps }) => {
                     return (
                       <>
-                          <tr
-                            className={`${className} `}
-                            {...restProps}
-                          />
+                        <tr className={`${className} `} {...restProps} />
                       </>
                     );
                   },
@@ -281,7 +299,7 @@ const ClosedDue = [
             />
           </div>
           <div className="closedDue-pay-outer">
-            <button size="large" className="closedDue-pay">
+            <button size="large" className="closedDue-pay" onClick={handlepayduePay}>
               PAY
             </button>
           </div>
@@ -333,10 +351,7 @@ const ClosedDue = [
                       return (
                         <>
                           {/* <Tooltip title="Click Here" mouseEnterDelay={0.5}> */}
-                            <tr
-                              className={`${className}`}
-                              {...restProps}
-                            />
+                          <tr className={`${className}`} {...restProps} />
                           {/* </Tooltip> */}
                         </>
                       );
@@ -371,7 +386,6 @@ const ClosedDue = [
                   color: "#ab6465",
                 }}
               >
-              
                 <div className="PayDueLineShow">
                   <div style={{ paddingRight: "45px" }}>
                     <p>
@@ -381,7 +395,7 @@ const ClosedDue = [
                   </div>
                   <div>
                     <p className="getPayDueDetails">
-                    <br/>
+                      <br />
                       {state?.selectedPayDueShowData?.CHTGRUP}
                     </p>
                   </div>

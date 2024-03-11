@@ -5,7 +5,7 @@ import Signup from "./component/Signup/Singup";
 import AddChit from "./component/AddChit/AddChit";
 import PayDue from "./component/PayDue/PayDue";
 import Payment from "./component/Payment/Payment";
-import ClosedDue from "./component/ClosedDue/ClosedDue";
+import PaymentHistory from "./component/PaymentHistory/PaymentHistory";
 import Home from "./component/Home/Home";
 // import ForgetMobileNumber from "./component/ForgetPassword/ForgetMobileNumber";
 // import ConfirmPassword from "./component/ForgetPassword/ConfirmPassword";
@@ -43,7 +43,7 @@ function App() {
         <Route path="/add-chit" element={<AddChit />} />
         {/* <Route path="/my-profile" element={<PayDue />} /> */}
         <Route path="/chit-details" element={<Payment />} />
-        <Route path="/closed-due" element={<ClosedDue />} />
+        <Route path="/transactions" element={<PaymentHistory />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         {/* <Route path="/lucky-winner" element={<LuckyWinner />}/> */}
       </Routes>

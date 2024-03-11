@@ -96,6 +96,13 @@ const SideMenuTwo = () => {
                   >
                     <Link to="/chit-details">Chit Details</Link>
                   </li>
+                  <li
+                    className={`mb-[7px] ${
+                      isActive("/transactions") ? "active" : ""
+                    }`}
+                  >
+                    <Link to="/transactions">Transactions</Link>
+                  </li>
                   {/* 
         <li className={`mb-[7px] ${isActive('/my-profile') ? 'active' : ''}`}>
           <Link to="/my-profile">My Profile</Link>
@@ -200,6 +207,13 @@ const SideMenuTwo = () => {
               >
                 <Link to="/chit-details">Chit Details</Link>
               </li>
+              <li
+                    className={`mb-[7px] ${
+                      isActive("/transactions") ? "active" : ""
+                    }`}
+                  >
+                    <Link to="/transactions">Transactions</Link>
+                  </li>
               {/* 
         <li className={`mb-[7px] ${isActive('/my-profile') ? 'active' : ''}`}>
           <Link to="/my-profile">My Profile</Link>
